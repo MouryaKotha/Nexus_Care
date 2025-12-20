@@ -1,0 +1,11 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+.status-critical { background-color: #FECACA; color: #B91C1C; }
+.status-low { background-color: #FEF3C7; color: #B45309; }
+.status-good { background-color: #D1FAE5; color: #065F46; }
+.pulse-animation { animation: pulse 2s infinite; }
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
+}

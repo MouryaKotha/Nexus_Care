@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.emergency-numbers-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+.number-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.number-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.service {
+    font-size: 1.2em;
+}
+
+.number {
+    font-size: 1.5em;
+}
+
+/* Specific colors for each service */
+.police {
+    background-color: #007bff; /* Blue */
+}
+
+.fire {
+    background-color: #dc3545; /* Red */
+}
+
+.ambulance {
+    background-color: #28a745; /* Green */
+}
+
+.poison {
+    background-color: #6c757d; /* Gray */
+}
+
+.gas {
+    background-color: #ffc107; /* Yellow */
+}

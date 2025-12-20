@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+.line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+/* Custom styles for horizontal scrolling */
+.container-horizontal-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+}
+.container-horizontal-scroll::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+.doctor-card-horizontal {
+    display: inline-block;
+    width: 300px; /* Fixed width for each card */
+    vertical-align: top; /* Align cards at the top */
+    margin-right: 1.5rem; /* Add some space between cards */
+}
+
+/* Custom styles for status indicators if not using Tailwind's JIT mode */
+.status-critical { background-color: #FECACA; color: #B91C1C; }
+.status-low { background-color: #FEF3C7; color: #B45309; }
+.status-good { background-color: #D1FAE5; color: #065F46; }
+.pulse-animation { animation: pulse 2s infinite; }
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
+}
+
+/* Custom styles for the video call screen */
+.hidden {
+    display: none !important;
+}
+.fixed.inset-0 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.flex {
+    display: flex;
+}
+.flex-col {
+    flex-direction: column;
+}
+.items-center {
+    align-items: center;
+}
+.justify-center {
+    justify-content: center;
+}
+.relative {
+    position: relative;
+}
+.absolute {
+    position: absolute;
+}

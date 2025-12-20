@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Care Hospital - Quality Healthcare Services</title>
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/homepage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4"/>
+                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z"/>
+                </svg>
+                <a href="index.html">
+                    <span class="logo-text">Nexus care</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="doctors.html" class="nav-link">Find a Doctor</a></li>
+                <li><a href="appointment.html" class="nav-link">Book Appointment</a></li>
+                <li><a href="onlinetelemedince.html" class="nav-link">Online Telemedicine</a></li>
+                <li><a href="aisymtom.html" class="nav-link">AI Symptoms</a></li>
+
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-outline" href="emergency.html">Emergency</button>
+                
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Excellence in Healthcare, Compassion in Care</h1>
+                <p class="hero-subtitle">Your trusted partner in health and wellness. We provide world-class medical services with cutting-edge technology and compassionate care.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-large" onclick="location.href='appointment.html'">Book an Appointment</button>
+                    <button class="btn btn-secondary btn-large" onclick="location.href='doctors.html'">Find a Doctor</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Medical professionals providing care">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Medical Services</h2>
+            <p class="section-subtitle">Comprehensive healthcare services delivered by expert medical professionals</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Emergency Care</h3>
+                <p class="service-description">24/7 emergency medical services with a rapid response team and advanced life support capabilities.</p>
+                <a href="doctors.html?specialty=emergency-care" class="service-link">Learn More</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Cardiology</h3>
+                <p class="service-description">Comprehensive heart care including diagnostics, treatment, and cardiac rehabilitation programs.</p>
+                <a href="doctors.html?specialty=cardiology" class="service-link">Learn More</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 16c-1.4 1.4-2.8 2.8-4 4-1.2-1.2-2.6-2.6-4-4-1.4-1.4-1.4-4 0-5.4 1.4-1.4 4-1.4 5.4 0 1.4-1.4 4-1.4 5.4 0 1.4 1.4 1.4 4 0 5.4zM12 2v20"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Blood Donation</h3>
+                <p class="service-description">Help save lives by donating blood. Find out how you can contribute to our community's blood supply.</p>
+                <a href="blooddonation.html" class="service-link">Learn More</a><br>
+                <a href="blooddonar.html" class="btn btn-primary">Click Here</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 1v6m0 6v6"/>
+                        <path d="m15.71 4.29-4.24 4.24m-2.82 2.82-4.24 4.24"/>
+                        <path d="m4.29 8.29 4.24 4.24m2.82 2.82 4.24 4.24"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Pediatrics</h3>
+                <p class="service-description">Specialized medical care for infants, children, and adolescents with a child-friendly environment.</p>
+                <a href="doctors.html?specialty=pediatrics" class="service-link">Learn More</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                        <line x1="12" y1="19" x2="12" y2="22"/>
+                        <line x1="8" y1="22" x2="16" y2="22"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Neurology</h3>
+                <p class="service-description">Expert diagnosis and treatment of neurological disorders with state-of-the-art equipment.</p>
+                <a href="doctors.html?specialty=neurology" class="service-link">Learn More</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 3s5-2 13-2 13 2 13 2v13c0 1-1 2-2 2-9 0-11-2-11-2s-2 2-11 2c-1 0-2-1-2-2V3z"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Orthopedics</h3>
+                <p class="service-description">Comprehensive bone, joint, and muscle care including surgical and non-surgical treatments.</p>
+                <a href="doctors.html?specialty=orthopedics" class="service-link">Learn More</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 9V5a3 3 0 0 0-6 0v4"/>
+                        <rect x="2" y="9" width="20" height="13" rx="2" ry="2"/>
+                        <circle cx="12" cy="15" r="1"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Oncology</h3>
+                <p class="service-description">Advanced cancer care with a multidisciplinary approach and cutting-edge treatment options.</p>
+                <a href="doctors.html?specialty=oncology" class="service-link">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Find a Doctor Section -->
+<section class="find-doctor">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Find a Doctor</h2>
+            <p class="section-subtitle">Search our directory of experienced physicians and specialists</p>
+        </div>
+        <div class="doctor-search">
+            <div class="search-form">
+                <input type="text" class="search-input" placeholder="Doctor name or specialty" id="doctorSearch">
+                <select class="search-select" id="specialtyFilter">
+                    <option value="">All Specialties</option>
+                    <option value="cardiology">Cardiology</option>
+                    <option value="pediatrics">Pediatrics</option>
+                    <option value="neurology">Neurology</option>
+                    <option value="orthopedics">Orthopedics</option>
+                    <option value="oncology">Oncology</option>
+                </select>
+                <a href="doctors.html" class="btn btn-primary">Search Doctors</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Patient Success Stories</h2>
+                <p class="section-subtitle">Hear from our patients about their journey to better health</p>
+            </div>
+            <div class="testimonials-carousel" id="testimonialsCarousel">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                            </svg>
+                            <p>"The care I received at Nexus Care was exceptional. The staff was compassionate, and Dr. Johnson explained everything clearly. I'm grateful for their expertise during my recovery."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Sarah Mitchell">
+                            <div class="author-info">
+                                <h4>Sarah Mitchell</h4>
+                                <span>Cardiac Patient</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                            </svg>
+                            <p>"From the moment I walked in, I felt welcomed and cared for. The pediatric team made my daughter comfortable, and the treatment was successful. Highly recommended!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Michael Chen">
+                            <div class="author-info">
+                                <h4>Michael Chen</h4>
+                                <span>Parent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <div class="testimonial-quote">
+                            <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                            </svg>
+                            <p>"The orthopedic surgery team was amazing. They guided me through every step of my knee replacement, and I'm back to my active lifestyle. Thank you, Nexus Care!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://images.pexels.com/photos/1024311/pexels-photo-1024311.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Emily Rodriguez">
+                            <div class="author-info">
+                                <h4>Emily Rodriguez</h4>
+                                <span>Orthopedic Patient</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn prev" id="prevBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15,18 9,12 15,6"/>
+                    </svg>
+                </button>
+                <div class="carousel-dots" id="carouselDots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                </div>
+                <button class="carousel-btn next" id="nextBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9,18 15,12 9,6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4"/>
+                            <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z"/>
+                        </svg>
+                        <span class="logo-text">Nexus Care</span>
+                    </div>
+                    <p class="footer-description">Providing exceptional healthcare services with compassion and excellence.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="doctors.html">Find a Doctor</a></li>
+                        <li><a href="appointment.html">Book Appointment</a></li>
+                        <li><a href="portal-login.html">Patient Portal</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p><strong>Phone:</strong> (555) 123-4567</p>
+                        <p><strong>Emergency:</strong> (555) 911-0000</p>
+                        <p><strong>Email:</strong> info@Nexus Care.com</p>
+                        <p><strong>Address:</strong> 123 Health St, Medical City, MC 12345</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Hours</h4>
+                    <div class="hours-info">
+                        <p><strong>Emergency:</strong> 24/7</p>
+                        <p><strong>Outpatient:</strong> 8AM - 6PM</p>
+                        <p><strong>Lab Services:</strong> 7AM - 5PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nexus Care Hospital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="src/js/homepage.js"></script>
+</body>
+</html>

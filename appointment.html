@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - MediCare Hospital</title>
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/appointment.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+     <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4"/>
+                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z"/>
+                </svg>
+                <span class="logo-text">MediCare</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="doctors.html" class="nav-link">Find a Doctor</a></li>
+                <li><a href="appointment.html" class="nav-link">Book Appointment</a></li>
+                <li><a href="onlinetelemedince.html" class="nav-link">Online Telemedicine</a></li>
+                
+                <li><a href="aisymtom.html" class="nav-link">Ai Symtoms</a></li>
+
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-outline">Emergency</button>
+                
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="appointment-main">
+        <div class="container">
+            <div class="appointment-header">
+                <h1>Book an Appointment</h1>
+                <p>Schedule your visit with our healthcare professionals</p>
+            </div>
+
+            <div class="progress-indicator">
+                <div class="progress-step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <span class="step-label">Personal Info</span>
+                </div>
+                <div class="progress-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <span class="step-label">Insurance</span>
+                </div>
+                <div class="progress-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <span class="step-label">Appointment</span>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="step-number">4</div>
+                    <span class="step-label">Confirmation</span>
+                </div>
+            </div>
+
+            <form class="appointment-form" id="appointmentForm">
+                <div class="form-step active" id="step1">
+                    <div class="form-section">
+                        <h2 class="form-title">Personal Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                                <div class="error-message"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                                <div class="error-message"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                                <div class="error-message"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                                <div class="error-message"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Date of Birth *</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                                <div class="error-message"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" name="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer-not-to-say">Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" placeholder="Street Address">
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city">
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" id="state" name="state">
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode">ZIP Code</label>
+                                <input type="text" id="zipCode" name="zipCode">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" onclick="nextStep(1)">Continue</button>
+                    </div>
+                </div>
+
+                <div class="form-step" id="step2">
+                    <div class="form-section">
+                        <h2 class="form-title">Insurance Information</h2>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="hasInsurance" name="hasInsurance" onchange="toggleInsuranceFields()">
+                                I have insurance coverage
+                            </label>
+                        </div>
+                        <div id="insuranceFields" class="insurance-fields" style="display: none;">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="insuranceProvider">Insurance Provider</label>
+                                    <select id="insuranceProvider" name="insuranceProvider">
+                                        <option value="">Select Provider</option>
+                                        <option value="blue-cross">Blue Cross Blue Shield</option>
+                                        <option value="aetna">Aetna</option>
+                                        <option value="cigna">Cigna</option>
+                                        <option value="united">United Healthcare</option>
+                                        <option value="medicare">Medicare</option>
+                                        <option value="medicaid">Medicaid</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="policyNumber">Policy Number</label>
+                                    <input type="text" id="policyNumber" name="policyNumber">
+                                </div>
+                                <div class="form-group">
+                                    <label for="groupNumber">Group Number</label>
+                                    <input type="text" id="groupNumber" name="groupNumber">
+                                </div>
+                                <div class="form-group">
+                                    <label for="subscriberName">Subscriber Name</label>
+                                    <input type="text" id="subscriberName" name="subscriberName">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="emergencyContact">Emergency Contact Name</label>
+                            <input type="text" id="emergencyContact" name="emergencyContact">
+                        </div>
+                        <div class="form-group">
+                            <label for="emergencyPhone">Emergency Contact Phone</label>
+                            <input type="tel" id="emergencyPhone" name="emergencyPhone">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(2)">Continue</button>
+                    </div>
+                </div>
+
+                <div class="form-step" id="step3">
+                    <div class="form-section">
+                        <h2 class="form-title">Appointment Details</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="appointmentType">Appointment Type *</label>
+                                <select id="appointmentType" name="appointmentType" required>
+                                    <option value="">Select Type</option>
+                                    <option value="consultation">General Consultation</option>
+                                    <option value="follow-up">Follow-up Visit</option>
+                                    <option value="check-up">Annual Check-up</option>
+                                    <option value="specialist">Specialist Consultation</option>
+                                    <option value="urgent">Urgent Care</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="department">Department</label>
+                                <select id="department" name="department">
+                                    <option value="">Select Department</option>
+                                    <option value="general">General Medicine</option>
+                                    <option value="cardiology">Cardiology</option>
+                                    <option value="pediatrics">Pediatrics</option>
+                                    <option value="neurology">Neurology</option>
+                                    <option value="orthopedics">Orthopedics</option>
+                                    <option value="oncology">Oncology</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="reasonForVisit">Reason for Visit *</label>
+                            <textarea id="reasonForVisit" name="reasonForVisit" rows="4" placeholder="Please describe the reason for your visit..." required></textarea>
+                        </div>
+                        
+                        <div class="appointment-scheduler">
+                            <h3>Select Date and Time</h3>
+                            <div class="scheduler-grid">
+                                <div class="calendar-section">
+                                    <h4>Choose Date</h4>
+                                    <div class="calendar" id="appointmentCalendar">
+                                        </div>
+                                </div>
+                                <div class="time-section">
+                                    <h4>Available Times</h4>
+                                    <div class="time-slots" id="timeSlots">
+                                        <p class="no-date-selected">Please select a date first</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(3)">Continue</button>
+                    </div>
+                </div>
+
+                <div class="form-step" id="step4">
+                    <div class="form-section">
+                        <h2 class="form-title">Appointment Confirmation</h2>
+                        <div class="confirmation-card">
+                            <div class="confirmation-header">
+                                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22,4 12,14.01 9,11.01"/>
+                                </svg>
+                                <h3>Appointment Booked Successfully!</h3>
+                                <p id="confirmationNumberDisplay" class="confirmation-number-display"></p>
+                            </div>
+                            <div class="confirmation-details" id="confirmationDetails">
+                                </div>
+                            <div class="confirmation-actions">
+                                <button type="button" class="btn btn-outline" onclick="printConfirmation()">Print Confirmation</button>
+                                <button type="button" class="btn btn-primary" onclick="location.href='index.html'">Back to Home</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="src/js/appointment.js"></script>
+</body>
+</html>

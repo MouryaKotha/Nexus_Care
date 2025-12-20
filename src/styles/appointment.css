@@ -1,0 +1,693 @@
+/*
+ * Final CSS for the Appointment Booking module
+ * This combines and refines the provided styles for consistency and clarity.
+ */
+
+/* --- General & Variables --- */
+:root {
+  /* Colors */
+  --primary-color: #0066cc; /* A strong blue for key elements */
+  --secondary-color: #00bcd4; /* A lighter blue for highlights */
+  --success-color: #10b981; /* Green for success states */
+  --error-color: #ef4444; /* Red for error states */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+
+  /* Spacing */
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Typography */
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+
+  /* Borders & Shadows */
+  --radius-base: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease-in-out;
+  --transition-base: 0.3s ease-in-out;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: var(--gray-800);
+  background-color: var(--gray-50);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+/* --- Navigation --- */
+.navbar {
+  background-color: white;
+  border-bottom: 1px solid var(--gray-200);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--space-8);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: var(--space-2);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--gray-600);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary-color);
+}
+
+.nav-actions {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.btn {
+  padding: var(--space-3) var(--space-6);
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0059b3;
+}
+
+.btn-secondary {
+  background-color: var(--gray-300);
+  color: var(--gray-800);
+}
+
+.btn-secondary:hover {
+  background-color: var(--gray-400);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-outline:hover {
+  background-color: rgba(0, 102, 204, 0.05);
+}
+
+/* --- Main Appointment Section --- */
+.appointment-main {
+  min-height: calc(100vh - 80px);
+  background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
+  padding: var(--space-8) 0;
+}
+
+.appointment-header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.appointment-header h1 {
+  color: var(--gray-900);
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-2xl);
+}
+
+.appointment-header p {
+  color: var(--gray-600);
+  font-size: var(--font-size-lg);
+}
+
+/* --- Progress Indicator --- */
+.progress-indicator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-16);
+  position: relative;
+}
+
+.progress-indicator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--gray-300);
+  z-index: 1;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  position: relative;
+  z-index: 2;
+  background-color: var(--gray-50);
+  padding: 0 var(--space-4);
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--gray-300);
+  color: var(--gray-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: all var(--transition-base);
+}
+
+.progress-step.active .step-number {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.progress-step.completed .step-number {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.step-label {
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+  font-weight: 500;
+  text-align: center;
+}
+
+.progress-step.active .step-label {
+  color: var(--primary-color);
+}
+
+/* --- Form Styles --- */
+.appointment-form {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.form-step {
+  display: none;
+  padding: var(--space-10);
+}
+
+.form-step.active {
+  display: block;
+}
+
+.form-section {
+  margin-bottom: var(--space-8);
+}
+
+.form-title {
+  font-size: var(--font-size-2xl);
+  color: var(--gray-900);
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--gray-200);
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--gray-700);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-base);
+  transition: border-color var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+.form-group .error-message {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  font-size: var(--font-size-sm);
+  color: var(--error-color);
+  display: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.form-group.error .error-message.show {
+  display: block;
+  opacity: 1;
+}
+
+/* --- Insurance Fields --- */
+.insurance-fields {
+  margin-top: var(--space-6);
+  padding: var(--space-6);
+  background-color: var(--gray-50);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--gray-200);
+  transition: all var(--transition-base);
+}
+
+.insurance-fields.active {
+  border-color: var(--primary-color);
+  background-color: rgba(0, 102, 204, 0.02);
+}
+
+/* --- Appointment Scheduler --- */
+.appointment-scheduler {
+  margin-top: var(--space-8);
+}
+
+.appointment-scheduler h3 {
+  margin-bottom: var(--space-6);
+  color: var(--gray-900);
+  text-align: center;
+}
+
+.scheduler-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+.calendar-section,
+.time-section {
+  background-color: var(--gray-50);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  border: 2px solid var(--gray-200);
+}
+
+.calendar-section h4,
+.time-section h4 {
+  margin-bottom: var(--space-4);
+  color: var(--gray-800);
+  text-align: center;
+}
+
+/* --- Calendar Styles --- */
+.calendar {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4);
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.calendar-nav-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: var(--space-2);
+  border-radius: var(--radius-base);
+  transition: background-color var(--transition-fast);
+}
+
+.calendar-nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.calendar-month {
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background-color: var(--gray-200);
+}
+
+.calendar-day-header {
+  background-color: var(--gray-100);
+  padding: var(--space-3);
+  text-align: center;
+  font-weight: 500;
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+}
+
+.calendar-day {
+  background: white;
+  padding: var(--space-3);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-day:hover {
+  background-color: var(--gray-100);
+}
+
+.calendar-day.disabled {
+  color: var(--gray-400);
+  cursor: not-allowed;
+  background-color: var(--gray-50);
+}
+
+.calendar-day.selected {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.calendar-day.today {
+  background-color: var(--secondary-color);
+  color: white;
+  font-weight: 600;
+}
+
+/* --- Time Slots --- */
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: var(--space-3);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.time-slot {
+  padding: var(--space-3);
+  text-align: center;
+  border: 2px solid var(--gray-300);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: white;
+  font-weight: 500;
+}
+
+.time-slot:hover {
+  border-color: var(--primary-color);
+  background-color: rgba(0, 102, 204, 0.05);
+}
+
+.time-slot.selected {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.time-slot.unavailable {
+  background-color: var(--gray-100);
+  color: var(--gray-400);
+  cursor: not-allowed;
+  border-color: var(--gray-200);
+}
+
+.no-date-selected,
+.no-slots {
+  text-align: center;
+  color: var(--gray-500);
+  font-style: italic;
+  grid-column: 1 / -1;
+}
+
+/* --- Confirmation Styles --- */
+.confirmation-card {
+  text-align: center;
+  padding: var(--space-8);
+}
+
+.confirmation-header {
+  margin-bottom: var(--space-8);
+}
+
+.check-icon {
+  width: 80px;
+  height: 80px;
+  color: var(--success-color);
+  margin: 0 auto var(--space-6);
+}
+
+.confirmation-header h3 {
+  color: var(--success-color);
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-4);
+}
+
+.confirmation-number-display {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.confirmation-details {
+  background-color: var(--gray-50);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  text-align: left;
+  margin-bottom: var(--space-8);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.detail-value {
+  color: var(--gray-900);
+}
+
+.confirmation-actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* --- Responsive Design --- */
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .scheduler-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .progress-indicator {
+    gap: var(--space-16);
+  }
+  
+  .progress-step {
+    padding: 0 var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .form-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .time-slots {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* --- Custom Checkbox & Radio Styles --- */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+/* --- Form Validation States --- */
+.form-group.error input,
+.form-group.error select,
+.form-group.error textarea {
+  border-color: var(--error-color);
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.form-group.success input,
+.form-group.success select,
+.form-group.success textarea {
+  border-color: var(--success-color);
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+/* --- Loading States & Animations --- */
+.loading-state {
+  text-align: center;
+  color: var(--gray-500);
+  font-style: italic;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+}
+
+.loader {
+  border: 4px solid var(--gray-200);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--space-4);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- Notifications --- */
+.notification {
+  /* This is defined with inline styles in JS but here's a template for a static CSS version */
+  /* This is a visual-only section, the code is primarily in JS. */
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-lg);
+  color: white;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.notification-success {
+  background-color: var(--success-color);
+}
+
+.notification-error {
+  background-color: var(--error-color);
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: var(--font-size-xl);
+  line-height: 1;
+  cursor: pointer;
+}
