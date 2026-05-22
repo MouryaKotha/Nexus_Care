@@ -1,0 +1,528 @@
+/* Reminder Feature Styles */
+.reminder-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.reminder-card:hover {
+    transform: translateY(-5px);
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-pending {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
+.status-taken {
+    background: #D1FAE5;
+    color: #065F46;
+}
+
+.status-missed {
+    background: #FEE2E2;
+    color: #991B1B;
+}
+
+.status-escalated {
+    background: #DBEAFE;
+    color: #1E40AF;
+    font-style: italic;
+}
+
+.reminder-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem;
+    border-bottom: 1px solid #F3F4F6;
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.reminder-item:last-child {
+    border-bottom: none;
+}
+
+.notification-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background: white;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.countdown-timer {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #EF4444;
+    margin: 1.5rem 0;
+}
+
+.btn-taken {
+    background: #10B981;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-taken:hover {
+    background: #059669;
+}
+
+.btn-snooze {
+    background: #F59E0B;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: bold;
+    margin-left: 1rem;
+}
+
+/* Form Styles */
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #374151;
+    font-size: 0.85rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.875rem;
+    border-radius: 0.75rem;
+    border: 1px solid #D1D5DB;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #2563EB;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* ─── Analytics Dashboard ─────────────────────────────────────────────────── */
+.analytics-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.analytics-card {
+    background: white;
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f1f5f9;
+    transition: transform 0.2s;
+}
+
+.analytics-card:hover {
+    transform: translateY(-3px);
+}
+
+.analytics-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.analytics-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1;
+}
+
+.analytics-label {
+    font-size: 0.72rem;
+    color: #6b7280;
+    font-weight: 500;
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* ─── Medicine Card ───────────────────────────────────────────────────────── */
+.med-card {
+    border-radius: 14px;
+    border-left: 5px solid transparent;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.65rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    animation: slideIn 0.35s ease-out;
+    transition: box-shadow 0.2s;
+}
+
+.med-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.border-l-yellow-400 {
+    border-left-color: #facc15;
+    background: #fefce8;
+}
+
+.border-l-green-400 {
+    border-left-color: #4ade80;
+    background: #f0fdf4;
+}
+
+.border-l-red-400 {
+    border-left-color: #f87171;
+    background: #fff1f2;
+}
+
+.border-l-blue-400 {
+    border-left-color: #60a5fa;
+    background: #eff6ff;
+}
+
+.med-card-left {
+    flex: 1;
+}
+
+.med-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.35rem;
+}
+
+.med-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #111827;
+}
+
+.priority-chip {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fca5a5;
+    border-radius: 999px;
+    padding: 0.1rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    animation: blink 1.5s ease infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.condition-chip {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    border-radius: 999px;
+    padding: 0.1rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.med-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.78rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+.med-instr {
+    font-size: 0.78rem;
+    color: #3b82f6;
+    margin-top: 0.3rem;
+}
+
+.pills-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #374151;
+    background: #f1f5f9;
+    border-radius: 999px;
+    padding: 0.2rem 0.75rem;
+}
+
+.pills-low {
+    background: #fef9c3;
+    color: #92400e;
+}
+
+.rx-end {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    margin-top: 0.25rem;
+}
+
+.med-card-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.delete-btn {
+    color: #f87171;
+    transition: color 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    color: #dc2626;
+}
+
+/* ─── Filter Buttons ──────────────────────────────────────────────────────── */
+.filter-btn {
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1.5px solid #e5e7eb;
+    background: white;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: white;
+}
+
+/* ─── Advanced Fields Toggle ──────────────────────────────────────────────── */
+.advanced-fields-toggle {
+    cursor: pointer;
+    color: #2563eb;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.toggle-arrow {
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.advanced-fields-toggle.open .toggle-arrow {
+    transform: rotate(90deg);
+}
+
+.adv-fields-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+/* ─── Caregiver Panel ─────────────────────────────────────────────────────── */
+.caregiver-card {
+    background: linear-gradient(135deg, #faf5ff 0%, #f0f9ff 100%);
+    border: 1.5px solid #e9d5ff;
+}
+
+.caregiver-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.caregiver-row:last-child {
+    border-bottom: none;
+}
+
+.caregiver-row span:last-child {
+    font-weight: 700;
+    color: #7c3aed;
+}
+
+/* ─── Priority Banner ─────────────────────────────────────────────────────── */
+.priority-banner {
+    background: #fef2f2;
+    border: 1.5px solid #fca5a5;
+    color: #dc2626;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    animation: blink 1s ease infinite;
+}
+
+/* ─── Low Stock Alert ─────────────────────────────────────────────────────── */
+.low-stock-alert {
+    background: #fef9c3;
+    border: 1px solid #fde68a;
+    color: #92400e;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* ─── Skip Panel ──────────────────────────────────────────────────────────── */
+.skip-panel {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 0.5rem;
+}
+
+.skip-reason-btn {
+    background: white;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    width: 100%;
+}
+
+.skip-reason-btn:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: white;
+}
+
+.btn-skip {
+    background: #6b7280;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: bold;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-skip:hover {
+    background: #4b5563;
+}
+
+.snooze-counter {
+    font-size: 0.78rem;
+    color: #ef4444;
+}
+
+/* ─── Modal Detail ────────────────────────────────────────────────────────── */
+#modal-med-detail {
+    font-size: 0.82rem;
+    color: #3b82f6;
+    margin-bottom: 0.5rem;
+}
+
+/* ─── Health Alert Banner ─────────────────────────────────────────────────── */
+.health-alert-item {
+    background: #fff7ed;
+    border-left: 4px solid #f59e0b;
+    padding: 0.75rem 1rem;
+    font-size: 0.88rem;
+    color: #78350f;
+    margin-bottom: 2px;
+    border-radius: 0 8px 8px 0;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .analytics-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .med-card {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .med-card-right {
+        flex-direction: row;
+        margin-left: 0;
+    }
+
+    .filter-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+    }
+}
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

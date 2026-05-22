@@ -1,334 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Patient's Guide to Blood Transfusions | City Hospital</title>
+    <title>Blood Donation & Requests | Nexus Care</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .status-critical { background-color: #FECACA; color: #B91C1C; }
-        .status-low { background-color: #FEF3C7; color: #B45309; }
-        .status-good { background-color: #D1FAE5; color: #065F46; }
-        .pulse-animation { animation: pulse 2s infinite; }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .5; }
-        }
-    </style>
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
+    <link rel="stylesheet" href="src/styles/blooddonar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-50 text-gray-800">
 
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        
-    </header>
+<body class="bg-slate-50 text-slate-800 with-sidebar">
+    <aside class="sidebar" id="sidebar"></aside>
 
-    <div id="main-content">
-        <main class="container mx-auto px-6 py-12">
-            <section class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">A Patient's Guide to Blood Transfusions</h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Receiving a blood transfusion is a safe and common procedure. We're here to provide clear information and compassionate care to give you peace of mind.</p>
-            </section>
-
-            <section id="guide" class="mb-20">
-                <div class="text-center mb-12">
-                    <span class="inline-block bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold mb-2">The Heart of the Hospital</span>
-                    <h3 class="text-3xl font-bold">Our Blood Bank</h3>
-                    <p class="text-gray-600 mt-2">A dedicated team ensuring a safe and ready blood supply, 24/7.</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8 text-center">
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <svg class="w-12 h-12 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                        <h4 class="font-semibold text-lg mb-2">Safeguarding Blood</h4>
-                        <p class="text-gray-600 text-sm">We carefully screen, test, and store all blood products to ensure they are safe for patients.</p>
+    <!-- Navigation -->
+    <nav class="navbar glassmorphic">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="flex items-center gap-2">
+                    <div class="logo-icon bg-red-600 text-white p-2 rounded-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                            </path>
+                        </svg>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <svg class="w-12 h-12 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                        <h4 class="font-semibold text-lg mb-2">Providing the Right Match</h4>
-                        <p class="text-gray-600 text-sm">Our team works diligently to ensure every patient receives the exact blood type they need.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-md">
-                        <svg class="w-12 h-12 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <h4 class="font-semibold text-lg mb-2">Ready for Emergencies</h4>
-                        <p class="text-gray-600 text-sm">The blood bank is on standby 24/7 for surgeries, accidents, and other urgent medical needs.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="mb-20">
-                <div class="text-center mb-12">
-                     <h3 class="text-3xl font-bold">Your Transfusion Journey</h3>
-                     <p class="text-gray-600 mt-2">A simple, safe, and monitored process from start to finish.</p>
-                </div>
-                <div class="space-y-8">
-                    <div class="flex items-center">
-                        <div class="bg-red-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg">1</div>
-                        <div class="ml-4 p-4 bg-white rounded-lg shadow-md flex-1">
-                            <h4 class="font-semibold">Doctor's Decision & Consent</h4>
-                            <p class="text-gray-600 text-sm">Your doctor will explain why a transfusion is needed and answer all your questions before you provide consent.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="bg-red-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg">2</div>
-                        <div class="ml-4 p-4 bg-white rounded-lg shadow-md flex-1">
-                            <h4 class="font-semibold">Blood Sample & Matching</h4>
-                            <p class="text-gray-600 text-sm">A nurse takes a small blood sample to determine your blood type and find a perfect match in our blood bank.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="bg-red-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg">3</div>
-                        <div class="ml-4 p-4 bg-white rounded-lg shadow-md flex-1">
-                            <h4 class="font-semibold">The Transfusion</h4>
-                            <p class="text-gray-600 text-sm">An IV is started, and the matched blood is slowly and painlessly administered over a few hours.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="bg-red-500 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-lg">4</div>
-                        <div class="ml-4 p-4 bg-white rounded-lg shadow-md flex-1">
-                            <h4 class="font-semibold">Constant Monitoring</h4>
-                            <p class="text-gray-600 text-sm">Your nurse will check on you frequently to ensure you are comfortable and feeling well throughout the process.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="safety" class="bg-red-50 p-12 rounded-lg mb-20">
-                <div class="text-center">
-                    <h3 class="text-3xl font-bold mb-4">Your Safety is Our Promise</h3>
-                    <p class="text-gray-700 max-w-2xl mx-auto mb-8">We take every possible precaution to ensure the blood you receive is safe. Our rigorous safety protocols are the cornerstone of our patient care.</p>
-                    <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
-                        <div class="flex items-center">
-                            <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span class="font-semibold">Precise Blood Type Matching</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span class="font-semibold">Rigorous Disease Testing</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="status" class="mb-20">
-                <div class="text-center mb-12">
-                    <h3 class="text-3xl font-bold text-gray-900">Live Emergency & Hospital Status</h3>
-                    <p class="text-gray-600 mt-2">Real-time updates on our hospital's critical services.</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-blue-500">
-                        <h4 class="font-bold text-lg mb-4 text-gray-700">Ambulance Availability</h4>
-                        <div class="text-center">
-                            <p class="text-5xl font-extrabold text-blue-600" id="ambulance-count">3</p>
-                            <p class="text-sm text-gray-500 mb-4">Available Units</p>
-                            <p class="text-gray-700 font-semibold">City ETA: <span id="ambulance-eta">10-15</span> min</p>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-red-500">
-                        <h4 class="font-bold text-lg mb-4 text-gray-700">Blood Bank Stock</h4>
-                        <div class="space-y-3" id="blood-stock">
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg border-t-4 border-purple-500">
-                        <h4 class="font-bold text-lg mb-4 text-gray-700">ICU Bed Occupancy</h4>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-sm font-medium text-gray-600">Medical ICU</span>
-                                    <span class="text-sm font-medium text-purple-700" id="micu-occupancy-text">85%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div id="micu-occupancy-bar" class="bg-purple-600 h-2.5 rounded-full" style="width: 85%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-sm font-medium text-gray-600">Surgical ICU</span>
-                                    <span class="text-sm font-medium text-purple-700" id="sicu-occupancy-text">70%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div id="sicu-occupancy-bar" class="bg-purple-600 h-2.5 rounded-full" style="width: 70%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="donors" class="text-center bg-white p-12 rounded-lg shadow-md">
-                <h3 class="text-3xl font-bold mb-4">A Gift From Our Community</h3>
-                <p class="text-gray-600 max-w-2xl mx-auto mb-8">The blood used in transfusions comes from volunteer donors. Their generosity saves lives every single day. Currently, there are <span class="text-red-600 font-bold">150</span> donors available to give blood. Consider becoming a hero.</p>
-                <a href="#" id="donor-btn" class="bg-red-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-red-700 transition duration-300 inline-block">Become a Blood Donor</a>
-            </section>
-        </main>
-
-        <footer class="bg-gray-800 text-white mt-20">
-            <div class="container mx-auto px-6 py-8 text-center">
-                <p>&copy; 2024 City Hospital. All Rights Reserved.</p>
-                <p class="text-sm text-gray-400 mt-2">123 Health St, Medville, USA | (123) 456-7890</p>
+                    <span
+                        class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-rose-600">Nexus
+                        Care</span>
+                </a>
             </div>
-        </footer>
-    </div>
-    
-    <div id="donor-form-container" class="hidden flex items-center justify-center min-h-screen">
-        <div class="bg-white p-8 md:p-12 rounded-lg shadow-xl w-full max-w-2xl">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">Become a Blood Donor</h2>
-                <p class="text-gray-600">Your gift can save a life. Please fill out the form below to begin the process.</p>
-            </div>
-
-            <form action="#" method="POST" class="space-y-6">
-                <div>
-                    <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" required class="mt-1 block w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm">
+            <div class="nav-actions">
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=User&background=DC2626&color=fff" alt="Profile"
+                        class="h-10 w-10 rounded-full border-2 border-red-500">
                 </div>
-
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                    <input type="email" id="email" name="email" required class="mt-1 block w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm">
-                </div>
-
-                <div>
-                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required class="mt-1 block w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm">
-                </div>
-
-                <div>
-                    <label for="bloodType" class="block text-sm font-medium text-gray-700">Blood Type</label>
-                    <select id="bloodType" name="bloodType" required class="mt-1 block w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm">
-                        <option value="">Select your blood type</option>
-                        <option value="A+">A+</option>
-                        <option value="A-">A-</option>
-                        <option value="B+">B+</option>
-                        <option value="B-">B-</option>
-                        <option value="AB+">AB+</option>
-                        <option value="AB-">AB-</option>
-                        <option value="O+">O+</option>
-                        <option value="O-">O-</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                    <input type="date" id="dob" name="dob" required class="mt-1 block w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm">
-                </div>
-
-                <div class="flex items-start">
-                    <div class="flex items-center h-5">
-                        <input id="eligibility" name="eligibility" type="checkbox" required class="focus:ring-red-500 h-4 w-4 text-red-600 border-gray-300 rounded">
-                    </div>
-                    <div class="ml-3 text-sm">
-                        <label for="eligibility" class="font-medium text-gray-700">I confirm I am over 18 and meet the general donor eligibility requirements.</label>
-                    </div>
-                </div>
-
-                <div class="flex justify-center">
-                    <button type="#submit" class="w-full bg-red-600 text-white font-semibold py-3 px-6 rounded-md shadow-md hover:bg-red-700 transition duration-300">Submit Application</button>
-                </div>
-            </form>
-
-            <div class="mt-6 text-center text-sm">
-                <a href="#aisymptoms.html" id="return-btn" class="text-red-600 hover:text-red-700 font-semibold">← Return to Patient Guide</a>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Main page status updates script
-            const ambulanceCountEl = document.getElementById('ambulance-count');
-            const ambulanceEtaEl = document.getElementById('ambulance-eta');
-            const bloodStockEl = document.getElementById('blood-stock');
-            const micuTextEl = document.getElementById('micu-occupancy-text');
-            const micuBarEl = document.getElementById('micu-occupancy-bar');
-            const sicuTextEl = document.getElementById('sicu-occupancy-text');
-            const sicuBarEl = document.getElementById('sicu-occupancy-bar');
+    <main class="page-container" id="mainContent">
+        <!-- Hero Section -->
+        <section
+            class="blood-hero text-center mb-12 py-16 px-4 bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl relative overflow-hidden shadow-2xl">
+            <div class="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay">
+                <div class="absolute top-0 left-0 w-64 h-64 bg-red-500 rounded-full filter blur-[80px] opacity-60">
+                </div>
+                <div
+                    class="absolute bottom-0 right-0 w-96 h-96 bg-rose-600 rounded-full filter blur-[100px] opacity-40">
+                </div>
+            </div>
+            <div class="relative z-10">
+                <span
+                    class="inline-block bg-red-500/20 text-red-300 px-4 py-1.5 rounded-full text-sm font-bold tracking-wider mb-6 border border-red-500/30 uppercase">Lifeline
+                    Network</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight">Donate
+                    Blood.<br><span class="text-red-400">Save a Life.</span></h1>
+                <p class="text-lg text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">Connect directly with patients
+                    in critical need or register yourself as a volunteer donor. Every drop counts.</p>
+            </div>
+        </section>
 
-            const bloodTypes = [
-                { type: 'A+', status: 'Good' },
-                { type: 'O-', status: 'Critical' },
-                { type: 'B+', status: 'Good' },
-                { type: 'AB-', status: 'Low' }
-            ];
+        <!-- Live Status Widgets -->
+        <section class="mb-12">
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Blood Bank Stock -->
+                <div class="glass-card p-6 border-t-4 border-red-500 hover:-translate-y-1 transition bg-white/60">
+                    <h4 class="font-bold text-lg mb-4 text-slate-800 flex items-center justify-between">
+                        <span>🩸 Blood Bank Stock</span>
+                        <span class="flex h-3 w-3 relative">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                        </span>
+                    </h4>
+                    <div class="space-y-3" id="blood-stock-live">
+                        <!-- JS populated -->
+                    </div>
+                </div>
 
-            const statuses = ['Good', 'Low', 'Critical'];
-            const statusClasses = {
-                'Good': 'status-good',
-                'Low': 'status-low',
-                'Critical': 'status-critical pulse-animation'
-            };
+                <!-- Active Requests Counter -->
+                <div
+                    class="glass-card p-6 border-t-4 border-orange-500 hover:-translate-y-1 transition bg-white/60 text-center flex flex-col justify-center">
+                    <h4 class="font-bold text-lg mb-2 text-slate-800">Critical Requests</h4>
+                    <p class="text-6xl font-black text-orange-500 my-2" id="critical-count">0</p>
+                    <p class="text-sm font-semibold text-slate-500 uppercase tracking-wide">Patients Waiting</p>
+                </div>
 
-            function updateBloodStock() {
-                bloodStockEl.innerHTML = '';
-                bloodTypes.forEach(blood => {
-                    const statusClass = statusClasses[blood.status];
-                    const el = document.createElement('div');
-                    el.className = `flex justify-between items-center p-2 rounded-md font-semibold text-sm ${statusClass}`;
-                    el.innerHTML = `<span>${blood.type}</span><span>${blood.status}</span>`;
-                    bloodStockEl.appendChild(el);
-                });
-            }
+                <!-- Registered Donors -->
+                <div
+                    class="glass-card p-6 border-t-4 border-emerald-500 hover:-translate-y-1 transition bg-white/60 text-center flex flex-col justify-center">
+                    <h4 class="font-bold text-lg mb-2 text-slate-800">Volunteer Network</h4>
+                    <p class="text-6xl font-black text-emerald-500 my-2" id="donor-count">0</p>
+                    <p class="text-sm font-semibold text-slate-500 uppercase tracking-wide">Active Donors</p>
+                </div>
+            </div>
+        </section>
 
-            function updateAmbulanceStatus() {
-                const count = Math.floor(Math.random() * 3) + 2; // Random 2-4
-                const etaMin = Math.floor(Math.random() * 5) + 8; // Random 8-12
-                const etaMax = etaMin + 5;
-                ambulanceCountEl.textContent = count;
-                ambulanceEtaEl.textContent = `${etaMin}-${etaMax}`;
-            }
+        <!-- Dynamic Main System tabs -->
+        <div class="glass-card overflow-hidden bg-white/80">
+            <!-- Tabs Navigation -->
+            <div class="flex border-b border-slate-200">
+                <button
+                    class="blood-tab-btn active flex-1 py-4 font-bold text-sm sm:text-base text-slate-500 tracking-wide transition uppercase"
+                    data-target="tab-donor">Voluntary Donor</button>
+                <button
+                    class="blood-tab-btn flex-1 py-4 font-bold text-sm sm:text-base text-slate-500 tracking-wide transition uppercase"
+                    data-target="tab-request">Request Blood</button>
+                <button
+                    class="blood-tab-btn flex-1 py-4 font-bold text-sm sm:text-base text-slate-500 tracking-wide transition uppercase hidden md:block"
+                    data-target="tab-matches">Active Matches</button>
+            </div>
 
-            function updateIcuOccupancy() {
-                const micuOccupancy = Math.floor(Math.random() * 21) + 70; // 70-90%
-                const sicuOccupancy = Math.floor(Math.random() * 21) + 65; // 65-85%
+            <div class="p-8">
+                <!-- ─── TAB 1: DONOR REGISTRATION ────────────────────────── -->
+                <div id="tab-donor" class="blood-tab-pane active fade-in">
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-2">Register as a Donor</h2>
+                        <p class="text-slate-500">Become a part of our life-saving community.</p>
+                    </div>
 
-                micuTextEl.textContent = `${micuOccupancy}%`;
-                micuBarEl.style.width = `${micuOccupancy}%`;
-                sicuTextEl.textContent = `${sicuOccupancy}%`;
-                sicuBarEl.style.width = `${sicuOccupancy}%`;
-            }
-            
-            function randomizeBloodStatus() {
-                const randomIndex = Math.floor(Math.random() * bloodTypes.length);
-                const randomStatusIndex = Math.floor(Math.random() * statuses.length);
-                bloodTypes[randomIndex].status = statuses[randomStatusIndex];
-                updateBloodStock();
-            }
+                    <form id="donor-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Basic Info -->
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-1">Full Name</label>
+                                    <input type="text" id="donor-name" required
+                                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-bold text-slate-700 mb-1">Age (18-60)</label>
+                                        <input type="number" id="donor-age" min="18" max="60" required
+                                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-slate-700 mb-1">Gender</label>
+                                        <select id="donor-gender" required
+                                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition">
+                                            <option value="">Select...</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-1">Blood Group</label>
+                                    <select id="donor-blood" required
+                                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none text-lg font-bold text-red-600 transition">
+                                        <option value="">Select Blood Group</option>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                    </select>
+                                </div>
+                            </div>
 
-            // Initial calls
-            updateBloodStock();
-            updateAmbulanceStatus();
-            updateIcuOccupancy();
+                            <!-- Contact & Medical -->
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-bold text-slate-700 mb-1">Phone</label>
+                                        <input type="tel" id="donor-phone" required
+                                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-slate-700 mb-1">City/Area</label>
+                                        <input type="text" id="donor-city" required
+                                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-1">Last Donation
+                                        Date</label>
+                                    <input type="date" id="donor-last-date"
+                                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none transition">
+                                    <p id="eligibility-status" class="text-sm font-bold mt-2 hidden"></p>
+                                </div>
+                                <div class="pt-4 flex items-center gap-3">
+                                    <input type="checkbox" id="donor-consent" required
+                                        class="w-5 h-5 text-red-600 border-gray-300 rounded focus:ring-red-500 cursor-pointer">
+                                    <label for="donor-consent" class="text-sm text-slate-600 cursor-pointer">I confirm
+                                        that I am healthy and willing to donate blood voluntarily.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex justify-end">
+                            <button type="submit" id="donor-submit-btn"
+                                class="bg-red-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-red-700 transition shadow-lg shadow-red-600/30 flex items-center gap-2">
+                                Register as Donor 🩸
+                            </button>
+                        </div>
+                    </form>
+                </div>
 
-            // Set intervals for updates
-            setInterval(randomizeBloodStatus, 4000);
-            setInterval(updateAmbulanceStatus, 7000);
-            setInterval(updateIcuOccupancy, 5000);
-            
-            // Show/Hide form logic
-            const mainContent = document.getElementById('main-content');
-            const donorFormContainer = document.getElementById('donor-form-container');
-            const donorBtn = document.getElementById('donor-btn');
-            const returnBtn = document.getElementById('return-btn');
+                <!-- ─── TAB 2: REQUEST BLOOD ───────────────────────────── -->
+                <div id="tab-request" class="blood-tab-pane hidden fade-in">
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-slate-900 mb-2">Request Blood</h2>
+                        <p class="text-slate-500">Submit a request to find compatible donors broadcasted to the network.
+                        </p>
+                    </div>
 
-            donorBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                mainContent.classList.add('hidden');
-                donorFormContainer.classList.remove('hidden');
-                document.body.classList.remove('bg-gray-50');
-                document.body.classList.add('bg-gray-50', 'flex', 'items-center', 'justify-center');
-            });
+                    <form id="request-form" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Patient Details -->
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-1">Patient Name</label>
+                                    <input type="text" id="req-name" required
+                                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-bold text-slate-700 mb-1">Required
+                                            Group</label>
+                                        <select id="req-blood" required
+                                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none text-lg font-bold text-red-600 transition">
+                                            <option value="">Select...</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-slate-700 mb-1">Units Needed</label>
+                                        <input type="number" id="req-units" min="1" max="10" required
+                                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-1">Urgency Level</label>
+                                    <div class="flex gap-2">
+                                        <label class="flex-1 cursor-pointer">
+                                            <input type="radio" name="req-urgency" value="Normal" class="peer sr-only"
+                                                checked>
+                                            <div
+                                                class="text-center py-2 px-3 border border-slate-200 rounded-lg peer-checked:bg-emerald-50 peer-checked:border-emerald-500 peer-checked:text-emerald-700 font-semibold text-sm transition text-slate-500">
+                                                Normal</div>
+                                        </label>
+                                        <label class="flex-1 cursor-pointer">
+                                            <input type="radio" name="req-urgency" value="Urgent" class="peer sr-only">
+                                            <div
+                                                class="text-center py-2 px-3 border border-slate-200 rounded-lg peer-checked:bg-orange-50 peer-checked:border-orange-500 peer-checked:text-orange-700 font-semibold text-sm transition text-slate-500">
+                                                Urgent</div>
+                                        </label>
+                                        <label class="flex-1 cursor-pointer">
+                                            <input type="radio" name="req-urgency" value="Critical"
+                                                class="peer sr-only">
+                                            <div
+                                                class="text-center py-2 px-3 border border-slate-200 rounded-lg peer-checked:bg-red-50 peer-checked:border-red-500 peer-checked:text-red-700 font-semibold text-sm transition text-slate-500">
+                                                Critical</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
 
-            returnBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                mainContent.classList.remove('hidden');
-                donorFormContainer.classList.add('hidden');
-                document.body.classList.remove('flex', 'items-center', 'justify-center');
-                document.body.classList.add('bg-gray-50');
-            });
-        });
-    </script>
+                            <!-- Location & Contact -->
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-1">Hospital Name &
+                                        Address</label>
+                                    <textarea id="req-hospital" rows="3" required
+                                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition resize-none"></textarea>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-bold text-slate-700 mb-1">Contact Phone</label>
+                                        <input type="tel" id="req-phone" required
+                                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-slate-700 mb-1">Required By
+                                            Date</label>
+                                        <input type="date" id="req-date" required
+                                            class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100 flex justify-end">
+                            <button type="submit"
+                                class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-600/30 flex items-center gap-2">
+                                Post Blood Request 📡
+                            </button>
+                        </div>
+                    </form>
+                </div>
 
+                <!-- ─── TAB 3: MATCHES & ACTIVE TRACKING ────────────────── -->
+                <div id="tab-matches" class="blood-tab-pane hidden fade-in">
+                    <div class="mb-8 flex justify-between items-end">
+                        <div class="md:hidden"></div> <!-- mobile spacing -->
+                        <div>
+                            <h2 class="text-2xl font-bold text-slate-900 mb-2">Live Blood Network</h2>
+                            <p class="text-slate-500">Real-time matching requests & available donors in your area.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-sm font-black uppercase text-slate-400 tracking-widest mb-4">Active Requests
+                                (Looking for Donors)</h3>
+                            <div id="requests-list" class="space-y-4">
+                                <!-- Requests populated by JS -->
+                                <div
+                                    class="text-center py-8 text-slate-400 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200">
+                                    No active requests at the moment.</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-sm font-black uppercase text-slate-400 tracking-widest mb-4">Available
+                                Donors (Ready to Give)</h3>
+                            <div id="donors-list" class="space-y-4">
+                                <!-- Donors populated by JS -->
+                                <div
+                                    class="text-center py-8 text-slate-400 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200">
+                                    No active donors currently visible.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/blooddonar.js"></script>
 </body>
+
 </html>

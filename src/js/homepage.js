@@ -1,5 +1,47 @@
 // Homepage JavaScript Functionality
 
+document.addEventListener('DOMContentLoaded', () => {
+    loadFeaturedArticles();
+});
+
+async function loadFeaturedArticles() {
+    const grid = document.getElementById('featuredArticles');
+    if (!grid) return;
+
+    try {
+        const res = await fetch('/api/blog');
+        let articles = await res.json();
+
+        if (!Array.isArray(articles) || articles.length === 0) {
+            articles = [
+                { title: 'The Future of AI in Healthcare', category: 'Medical news', image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=400', readTime: '5 min' },
+                { title: 'Gut Health & Mental Well-being', category: 'Nutrition', image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400', readTime: '6 min' },
+                { title: 'Managing Stress Naturally', category: 'Wellness', image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', readTime: '4 min' }
+            ];
+        }
+
+        grid.innerHTML = articles.slice(0, 3).map(a => `
+            <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 group hover:shadow-2xl transition duration-500">
+                <div class="h-56 overflow-hidden">
+                    <img src="${a.image}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                </div>
+                <div class="p-8">
+                    <span class="px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 inline-block">${a.category}</span>
+                    <h3 class="text-2xl font-black text-gray-900 mb-4 leading-tight group-hover:text-blue-600 transition decoration-2 underline-offset-4">${a.title}</h3>
+                    <div class="flex items-center justify-between pt-6 border-t border-slate-50">
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">${a.readTime} Read</span>
+                        <a href="blog.html" class="p-4 bg-slate-50 rounded-2xl group-hover:bg-blue-600 group-hover:text-white transition">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    } catch (err) {
+        console.error('Featured articles load error:', err);
+    }
+}
+
 /**
  * Homepage JavaScript - Handles testimonial carousel, mobile menu, and animations
  */
@@ -136,7 +178,7 @@ class Homepage {
 
         mobileMenuToggle.addEventListener('click', () => {
             const isOpen = navMenu.classList.contains('active');
-            
+
             if (isOpen) {
                 this.closeMobileMenu();
             } else {
@@ -165,7 +207,7 @@ class Homepage {
     openMobileMenu() {
         const navMenu = document.querySelector('.nav-menu');
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        
+
         if (navMenu && mobileMenuToggle) {
             navMenu.classList.add('active');
             mobileMenuToggle.classList.add('active');
@@ -179,7 +221,7 @@ class Homepage {
     closeMobileMenu() {
         const navMenu = document.querySelector('.nav-menu');
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        
+
         if (navMenu && mobileMenuToggle) {
             navMenu.classList.remove('active');
             mobileMenuToggle.classList.remove('active');
@@ -226,7 +268,7 @@ class Homepage {
      */
     initServiceCards() {
         const serviceCards = document.querySelectorAll('.service-card');
-        
+
         serviceCards.forEach(card => {
             // Add hover effect data
             card.addEventListener('mouseenter', () => {
@@ -253,7 +295,7 @@ class Homepage {
      */
     handleServiceClick(card) {
         const serviceTitle = card.querySelector('.service-title').textContent;
-        
+
         // Add visual feedback
         card.style.transform = 'scale(0.98)';
         setTimeout(() => {
@@ -560,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (specialtyFilter) {
             specialtyFilter.value = specialty;
             // You would then trigger a function to filter your doctor list
-            filterDoctors(specialty); 
+            filterDoctors(specialty);
         }
     }
 });

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Ecosystem | Nexus Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
+    <link rel="stylesheet" href="src/styles/family.css">
+</head>
+
+<body class="with-sidebar bg-slate-50">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main id="mainContent">
+        <!-- Top Nav -->
+        <nav class="navbar glassmorphic">
+            <div class="nav-container">
+                <div class="flex items-center gap-3">
+                    <button id="sidebarToggleGlobal" class="p-2 rounded-lg hover:bg-blue-50">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <line x1="3" y1="12" x2="21" y2="12" />
+                            <line x1="3" y1="18" x2="21" y2="18" />
+                        </svg>
+                    </button>
+                    <span class="font-semibold text-slate-700 text-sm">Nexus Modules</span>
+                </div>
+                <div class="nav-logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12l2 2 4-4" />
+                        <path
+                            d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z" />
+                    </svg>
+                    <span class="logo-text">Nexus Care</span>
+                </div>
+                <div class="nav-actions">
+                    <a href="emergency.html" class="btn btn-outline">Emergency</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="fe-page-wrapper">
+            <!-- Page Header -->
+            <div class="fe-page-header">
+                <div>
+                    <h1 class="fe-title">Family Ecosystem</h1>
+                    <p class="fe-subtitle">Manage health records, reminders, and care plans for your entire family.</p>
+                </div>
+                <button id="btn-add-member" class="fe-btn-primary">
+                    ➕ Add Family Member
+                </button>
+            </div>
+
+            <!-- ─── Summary Stats Bar ──────────────────────────────────────── -->
+            <div class="fe-stats-bar" id="summary-stats">
+                <div class="fe-stat">
+                    <div class="fe-stat-val" id="stat-total">0</div>
+                    <div class="fe-stat-label">Members</div>
+                </div>
+                <div class="fe-stat">
+                    <div class="fe-stat-val text-green-600" id="stat-avg-adherence">—</div>
+                    <div class="fe-stat-label">Avg Adherence</div>
+                </div>
+                <div class="fe-stat">
+                    <div class="fe-stat-val text-red-500" id="stat-high-risk">0</div>
+                    <div class="fe-stat-label">High Risk</div>
+                </div>
+                <div class="fe-stat">
+                    <div class="fe-stat-val text-orange-500" id="stat-missed">0</div>
+                    <div class="fe-stat-label">Missed Doses</div>
+                </div>
+                <div class="fe-stat">
+                    <div class="fe-stat-val text-purple-600" id="stat-escalations">0</div>
+                    <div class="fe-stat-label">Escalations</div>
+                </div>
+            </div>
+
+            <!-- ─── Health Insights Banner ─────────────────────────────────── -->
+            <div id="insights-banner" class="fe-insights-banner hidden"></div>
+
+            <!-- ─── Condition Filter Tabs ─────────────────────────────────── -->
+            <div class="fe-filter-tabs" id="condition-tabs">
+                <button class="fe-filter-tab active" data-condition="all" onclick="window.filterByCondition('all')">🏠
+                    All Members</button>
+                <button class="fe-filter-tab" data-condition="Diabetes"
+                    onclick="window.filterByCondition('Diabetes')">🩸 Diabetes</button>
+                <button class="fe-filter-tab" data-condition="BP" onclick="window.filterByCondition('BP')">💓 Blood
+                    Pressure</button>
+                <button class="fe-filter-tab" data-condition="Heart" onclick="window.filterByCondition('Heart')">🫀
+                    Heart</button>
+                <button class="fe-filter-tab" data-condition="Asthma" onclick="window.filterByCondition('Asthma')">🫁
+                    Asthma</button>
+            </div>
+
+            <!-- ─── Family Member Cards Grid ──────────────────────────────── -->
+            <div id="family-grid" class="fe-grid">
+                <!-- Injected by JS -->
+                <div id="no-members-placeholder" class="fe-empty-state">
+                    <div style="font-size:3rem; margin-bottom:1rem;">👨‍👩‍👧‍👦</div>
+                    <h3>No family members yet</h3>
+                    <p>Click "Add Family Member" to get started.</p>
+                    <button onclick="document.getElementById('member-modal').classList.remove('hidden')"
+                        class="fe-btn-primary mt-4">Add First Member</button>
+                </div>
+            </div>
+
+            <!-- ─── Escalation Log ─────────────────────────────────────────── -->
+            <div class="fe-section-card mt-8">
+                <h2 class="fe-section-title">⚡ Escalation Log</h2>
+                <div id="escalation-log" class="space-y-2">
+                    <p class="text-slate-400 text-sm">No escalation events recorded.</p>
+                </div>
+            </div>
+
+            <!-- ─── Shared Appointments ─────────────────────────────────────── -->
+            <div class="fe-section-card mt-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="fe-section-title mb-0">📅 Shared Appointments</h2>
+                    <button onclick="document.getElementById('appt-modal').classList.remove('hidden')"
+                        class="fe-btn-secondary">+ Schedule</button>
+                </div>
+                <div id="appointments-list" class="space-y-2">
+                    <p class="text-slate-400 text-sm">No appointments scheduled.</p>
+                </div>
+            </div>
+        </div><!-- /fe-page-wrapper -->
+    </main>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         MODAL: Add / Edit Family Member
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <div id="member-modal" class="fe-modal-overlay hidden">
+        <div class="fe-modal">
+            <button class="fe-modal-close" onclick="closeMemberModal()">✕</button>
+            <h2 class="fe-modal-title" id="member-modal-title">Add Family Member</h2>
+
+            <form id="member-form" class="fe-form">
+                <!-- Avatar -->
+                <div class="text-center mb-4">
+                    <div id="avatar-preview" class="fe-avatar-preview">👤</div>
+                    <label class="fe-upload-btn mt-2" for="avatar-upload">📷 Upload Photo</label>
+                    <input type="file" id="avatar-upload" accept="image/*" class="hidden"
+                        onchange="previewAvatar(this)">
+                </div>
+
+                <div class="fe-form-grid">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="fm-name" class="fe-input" placeholder="e.g. Rajesh Sharma" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Relationship *</label>
+                        <select id="fm-relation" class="fe-input">
+                            <option value="">Select</option>
+                            <option>Father</option>
+                            <option>Mother</option>
+                            <option>Spouse</option>
+                            <option>Son</option>
+                            <option>Daughter</option>
+                            <option>Grandparent</option>
+                            <option>Sibling</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" id="fm-age" class="fe-input" placeholder="e.g. 65" min="0" max="120">
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select id="fm-gender" class="fe-input">
+                            <option value="">Select</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Blood Group</label>
+                        <select id="fm-blood" class="fe-input">
+                            <option value="">Unknown</option>
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
+                            <option>O+</option>
+                            <option>O-</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Role / Access Level</label>
+                        <select id="fm-role" class="fe-input">
+                            <option>Primary Guardian</option>
+                            <option selected>Caregiver</option>
+                            <option>Viewer</option>
+                            <option>Emergency Contact</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label>Health Conditions</label>
+                    <div class="fe-checkbox-row">
+                        <label><input type="checkbox" value="Diabetes" class="cond-check"> Diabetes</label>
+                        <label><input type="checkbox" value="BP" class="cond-check"> Blood Pressure</label>
+                        <label><input type="checkbox" value="Heart" class="cond-check"> Heart</label>
+                        <label><input type="checkbox" value="Asthma" class="cond-check"> Asthma</label>
+                        <label><input type="checkbox" value="Other" class="cond-check"> Other</label>
+                    </div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label>Allergies (comma separated)</label>
+                    <input type="text" id="fm-allergies" class="fe-input" placeholder="e.g. Penicillin, Dust">
+                </div>
+                <div class="form-group mt-3">
+                    <label>Current Medicines (comma separated)</label>
+                    <input type="text" id="fm-medicines" class="fe-input" placeholder="e.g. Metformin, Lisinopril">
+                </div>
+                <div class="form-group mt-3">
+                    <label>Emergency Contact Phone</label>
+                    <input type="tel" id="fm-emergency" class="fe-input" placeholder="+91...">
+                </div>
+
+                <input type="hidden" id="fm-editing-id">
+                <button type="submit" class="fe-btn-primary w-full mt-4" id="fm-submit-btn">Add Member</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         MODAL: Emergency Health Card
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <div id="emergency-card-modal" class="fe-modal-overlay hidden">
+        <div class="fe-modal fe-emergency-card">
+            <button class="fe-modal-close"
+                onclick="document.getElementById('emergency-card-modal').classList.add('hidden')">✕</button>
+            <div class="ec-header">
+                <div class="ec-avatar" id="ec-avatar">👤</div>
+                <div>
+                    <h2 id="ec-name" class="ec-name"></h2>
+                    <p id="ec-relation" class="ec-relation"></p>
+                </div>
+                <div class="ec-blood-badge" id="ec-blood"></div>
+            </div>
+            <div class="ec-grid">
+                <div class="ec-section">
+                    <h3>⚠️ Allergies</h3>
+                    <div id="ec-allergies"></div>
+                </div>
+                <div class="ec-section">
+                    <h3>🏥 Conditions</h3>
+                    <div id="ec-conditions"></div>
+                </div>
+                <div class="ec-section">
+                    <h3>💊 Medicines</h3>
+                    <div id="ec-medicines"></div>
+                </div>
+                <div class="ec-section">
+                    <h3>📞 Emergency Contact</h3>
+                    <div id="ec-contact"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         MODAL: Schedule Appointment
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <div id="appt-modal" class="fe-modal-overlay hidden">
+        <div class="fe-modal">
+            <button class="fe-modal-close"
+                onclick="document.getElementById('appt-modal').classList.add('hidden')">✕</button>
+            <h2 class="fe-modal-title">Schedule Appointment</h2>
+            <form id="appt-form" class="fe-form">
+                <div class="form-group">
+                    <label>Family Member</label>
+                    <select id="appt-member" class="fe-input"></select>
+                </div>
+                <div class="form-group mt-3">
+                    <label>Doctor / Clinic</label>
+                    <input type="text" id="appt-doctor" class="fe-input" placeholder="e.g. Dr. Mehta, City Clinic">
+                </div>
+                <div class="form-group mt-3">
+                    <label>Date &amp; Time</label>
+                    <input type="datetime-local" id="appt-time" class="fe-input">
+                </div>
+                <div class="form-group mt-3">
+                    <label>Notes</label>
+                    <textarea id="appt-notes" class="fe-input" rows="2"
+                        placeholder="Bring previous reports..."></textarea>
+                </div>
+                <button type="submit" class="fe-btn-primary w-full mt-4">Save Appointment</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/family.js"></script>
+</body>
+
+</html>

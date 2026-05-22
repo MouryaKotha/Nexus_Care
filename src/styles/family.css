@@ -1,0 +1,829 @@
+/* ═══════════════════════════════════════════════════════
+   Nexus Care — Family Ecosystem Styles
+   ═══════════════════════════════════════════════════════ */
+
+/* ─── Page Layout ──────────────────────────────────────────────────────────── */
+.fe-page-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 6rem 2rem 3rem;
+}
+
+.fe-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.fe-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.03em;
+}
+
+.fe-subtitle {
+    color: #64748b;
+    margin-top: 0.25rem;
+    font-size: 0.95rem;
+}
+
+/* ─── Buttons ──────────────────────────────────────────────────────────────── */
+.fe-btn-primary {
+    background: #2563eb;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+.fe-btn-primary:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
+}
+
+.fe-btn-secondary {
+    background: white;
+    color: #2563eb;
+    border: 1.5px solid #2563eb;
+    padding: 0.5rem 1.1rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.fe-btn-secondary:hover {
+    background: #eff6ff;
+}
+
+/* ─── Stats Bar ────────────────────────────────────────────────────────────── */
+.fe-stats-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.fe-stat {
+    background: white;
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+    transition: transform 0.2s;
+}
+
+.fe-stat:hover {
+    transform: translateY(-2px);
+}
+
+.fe-stat-val {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1;
+}
+
+.fe-stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #94a3b8;
+    font-weight: 600;
+    margin-top: 0.35rem;
+}
+
+/* ─── Insights Banner ──────────────────────────────────────────────────────── */
+.fe-insights-banner {
+    background: linear-gradient(135deg, #fffbeb, #fef9c3);
+    border: 1.5px solid #fde68a;
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.fe-insights-title {
+    font-weight: 700;
+    color: #92400e;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+}
+
+.fe-insights-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.fe-insights-list li {
+    font-size: 0.86rem;
+    color: #78350f;
+}
+
+/* ─── Condition Filter Tabs ────────────────────────────────────────────────── */
+.fe-filter-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.fe-filter-tab {
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1.5px solid #e2e8f0;
+    background: white;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.fe-filter-tab:hover {
+    border-color: #2563eb;
+    color: #2563eb;
+}
+
+.fe-filter-tab.active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: white;
+    box-shadow: 0 3px 10px rgba(37, 99, 235, 0.3);
+}
+
+/* ─── Member Card Grid ─────────────────────────────────────────────────────── */
+.fe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.fe-member-card {
+    background: white;
+    border-radius: 20px;
+    border-top: 4px solid #2563eb;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    animation: cardIn 0.35s ease-out;
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fe-member-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+}
+
+.fe-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.25rem 0.75rem;
+}
+
+.fe-card-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    border: 3px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.fe-card-info {
+    flex: 1;
+}
+
+.fe-card-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.fe-card-relation {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0.15rem 0;
+}
+
+.fe-role-chip {
+    display: inline-block;
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-radius: 999px;
+    padding: 0.1rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-top: 0.2rem;
+}
+
+.fe-risk-badge {
+    border-radius: 10px;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border: 1.5px solid;
+    white-space: nowrap;
+}
+
+.fe-card-body {
+    padding: 0.75rem 1.25rem 1rem;
+}
+
+/* Adherence Bar */
+.fe-adherence-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+}
+
+.fe-adherence-label {
+    font-size: 0.72rem;
+    color: #64748b;
+    font-weight: 600;
+    width: 62px;
+    flex-shrink: 0;
+}
+
+.fe-adherence-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: #f1f5f9;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.fe-adherence-bar {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.8s ease;
+}
+
+.fe-adherence-pct {
+    font-size: 0.8rem;
+    font-weight: 700;
+    width: 38px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+/* Metrics */
+.fe-metrics-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+}
+
+.fe-metric {
+    flex: 1;
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.fe-metric-val {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.fe-metric-lbl {
+    font-size: 0.65rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Condition Tags */
+.fe-conditions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 0.5rem;
+}
+
+.fe-cond-tag {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    border-radius: 999px;
+    padding: 0.1rem 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.fe-last-activity {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    margin-top: 0.25rem;
+}
+
+/* Card Actions */
+.fe-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid #f1f5f9;
+    background: #fafafa;
+}
+
+.fe-action-btn {
+    flex: 1;
+    padding: 0.45rem;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+}
+
+.fe-btn-ec {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.fe-btn-ec:hover {
+    background: #059669;
+    color: white;
+}
+
+.fe-btn-edit {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.fe-btn-edit:hover {
+    background: #2563eb;
+    color: white;
+}
+
+.fe-btn-del {
+    background: #fff1f2;
+    color: #e11d48;
+    max-width: 42px;
+}
+
+.fe-btn-del:hover {
+    background: #e11d48;
+    color: white;
+}
+
+/* ─── Empty State ──────────────────────────────────────────────────────────── */
+.fe-empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #94a3b8;
+}
+
+.fe-empty-state h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+}
+
+/* ─── Section Cards ────────────────────────────────────────────────────────── */
+.fe-section-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f1f5f9;
+}
+
+.fe-section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1rem;
+}
+
+/* ─── Escalation Log ───────────────────────────────────────────────────────── */
+.fe-escalation-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    padding: 0.75rem;
+    background: #fff7ed;
+    border-left: 3px solid #f59e0b;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 0.5rem;
+}
+
+.fe-esc-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #f59e0b;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+.fe-esc-member {
+    font-weight: 700;
+    color: #92400e;
+    font-size: 0.9rem;
+}
+
+.fe-esc-med {
+    color: #78350f;
+    font-size: 0.88rem;
+}
+
+.fe-esc-time {
+    font-size: 0.75rem;
+    color: #a16207;
+    margin-top: 0.2rem;
+}
+
+.fe-esc-level {
+    font-size: 0.72rem;
+    color: #ef4444;
+    font-weight: 600;
+    margin-top: 0.1rem;
+}
+
+/* ─── Appointments ─────────────────────────────────────────────────────────── */
+.fe-appt-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.85rem 1rem;
+    background: #f0f9ff;
+    border-left: 3px solid #2563eb;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 0.5rem;
+}
+
+.fe-appt-member {
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+}
+
+.fe-appt-doctor {
+    color: #1d4ed8;
+    font-size: 0.88rem;
+}
+
+.fe-appt-time {
+    font-size: 0.78rem;
+    color: #3b82f6;
+    margin-top: 0.2rem;
+}
+
+.fe-appt-notes {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-top: 0.2rem;
+}
+
+.fe-btn-del-small {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #ef4444;
+    padding: 0.25rem;
+    flex-shrink: 0;
+}
+
+/* ─── MODAL ────────────────────────────────────────────────────────────────── */
+.fe-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    backdrop-filter: blur(4px);
+}
+
+.fe-modal {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.25);
+    animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.fe-modal-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #64748b;
+    transition: all 0.2s;
+}
+
+.fe-modal-close:hover {
+    background: #ef4444;
+    color: white;
+}
+
+.fe-modal-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 1.25rem;
+}
+
+/* ─── Member Form ──────────────────────────────────────────────────────────── */
+.fe-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.35rem;
+}
+
+.fe-input {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border-radius: 10px;
+    border: 1.5px solid #e2e8f0;
+    font-size: 0.88rem;
+    font-family: Inter, sans-serif;
+    color: #0f172a;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #fafafa;
+}
+
+.fe-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    background: white;
+}
+
+.fe-checkbox-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.fe-checkbox-row label {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    color: #374151;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+/* Avatar */
+.fe-avatar-preview {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #eff6ff;
+    border: 3px solid #bfdbfe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+.fe-upload-btn {
+    display: inline-block;
+    cursor: pointer;
+    color: #2563eb;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border: 1.5px dashed #93c5fd;
+    border-radius: 8px;
+    background: #eff6ff;
+    transition: all 0.2s;
+}
+
+.fe-upload-btn:hover {
+    background: #dbeafe;
+}
+
+/* ─── Emergency Card ───────────────────────────────────────────────────────── */
+.fe-emergency-card {
+    border-top: 5px solid #ef4444;
+    max-width: 520px;
+}
+
+.ec-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #fee2e2;
+}
+
+.ec-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #fef2f2;
+    border: 3px solid #fca5a5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.ec-name {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.ec-relation {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.ec-blood-badge {
+    margin-left: auto;
+    background: #fef2f2;
+    color: #ef4444;
+    border: 2px solid #fca5a5;
+    border-radius: 12px;
+    padding: 0.4rem 0.9rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.ec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.ec-section {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 0.9rem;
+}
+
+.ec-section h3 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ec-tag {
+    display: inline-block;
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0.15rem;
+}
+
+.ec-tag-allergy {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.ec-tag-cond {
+    background: #fef9c3;
+    color: #92400e;
+}
+
+.ec-tag-med {
+    background: #dcfce7;
+    color: #065f46;
+}
+
+.ec-contact-row {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.ec-none {
+    font-size: 0.82rem;
+    color: #94a3b8;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .fe-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .fe-page-wrapper {
+        padding: 5rem 1rem 2rem;
+    }
+
+    .fe-title {
+        font-size: 1.75rem;
+    }
+
+    .fe-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fe-stats-bar {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .ec-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fe-card-actions {
+        flex-wrap: wrap;
+    }
+}
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,11 +1,145 @@
-body {
-    font-family: 'Inter', sans-serif;
+/* ═══════════════════════════════════════════════════════
+   Nexus Care — Blood Donation System Styles
+   ═══════════════════════════════════════════════════════ */
+
+/* Tabs */
+.blood-tab-btn {
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    cursor: pointer;
 }
-.status-critical { background-color: #FECACA; color: #B91C1C; }
-.status-low { background-color: #FEF3C7; color: #B45309; }
-.status-good { background-color: #D1FAE5; color: #065F46; }
-.pulse-animation { animation: pulse 2s infinite; }
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: .5; }
+
+.blood-tab-btn:hover {
+    background: #f8fafc;
+}
+
+.blood-tab-btn.active {
+    border-bottom-color: #ef4444;
+    /* red-500 */
+    color: #b91c1c;
+    /* red-700 */
+    background: #fef2f2;
+    /* red-50 */
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Cards */
+.match-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.match-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e1;
+}
+
+/* Base Urgency Strip */
+.match-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+}
+
+/* Urgency Color Coding */
+.urgency-normal::before {
+    background-color: #10b981;
+}
+
+/* Emerald */
+.urgency-normal .urgency-badge {
+    background: #d1fae5;
+    color: #065f46;
+    box-shadow: inset 0 0 0 1px #a7f3d0;
+}
+
+.urgency-urgent::before {
+    background-color: #f97316;
+}
+
+/* Orange */
+.urgency-urgent .urgency-badge {
+    background: #ffedd5;
+    color: #c2410c;
+    box-shadow: inset 0 0 0 1px #fed7aa;
+}
+
+.urgency-critical::before {
+    background-color: #ef4444;
+}
+
+/* Red */
+.urgency-critical .urgency-badge {
+    background: #fee2e2;
+    color: #b91c1c;
+    box-shadow: inset 0 0 0 1px #fecaca;
+    animation: pulseRed 2s infinite;
+}
+
+@keyframes pulseRed {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+/* Blood Drop Identity */
+.blood-drop {
+    width: 48px;
+    height: 48px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 900;
+    font-size: 1.1rem;
+    box-shadow: inset -2px -2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.blood-drop span {
+    transform: rotate(45deg);
+    display: inline-block;
+}
+
+.bg-blood-pos {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.bg-blood-neg {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
 }

@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find a Doctor - Nexus Care Hospital</title>
+    <title>Find a Doctor - Nexus Care</title>
     <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
     <link rel="stylesheet" href="src/styles/doctors.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+
+<body class="with-sidebar">
+    <aside class="sidebar" id="sidebar"></aside>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar glassmorphic">
         <div class="nav-container">
             <div class="nav-logo">
-                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 12l2 2 4-4"/>
-                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z"/>
-                </svg>
-                <span class="logo-text">Nexus Care</span>
+                <a href="index.html" class="flex items-center gap-2">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 12l2 2 4-4" />
+                        <path
+                            d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z" />
+                    </svg>
+                    <span class="logo-text">Nexus Care</span>
+                </a>
             </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="doctors.html" class="nav-link active">Find a Doctor</a></li>
-                <li><a href="appointment.html" class="nav-link">Book Appointment</a></li>
-                <li><a href="onlinetelemedince.html" class="nav-link">Online Telemedicine</a></li>
-                
-                <li><a href="aisymtom.html" class="nav-link">Ai Symtoms</a></li>
+                <li><a href="index.html" class="nav-link" data-i18n="nav_home">Home</a></li>
+                <li><a href="doctors.html" class="nav-link active" data-i18n="nav_doctors">Find a Doctor</a></li>
+                <li><a href="appointment.html" class="nav-link" data-i18n="nav_appointment">Book Appointment</a></li>
+                <li><a href="onlinetelemedince.html" class="nav-link" data-i18n="nav_telemedicine">Online
+                        Telemedicine</a></li>
+                <li><a href="ai-mentor.html" class="nav-link" data-i18n="nav_ai_mentor">AI Mentor</a></li>
+                <li><a href="aisymtom.html" class="nav-link" data-i18n="nav_ai_symptoms">AI Symptoms</a></li>
+                <li><a href="meditranslate.html" class="nav-link" data-i18n="nav_meditranslate">MediTranslate</a></li>
+                <li><a href="reminder.html" class="nav-link" data-i18n="nav_reminder">Reminder</a></li>
 
             </ul>
             <div class="nav-actions">
-                <button class="btn btn-outline">Emergency</button>
+                <a href="emergency.html" class="btn btn-outline" data-i18n="nav_emergency">Emergency</a>
 
             </div>
         </div>
@@ -38,39 +48,141 @@
     <main class="doctors-main">
         <div class="container">
             <div class="doctors-header">
-                <h1>Find a Doctor</h1>
-                <p>Connect with our experienced healthcare professionals</p>
+                <h1 data-i18n="find_doctor_title">Find a Doctor</h1>
+                <p data-i18n="find_doctor_subtitle">Connect with our experienced healthcare professionals</p>
+            </div>
+
+            <!-- ─── Stats Bar ──────────────────────────────────────── -->
+            <div class="dx-stats-bar" id="dx-stats-bar">
+                <div class="dx-stat">
+                    <div class="dx-stat-icon" style="background:#eff6ff;">🩺</div>
+                    <div>
+                        <div class="dx-stat-val" id="dx-total">15</div>
+                        <div class="dx-stat-lbl">Specialists</div>
+                    </div>
+                </div>
+                <div class="dx-stat">
+                    <div class="dx-stat-icon" style="background:#ecfdf5;">🏥</div>
+                    <div>
+                        <div class="dx-stat-val" id="dx-specs">14</div>
+                        <div class="dx-stat-lbl">Specialties</div>
+                    </div>
+                </div>
+                <div class="dx-stat">
+                    <div class="dx-stat-icon" style="background:#fef9c3;">⭐</div>
+                    <div>
+                        <div class="dx-stat-val" id="dx-rating">4.8</div>
+                        <div class="dx-stat-lbl">Avg Rating</div>
+                    </div>
+                </div>
+                <div class="dx-stat">
+                    <div class="dx-stat-icon" style="background:#fdf4ff;">🏆</div>
+                    <div>
+                        <div class="dx-stat-val" id="dx-exp">220+</div>
+                        <div class="dx-stat-lbl">Yrs Experience</div>
+                    </div>
+                </div>
+                <div class="dx-stat">
+                    <div class="dx-stat-icon" style="background:#fff1f2;">📍</div>
+                    <div>
+                        <div class="dx-stat-val" id="dx-locs">5</div>
+                        <div class="dx-stat-lbl">Locations</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── Specialty Quick-Filter Pills ─────────────────────── -->
+            <div class="dx-specialty-pills" id="dx-specialty-pills">
+                <button class="dx-pill active" data-spec="" onclick="window.dxFilterSpec(this, '')">🔬 All</button>
+                <button class="dx-pill" data-spec="Cardiology" onclick="window.dxFilterSpec(this, 'Cardiology')">❤️
+                    Cardiology</button>
+                <button class="dx-pill" data-spec="Pediatrics" onclick="window.dxFilterSpec(this, 'Pediatrics')">👶
+                    Pediatrics</button>
+                <button class="dx-pill" data-spec="Neurology" onclick="window.dxFilterSpec(this, 'Neurology')">🧠
+                    Neurology</button>
+                <button class="dx-pill" data-spec="Orthopedics" onclick="window.dxFilterSpec(this, 'Orthopedics')">🦴
+                    Orthopedics</button>
+                <button class="dx-pill" data-spec="Oncology" onclick="window.dxFilterSpec(this, 'Oncology')">🔬
+                    Oncology</button>
+                <button class="dx-pill" data-spec="General Medicine"
+                    onclick="window.dxFilterSpec(this, 'General Medicine')">🩺 General</button>
+                <button class="dx-pill" data-spec="Psychology" onclick="window.dxFilterSpec(this, 'Psychology')">🧘
+                    Psychology</button>
+                <button class="dx-pill" data-spec="Nephrology" onclick="window.dxFilterSpec(this, 'Nephrology')">🫘
+                    Nephrology</button>
+                <button class="dx-pill" data-spec="Gynecology" onclick="window.dxFilterSpec(this, 'Gynecology')">🌸
+                    Gynecology</button>
+                <button class="dx-pill" data-spec="Psychiatry" onclick="window.dxFilterSpec(this, 'Psychiatry')">💭
+                    Psychiatry</button>
             </div>
 
             <!-- Search and Filter Section -->
             <div class="search-section">
-    <div class="search-filters search-filters--desktop">
-        <div class="search-input-group">
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.35-4.35"/>
-            </svg>
-            <input type="text" class="search-input" placeholder="Search by doctor name..." id="doctorSearchInput">
-        </div>
-        <select class="filter-select" id="specialtyFilter">
-            <option value="">All Specialties</option>
-            <option value="cardiology">Cardiology</option>
-            <option value="pediatrics">Pediatrics</option>
-            <option value="neurology">Neurology</option>
-            <option value="orthopedics">Orthopedics</option>
-            <option value="oncology">Oncology</option>
-            <option value="general">General Medicine</option>
-        </select>
-        <select class="filter-select" id="locationFilter">
-            <option value="">All Locations</option>
-            <option value="main-campus">Main Campus</option>
-            <option value="north-branch">North Branch</option>
-            <option value="south-branch">South Branch</option>
-            <option value="east-clinic">East Clinic</option>
-        </select>
-        <button class="btn btn-primary" id="searchButton">Search</button>
-    </div>
-</div>
+                <div class="search-filters search-filters--desktop">
+                    <div class="search-input-group">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.35-4.35" />
+                        </svg>
+                        <input type="text" class="search-input" placeholder="Search by doctor name..."
+                            id="doctorSearchInput">
+                    </div>
+                    <select class="filter-select" id="specialtyFilter">
+                        <option value="">All Specialties</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="pediatrics">Pediatrics</option>
+                        <option value="neurology">Neurology</option>
+                        <option value="orthopedics">Orthopedics</option>
+                        <option value="oncology">Oncology</option>
+                        <option value="general">General Medicine</option>
+                        <option value="psychology">Psychology</option>
+                        <option value="nephrology">Nephrology</option>
+                        <option value="endocrinology">Endocrinology</option>
+                        <option value="pulmonology">Pulmonology</option>
+                        <option value="gastroenterology">Gastroenterology</option>
+                        <option value="rheumatology">Rheumatology</option>
+                        <option value="gynecology">Gynecology</option>
+                        <option value="psychiatry">Psychiatry</option>
+                    </select>
+                    <select class="filter-select" id="locationFilter">
+                        <option value="">All Locations</option>
+                        <option value="Main Campus">Main Campus</option>
+                        <option value="North Branch">North Branch</option>
+                        <option value="South Branch">South Branch</option>
+                        <option value="East Clinic">East Clinic</option>
+                        <option value="West Clinic">West Clinic</option>
+                    </select>
+                    <button class="btn btn-primary" id="searchButton">Search</button>
+                </div>
+            </div>
+            <!-- ─── Sort & Availability Row ─────────────────────────── -->
+            <div class="dx-controls-row">
+                <div class="dx-sort-group">
+                    <label class="dx-ctrl-label">Sort by:</label>
+                    <select id="dx-sort" class="dx-sort-select" onchange="window.dxSort(this.value)">
+                        <option value="default">Default</option>
+                        <option value="rating">⭐ Rating (High-Low)</option>
+                        <option value="experience">🏆 Experience</option>
+                        <option value="name">🔤 Name (A-Z)</option>
+                        <option value="reviews">💬 Most Reviewed</option>
+                    </select>
+                </div>
+                <div class="dx-toggle-group">
+                    <label class="dx-toggle-label" for="dx-avail-toggle">
+                        <span>Available Only</span>
+                        <div class="dx-toggle-switch" id="dx-avail-toggle" onclick="window.dxToggleAvail(this)">
+                            <div class="dx-toggle-knob"></div>
+                        </div>
+                    </label>
+                    <label class="dx-toggle-label" id="dx-fav-label" style="margin-left:1rem;">
+                        <span>❤️ Saved Only</span>
+                        <div class="dx-toggle-switch" id="dx-fav-toggle" onclick="window.dxToggleFav(this)">
+                            <div class="dx-toggle-knob"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
             <!-- Results Section -->
             <div class="results-section">
                 <div class="results-header">
@@ -78,20 +190,20 @@
                     <div class="view-toggle">
                         <button class="view-btn active" data-view="grid">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="7" height="7"/>
-                                <rect x="14" y="3" width="7" height="7"/>
-                                <rect x="14" y="14" width="7" height="7"/>
-                                <rect x="3" y="14" width="7" height="7"/>
+                                <rect x="3" y="3" width="7" height="7" />
+                                <rect x="14" y="3" width="7" height="7" />
+                                <rect x="14" y="14" width="7" height="7" />
+                                <rect x="3" y="14" width="7" height="7" />
                             </svg>
                         </button>
                         <button class="view-btn" data-view="list">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="8" y1="6" x2="21" y2="6"/>
-                                <line x1="8" y1="12" x2="21" y2="12"/>
-                                <line x1="8" y1="18" x2="21" y2="18"/>
-                                <line x1="3" y1="6" x2="3.01" y2="6"/>
-                                <line x1="3" y1="12" x2="3.01" y2="12"/>
-                                <line x1="3" y1="18" x2="3.01" y2="18"/>
+                                <line x1="8" y1="6" x2="21" y2="6" />
+                                <line x1="8" y1="12" x2="21" y2="12" />
+                                <line x1="8" y1="18" x2="21" y2="18" />
+                                <line x1="3" y1="6" x2="3.01" y2="6" />
+                                <line x1="3" y1="12" x2="3.01" y2="12" />
+                                <line x1="3" y1="18" x2="3.01" y2="18" />
                             </svg>
                         </button>
                     </div>
@@ -111,8 +223,8 @@
                 <!-- No Results -->
                 <div class="no-results" id="noResults" style="display: none;">
                     <svg class="no-results-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="m21 21-4.35-4.35"/>
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
                     </svg>
                     <h3>No doctors found</h3>
                     <p>Try adjusting your search criteria or browse all our doctors.</p>
@@ -122,6 +234,10 @@
         </div>
     </main>
 
+    <script src="src/js/translations.js"></script>
     <script src="src/js/doctors.js"></script>
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/doctors-enhanced.js"></script>
 </body>
+
 </html>

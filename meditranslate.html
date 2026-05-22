@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediTranslate - Medical Jargon Simplifier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563EB',
+                        primaryLight: '#3B82F6',
+                        primaryDark: '#1E40AF',
+                        accent: '#8B5CF6',
+                        accentLight: '#A78BFA',
+                        grayLightBg: '#F9FAFB',
+                        grayMediumBg: '#E5E7EB',
+                        grayDarkBg: '#6B7280',
+                        grayTextLight: '#6B7280',
+                        grayTextDark: '#374151',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        subtle: '0 1px 4px rgb(0 0 0 / 0.1)',
+                        deeper: '0 4px 15px rgb(0 0 0 / 0.15)',
+                    },
+                },
+            },
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
+    <link rel="stylesheet" href="src/styles/meditranslate.css">
+</head>
+
+<body class="bg-grayLightBg text-grayTextDark font-inter transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4" />
+                    <path
+                        d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z" />
+                </svg>
+                <span class="logo-text">Nexus Care</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link" data-i18n="nav_home">Home</a></li>
+                <li><a href="doctors.html" class="nav-link" data-i18n="nav_doctors">Find a Doctor</a></li>
+                <li><a href="appointment.html" class="nav-link" data-i18n="nav_appointment">Book Appointment</a></li>
+                <li><a href="onlinetelemedince.html" class="nav-link" data-i18n="nav_telemedicine">Online
+                        Telemedicine</a></li>
+                <li><a href="ai-mentor.html" class="nav-link" data-i18n="nav_ai_mentor">AI Mentor</a></li>
+                <li><a href="aisymtom.html" class="nav-link" data-i18n="nav_ai_symptoms">AI Symptoms</a></li>
+                <li><a href="meditranslate.html" class="nav-link active" data-i18n="nav_meditranslate">MediTranslate</a>
+                </li>
+                <li><a href="reminder.html" class="nav-link" data-i18n="nav_reminder">Reminder</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="emergency.html" class="btn btn-outline" data-i18n="nav_emergency">Emergency</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-primary mb-4" data-i18n="mt_title">MediTranslate</h1>
+            <p class="text-xl text-grayDarkBg max-w-2xl mx-auto" data-i18n="mt_subtitle">Simplifying complex medical
+                jargon for clear understanding.</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Input Section -->
+            <section class="bg-white rounded-3xl shadow-deeper border border-grayMediumBg p-8 lg:p-10">
+                <h2 class="text-2xl font-bold text-primary mb-6" data-i18n="mt_input_header">Upload or Paste Your
+                    Document</h2>
+                <div class="space-y-6">
+                    <div>
+                        <textarea id="mt-input" rows="12"
+                            class="w-full p-4 rounded-2xl border border-grayMediumBg focus:ring-2 focus:ring-primary focus:border-transparent transition text-lg"
+                            placeholder="Paste your discharge summary, lab report, or diagnosis here..."></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-grayTextDark mb-2"
+                                data-i18n="mt_reading_level">Reading Level</label>
+                            <select id="mt-level"
+                                class="w-full p-3 rounded-xl border border-grayMediumBg focus:ring-2 focus:ring-primary">
+                                <option value="child" data-i18n="mt_level_child">Child (Simple terms)</option>
+                                <option value="teen" data-i18n="mt_level_teen">Teen (Clear & Concise)</option>
+                                <option value="adult" selected data-i18n="mt_level_adult">Adult (Plain Language)
+                                </option>
+                                <option value="student" data-i18n="mt_level_student">Medical Student (Educational)
+                                </option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-grayTextDark mb-2"
+                                data-i18n="mt_target_lang">Target Language</label>
+                            <select id="mt-lang"
+                                class="w-full p-3 rounded-xl border border-grayMediumBg focus:ring-2 focus:ring-primary">
+                                <option value="en">English</option>
+                                <option value="te">తెలుగు (Telugu)</option>
+                                <option value="hi">हिन्दी (Hindi)</option>
+                                <option value="es">Español (Spanish)</option>
+                                <option value="fr">Français (French)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="mt-submit"
+                        class="w-full py-4 rounded-xl bg-primary text-white text-xl font-bold hover:bg-primaryDark transition transform active:scale-95 shadow-lg flex items-center justify-center space-x-2">
+                        <span data-i18n="mt_btn_simplify">Simplify Now</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Output Section -->
+            <section class="space-y-8">
+                <div id="mt-output-card"
+                    class="bg-white rounded-3xl shadow-deeper border border-grayMediumBg p-8 lg:p-10 min-h-[400px] flex flex-col">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-primary" data-i18n="mt_output_header">Your Simplified Report
+                        </h2>
+                        <div class="flex space-x-2">
+                            <button id="mt-audio-btn"
+                                class="p-2 rounded-full bg-grayLightBg text-primary hover:bg-primary hover:text-white transition shadow-subtle"
+                                title="Listen to summary">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="mt-result" class="flex-grow prose prose-primary max-w-none text-grayTextDark">
+                        <div class="text-center py-20 text-grayDarkBg" id="mt-placeholder">
+                            <svg class="w-16 h-16 mx-auto mb-4 opacity-20" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <p data-i18n="mt_placeholder_text">Your simplified explanation will appear here after
+                                analysis.</p>
+                        </div>
+                    </div>
+
+                    <div id="mt-loading" class="hidden flex-grow flex flex-center items-center justify-center">
+                        <div class="flex flex-col items-center">
+                            <div
+                                class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4">
+                            </div>
+                            <p class="text-primary font-semibold animate-pulse" data-i18n="mt_analyzing">AI Analysing
+                                Document...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Summary Section -->
+                <div id="mt-visual-card"
+                    class="bg-gradient-to-br from-primaryLight to-accent rounded-3xl shadow-deeper p-8 lg:p-10 text-white hidden">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                        </svg>
+                        <span data-i18n="mt_visual_summary">Visual Summary & Actions</span>
+                    </h3>
+                    <div id="mt-visual-content" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Content will be injected here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/translations.js"></script>
+    <script type="module" src="src/js/meditranslate.js"></script>
+</body>
+
+</html>

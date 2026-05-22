@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Care - Patient & Doctor Portal</title>
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            padding: 1.5rem;
+        }
+
+        .bg-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.05));
+            border-radius: 50%;
+            top: -200px;
+            right: -100px;
+            filter: blur(60px);
+            animation: pulse 8s infinite alternate;
+        }
+
+        .shape-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.05));
+            border-radius: 50%;
+            bottom: -150px;
+            left: -100px;
+            filter: blur(60px);
+            animation: pulse 10s infinite alternate-reverse;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(-20px, 20px); }
+        }
+
+        .auth-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.1), 0 20px 40px -20px rgba(0, 0, 0, 0.05);
+            border-radius: 2.5rem;
+            width: 100%;
+            max-width: 500px;
+            padding: 3.5rem 3rem;
+            position: relative;
+            z-index: 10;
+            transform: translateY(0);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .auth-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.12), 0 30px 60px -30px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-toggle {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 1rem;
+            padding: 6px;
+            margin-bottom: 2.5rem;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .form-toggle button {
+            flex: 1;
+            padding: 0.875rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            color: #64748b;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-toggle button.active {
+            background: white;
+            color: #2563eb;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 0.5rem;
+            margin-left: 0.25rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 1.125rem 1.25rem;
+            background: #f1f5f9;
+            border: 2px solid transparent;
+            border-radius: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            color: #0f172a;
+            font-weight: 500;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            background: #ffffff;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 1rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+            border: none;
+            cursor: pointer;
+            margin-top: 1.5rem;
+        }
+
+        .btn-submit::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn-submit:hover::after {
+            left: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(37, 99, 235, 0.5);
+        }
+
+        .btn-submit:active {
+            transform: translateY(1px);
+            box-shadow: 0 5px 15px -5px rgba(37, 99, 235, 0.4);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Back to Home -->
+    <a href="index.html" class="absolute top-6 left-6 flex items-center gap-2 text-blue-600 font-medium hover:text-blue-800 transition">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"></path>
+        </svg>
+        Back to Home
+    </a>
+
+    <div class="auth-container">
+        <div class="bg-shapes">
+            <div class="shape-1"></div>
+            <div class="shape-2"></div>
+        </div>
+
+        <div class="auth-card">
+            <div class="text-center mb-8">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xl font-bold">N</div>
+                    <span class="text-2xl font-bold text-gray-800 tracking-tight">Nexus<span class="text-blue-600">Care</span></span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800" id="authTitle">Welcome Back</h2>
+                <p class="text-gray-500 text-sm mt-1" id="authSubtitle">Enter your details to access your portal.</p>
+            </div>
+
+            <div class="form-toggle">
+                <button id="toggleLogin" class="active" onclick="switchTab('login')">Login</button>
+                <button id="toggleRegister" onclick="switchTab('register')">Register</button>
+            </div>
+
+            <!-- Error Message Box -->
+            <div id="authError" class="hidden mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm font-medium border border-red-200">
+                Invalid credentials.
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="space-y-4">
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="loginEmail" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 transition outline-none">
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="loginPassword" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 transition outline-none">
+                </div>
+                <button type="submit" class="btn-submit">
+                    Sign In
+                </button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm" class="space-y-4 hidden">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                        <input type="text" id="regFirstName" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 transition outline-none">
+                    </div>
+                    <div class="form-group">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                        <input type="text" id="regLastName" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 transition outline-none">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="regEmail" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 transition outline-none">
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="regPassword" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 transition outline-none">
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
+                    <select id="regRole" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 transition outline-none">
+                        <option value="patient">Patient</option>
+                        <option value="doctor">Doctor</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">
+                    Create Account
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="src/js/auth.js"></script>
+    <script>
+        function switchTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const toggleLogin = document.getElementById('toggleLogin');
+            const toggleRegister = document.getElementById('toggleRegister');
+            const authTitle = document.getElementById('authTitle');
+            const authSubtitle = document.getElementById('authSubtitle');
+            const errorBox = document.getElementById('authError');
+
+            errorBox.classList.add('hidden');
+
+            if(tab === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                toggleLogin.classList.add('active');
+                toggleRegister.classList.remove('active');
+                authTitle.textContent = "Welcome Back";
+                authSubtitle.textContent = "Enter your details to access your portal.";
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                toggleLogin.classList.remove('active');
+                toggleRegister.classList.add('active');
+                authTitle.textContent = "Create Account";
+                authSubtitle.textContent = "Join Nexus Care for premium health tools.";
+            }
+        }
+    </script>
+</body>
+</html>

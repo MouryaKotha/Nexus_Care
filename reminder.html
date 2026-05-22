@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Medical Reminder - Nexus Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
+    <link rel="stylesheet" href="src/styles/reminder.css">
+</head>
+
+<body class="bg-gray-50 font-inter">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4" />
+                    <path
+                        d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z" />
+                </svg>
+                <span class="logo-text">Nexus Care</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="doctors.html" class="nav-link">Find a Doctor</a></li>
+                <li><a href="appointment.html" class="nav-link">Book Appointment</a></li>
+                <li><a href="onlinetelemedince.html" class="nav-link">Telemedicine</a></li>
+                <li><a href="ai-mentor.html" class="nav-link">AI Mentor</a></li>
+                <li><a href="aisymtom.html" class="nav-link">AI Symptoms</a></li>
+                <li><a href="meditranslate.html" class="nav-link">MediTranslate</a></li>
+                <li><a href="reminder.html" class="nav-link active">Reminder</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="emergency.html" class="btn btn-outline">Emergency</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        <!-- Page Header -->
+        <div class="header mb-10 text-center">
+            <h1 class="text-4xl font-extrabold text-blue-600 mb-3">Advanced Medical Reminder</h1>
+            <p class="text-gray-500 text-lg">Health-grade tracking with analytics, smart escalation, and caregiver
+                monitoring.</p>
+        </div>
+
+        <!-- ─── Adherence Analytics Dashboard ──────────────────────────────── -->
+        <div id="analytics-dashboard" class="analytics-dashboard mb-10">
+            <div class="analytics-card">
+                <div class="analytics-icon" style="background:#dcfce7; color:#16a34a;">✅</div>
+                <div>
+                    <div class="analytics-value" id="stat-weekly">—</div>
+                    <div class="analytics-label">Weekly Adherence</div>
+                </div>
+            </div>
+            <div class="analytics-card">
+                <div class="analytics-icon" style="background:#dbeafe; color:#2563eb;">📅</div>
+                <div>
+                    <div class="analytics-value" id="stat-monthly">—</div>
+                    <div class="analytics-label">Monthly Adherence</div>
+                </div>
+            </div>
+            <div class="analytics-card">
+                <div class="analytics-icon" style="background:#fee2e2; color:#dc2626;">💊</div>
+                <div>
+                    <div class="analytics-value" id="stat-missed">0</div>
+                    <div class="analytics-label">Missed Doses</div>
+                </div>
+            </div>
+            <div class="analytics-card">
+                <div class="analytics-icon" style="background:#fef9c3; color:#ca8a04;">🔥</div>
+                <div>
+                    <div class="analytics-value" id="stat-streak">0</div>
+                    <div class="analytics-label">Day Streak</div>
+                </div>
+            </div>
+            <div class="analytics-card">
+                <div class="analytics-icon" style="background:#f3e8ff; color:#9333ea;">🚨</div>
+                <div>
+                    <div class="analytics-value" id="stat-escalations">0</div>
+                    <div class="analytics-label">Escalations</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- ─── Left Column: Forms ──────────────────────────────────────── -->
+            <div class="lg:col-span-1 space-y-6">
+
+                <!-- Add Reminder Form -->
+                <div class="reminder-card">
+                    <h2 class="text-xl font-bold mb-5 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Add Medicine Reminder
+                    </h2>
+                    <form id="reminder-form" class="space-y-4">
+                        <!-- ── Existing Fields (untouched) ── -->
+                        <div class="form-group">
+                            <label>Medicine Name *</label>
+                            <input type="text" id="med-name" class="form-input" placeholder="e.g. Paracetamol" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Date &amp; Time *</label>
+                            <input type="datetime-local" id="med-time" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Instructions</label>
+                            <textarea id="med-instr" class="form-input" rows="2"
+                                placeholder="e.g. Take after food"></textarea>
+                        </div>
+
+                        <!-- ── New Optional Fields ── -->
+                        <div class="advanced-fields-toggle" id="adv-toggle"
+                            onclick="document.getElementById('adv-fields').classList.toggle('hidden'); this.classList.toggle('open')">
+                            ⚙️ Advanced Options <span class="toggle-arrow">▸</span>
+                        </div>
+                        <div id="adv-fields" class="hidden space-y-4 adv-fields-box">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="form-group">
+                                    <label>Medicine Type</label>
+                                    <select id="med-type" class="form-input">
+                                        <option value="">Select</option>
+                                        <option>Tablet</option>
+                                        <option>Capsule</option>
+                                        <option>Syrup</option>
+                                        <option>Injection</option>
+                                        <option>Drops</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Frequency</label>
+                                    <select id="med-freq" class="form-input">
+                                        <option value="">Select</option>
+                                        <option>Once daily</option>
+                                        <option>Twice daily</option>
+                                        <option>Three times daily</option>
+                                        <option>Weekly</option>
+                                        <option>Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="form-group">
+                                    <label>Route</label>
+                                    <select id="med-route" class="form-input">
+                                        <option value="">Select</option>
+                                        <option>Oral</option>
+                                        <option>IV</option>
+                                        <option>IM</option>
+                                        <option>Topical</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Health Condition</label>
+                                    <select id="med-condition" class="form-input">
+                                        <option value="">Select</option>
+                                        <option>Diabetes</option>
+                                        <option>Blood Pressure</option>
+                                        <option>Heart</option>
+                                        <option>Asthma</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Doctor Name</label>
+                                <input type="text" id="med-doctor" class="form-input" placeholder="e.g. Dr. Sharma">
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="form-group">
+                                    <label>Prescription Start</label>
+                                    <input type="date" id="med-start" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label>Prescription End</label>
+                                    <input type="date" id="med-end" class="form-input">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="form-group">
+                                    <label>Remaining Pills</label>
+                                    <input type="number" id="med-pills" class="form-input" min="0"
+                                        placeholder="e.g. 30">
+                                </div>
+                                <div class="form-group">
+                                    <label>Pharmacy Phone</label>
+                                    <input type="tel" id="med-pharmacy" class="form-input" placeholder="+91...">
+                                </div>
+                            </div>
+                            <div class="form-group flex items-center gap-3">
+                                <input type="checkbox" id="med-priority" class="w-5 h-5 rounded accent-red-500">
+                                <label class="font-semibold text-red-600 cursor-pointer" for="med-priority">🚨 Mark as
+                                    HIGH PRIORITY</label>
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition">
+                            ➕ Set Reminder
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Emergency Contacts -->
+                <div class="reminder-card">
+                    <h2 class="text-xl font-bold mb-5 flex items-center gap-2 text-red-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        Emergency Contacts
+                    </h2>
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <label class="text-sm font-semibold text-gray-600">Primary Contact</label>
+                            <input type="tel" id="emergency-phone" class="form-input" placeholder="+1234567890"
+                                required>
+                            <p class="text-xs text-gray-400 mt-1">Notified first on missed dose.</p>
+                        </div>
+                        <div>
+                            <label class="text-sm font-semibold text-gray-600">Secondary Contact</label>
+                            <input type="tel" id="secondary-phone" class="form-input" placeholder="+1234567890">
+                            <p class="text-xs text-gray-400 mt-1">Notified if primary doesn't respond.</p>
+                        </div>
+                        <div>
+                            <label class="text-sm font-semibold text-gray-600">Emergency (3rd) Contact</label>
+                            <input type="tel" id="tertiary-phone" class="form-input" placeholder="+1234567890">
+                            <p class="text-xs text-gray-400 mt-1">Final escalation for critical medicines.</p>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-red-500 text-white py-3 rounded-xl font-bold hover:bg-red-600 transition">Save
+                            Contacts</button>
+                    </form>
+                </div>
+
+                <!-- Caregiver Panel -->
+                <div class="reminder-card caregiver-card">
+                    <h2 class="text-lg font-bold mb-4 flex items-center gap-2 text-purple-700">
+                        <span>👨‍⚕️</span> Caregiver Monitor
+                    </h2>
+                    <div id="caregiver-info" class="space-y-2 text-sm">
+                        <div class="caregiver-row"><span>Last Taken</span><span id="cg-last">—</span></div>
+                        <div class="caregiver-row"><span>Missed Today</span><span id="cg-missed">0</span></div>
+                        <div class="caregiver-row"><span>Escalations</span><span id="cg-escalations">0</span></div>
+                        <div class="caregiver-row"><span>Low Stock Alerts</span><span id="cg-lowstock">0</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── Right Column: Medicine Cards + Active Reminders ─────────── -->
+            <div class="lg:col-span-2 space-y-6">
+
+                <!-- Health Safety Alerts Banner -->
+                <div id="health-alerts-banner" class="hidden"></div>
+
+                <!-- Active Reminders -->
+                <div class="reminder-card min-h-[400px]">
+                    <div class="flex items-center justify-between mb-5">
+                        <h2 class="text-xl font-bold">Active Reminders</h2>
+                        <div class="flex gap-2">
+                            <button onclick="window.filterReminders('all')" class="filter-btn active"
+                                data-filter="all">All</button>
+                            <button onclick="window.filterReminders('pending')" class="filter-btn"
+                                data-filter="pending">⏳ Pending</button>
+                            <button onclick="window.filterReminders('taken')" class="filter-btn" data-filter="taken">✅
+                                Taken</button>
+                            <button onclick="window.filterReminders('missed')" class="filter-btn" data-filter="missed">❌
+                                Missed</button>
+                        </div>
+                    </div>
+
+                    <!-- Group by health condition -->
+                    <div id="reminder-groups"></div>
+
+                    <!-- Flat fallback list (existing element kept for backward compat) -->
+                    <div id="reminder-list" class="space-y-2">
+                        <div class="text-center py-20 text-gray-400" id="empty-state">
+                            <p>No active reminders set.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ─── Reminded Modal (enhanced, original IDs preserved) ──────────── -->
+    <div id="reminder-modal" class="hidden">
+        <div class="notification-modal">
+            <!-- Priority banner -->
+            <div id="modal-priority-banner" class="hidden priority-banner">🚨 HIGH PRIORITY MEDICINE</div>
+
+            <div class="text-blue-600 mb-4">
+                <svg class="w-16 h-16 mx-auto animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+            </div>
+            <h2 class="text-2xl font-bold mb-2">Time for Medication!</h2>
+            <p id="modal-med-name" class="text-xl text-gray-700 font-semibold mb-1"></p>
+            <p id="modal-med-instr" class="text-gray-500 italic mb-2"></p>
+            <p id="modal-med-detail" class="text-sm text-blue-500 mb-4"></p>
+
+            <div id="modal-pills-alert" class="hidden low-stock-alert mb-4">
+                ⚠️ Low stock! Only <span id="modal-pills-count"></span> pill(s) remaining.
+            </div>
+
+            <div class="bg-red-50 rounded-xl p-4 mb-5">
+                <p class="text-sm text-red-600 font-bold uppercase tracking-wider">Escalation Timer</p>
+                <div id="countdown" class="countdown-timer">05:00</div>
+                <p class="text-xs text-red-500">Emergency contact notified if no action taken.</p>
+                <div class="snooze-counter mt-2">Snoozes used: <strong id="snooze-count">0</strong> / 3</div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex justify-center gap-3 flex-wrap mb-4">
+                <button id="btn-taken" class="btn-taken">✅ TAKEN</button>
+                <button id="btn-snooze" class="btn-snooze">😴 SNOOZE (5m)</button>
+                <button id="btn-skip" class="btn-skip">⏭️ SKIP</button>
+            </div>
+
+            <!-- Skip reason panel (hidden by default) -->
+            <div id="skip-reason-panel" class="hidden skip-panel">
+                <p class="text-sm font-semibold text-gray-700 mb-2">Why are you skipping?</p>
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="skip-reason-btn" data-reason="Forgot">🤔 Forgot</button>
+                    <button class="skip-reason-btn" data-reason="Felt Better">😊 Felt Better</button>
+                    <button class="skip-reason-btn" data-reason="Side Effects">🤒 Side Effects</button>
+                    <button class="skip-reason-btn" data-reason="Other">💬 Other</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/translations.js"></script>
+    <script src="src/js/reminder.js"></script>
+</body>
+
+</html>

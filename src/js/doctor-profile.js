@@ -19,36 +19,36 @@ class DoctorProfile {
      */
     loadDoctorData() {
         const storedDoctor = sessionStorage.getItem('selectedDoctor');
-        
+
         if (storedDoctor) {
             this.doctor = JSON.parse(storedDoctor);
         } else {
             // Default doctor data if none selected
             this.doctor = {
                 id: 1,
-                name: 'Dr. Sarah Johnson',
+                name: 'Dr. Ananya Sharma',
                 specialty: 'Cardiology',
                 location: 'Main Campus',
-                image: 'https://images.pexels.com/photos/5327580/pexels-photo-5327580.jpeg?auto=compress&cs=tinysrgb&w=400',
-                rating: 4.9,
+                image: 'https://images.pexels.com/photos/5327921/pexels-photo-5327921.jpeg?auto=compress&cs=tinysrgb&w=400',
+                rating: 4.8,
                 reviewCount: 127,
                 experience: 15,
-                education: 'Harvard Medical School',
+                education: 'AIIMS Delhi',
                 phone: '(555) 123-4567',
-                email: 'sarah.johnson@medicare.com',
-                bio: 'Dr. Sarah Johnson is a board-certified cardiologist with over 15 years of experience in treating complex cardiac conditions. She completed her medical degree at Harvard Medical School and her cardiology fellowship at Massachusetts General Hospital. Dr. Johnson is known for her compassionate patient care and expertise in interventional cardiology, particularly in treating coronary artery disease and heart failure.',
+                email: 'ananya.sharma@medicare.com',
+                bio: 'Dr. Ananya Sharma is a board-certified cardiologist with over 15 years of experience in treating complex cardiac conditions. She completed her medical degree at AIIMS Delhi and her cardiology fellowship at Tata Memorial Hospital. Dr. Sharma is known for her compassionate patient care and expertise in interventional cardiology, particularly in treating coronary artery disease and heart failure.',
                 availability: 'available',
-                languages: ['English', 'Spanish'],
+                languages: ['English', 'Hindi'],
                 services: ['Cardiac Catheterization', 'Echocardiogram', 'Stress Testing', 'Heart Disease Prevention'],
                 education_details: [
-                    { degree: 'Doctor of Medicine (MD)', institution: 'Harvard Medical School', year: '2009' },
-                    { degree: 'Cardiology Fellowship', institution: 'Massachusetts General Hospital', year: '2012-2015' },
-                    { degree: 'Internal Medicine Residency', institution: 'Johns Hopkins Hospital', year: '2009-2012' },
-                    { degree: 'Bachelor of Science in Biology', institution: 'Stanford University', year: '2005' }
+                    { degree: 'Doctor of Medicine (MD)', institution: 'AIIMS Delhi', year: '2009' },
+                    { degree: 'Cardiology Fellowship', institution: 'Tata Memorial Hospital', year: '2012-2015' },
+                    { degree: 'Internal Medicine Residency', institution: 'Maulana Azad Medical College', year: '2009-2012' },
+                    { degree: 'Bachelor of Medicine, Bachelor of Surgery (MBBS)', institution: 'AIIMS Delhi', year: '2005' }
                 ],
                 certifications: [
-                    'American Board of Cardiology',
-                    'American Board of Internal Medicine',
+                    'Indian Board of Cardiology',
+                    'Medical Council of India',
                     'Advanced Cardiac Life Support (ACLS)',
                     'Nuclear Cardiology Certification'
                 ],
@@ -67,7 +67,7 @@ class DoctorProfile {
                     { day: 'Sunday', hours: 'Closed', closed: true }
                 ],
                 insurance_accepted: [
-                    'Blue Cross Blue Shield', 'Aetna', 'Cigna', 'United Healthcare', 'Medicare', 'Medicaid', 'Humana'
+                    'LIC Health Insurance', 'Apollo Munich', 'Star Health', 'United India Insurance', 'Medicare', 'Medicaid', 'HDFC ERGO'
                 ]
             };
         }
@@ -84,6 +84,9 @@ class DoctorProfile {
         this.renderOfficeHours();
         this.renderInsuranceAccepted();
         this.updatePageTitle();
+
+        // Re-apply translations for dynamically rendered content
+        if (window.applyTranslations) window.applyTranslations();
     }
 
     renderHeader() {
@@ -247,7 +250,7 @@ class DoctorProfile {
     }
 
     updatePageTitle() {
-        document.title = `${this.doctor.name} - MediCare Hospital`;
+        document.title = `${this.doctor.name} - Nexus Care`;
     }
 
     generateStarRating(rating) {

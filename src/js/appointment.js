@@ -74,7 +74,7 @@ class AppointmentBooking {
                 // Hide the loading state and proceed to the next step
                 this.setLoadingState(false);
             }
-            
+
             if (currentStepNum < this.totalSteps) {
                 this.showStep(currentStepNum + 1);
                 this.currentStep = currentStepNum + 1;
@@ -88,33 +88,65 @@ class AppointmentBooking {
     }
 
     /**
-     * Sends the form data to the Google Apps Script web app.
+     * Sends the form data to the Google Apps Script web app and local modular backend.
      */
     async submitAppointmentData() {
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbyOYFqiBUOsP_iVw8u8CAE5mj7W9W9xxIVN1EEjdhE2_VGv4c8sU9xL-uUVoV90JTc/exec';
-        
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxL8zJH6K3g84XM2RZ-yT73Oe8Oo5Nvsjtua3BDsUhFwJuXVAlIdaK4smGDx1S7iHk0yA/exec';
+        const localBackendUrl = '/api/appointments/book';
+
         try {
-            const response = await fetch(scriptUrl, {
+            // Log for debugging
+            console.log('Final Form Data:', this.formData);
+
+            // 1. Submit to Google Sheets (Updated URL and format)
+            const sheetsData = {
+                name: `${this.formData.firstName} ${this.formData.lastName}`,
+                email: this.formData.email,
+                doctor: this.formData.department || 'General Medicine',
+                date: this.formData.selectedDate,
+                time: this.formData.selectedTime,
+                symptoms: this.formData.reasonForVisit
+            };
+
+            fetch(scriptUrl, {
                 method: 'POST',
-                mode: 'no-cors', // Important for a cross-origin request to an Apps Script web app
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(sheetsData),
+            }).catch(err => console.error('Google Sheets submission failed:', err));
+
+            // 2. Submit to local MongoDB Backend (New)
+            const backendData = {
+                name: `${this.formData.firstName} ${this.formData.lastName}`,
+                email: this.formData.email,
+                doctor: this.formData.department || 'General Medicine',
+                date: this.formData.selectedDate,
+                time: this.formData.selectedTime,
+                symptoms: this.formData.reasonForVisit
+            };
+
+            const response = await fetch(localBackendUrl, {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': window.authStore ? `Bearer ${window.authStore.token}` : ''
                 },
-                body: JSON.stringify(this.formData),
+                body: JSON.stringify(backendData),
             });
 
-            // The response from Apps Script with no-cors is opaque, so we can only check if the fetch was successful.
-            // A success status code (200) cannot be reliably checked here.
-            console.log('Form data submitted to Google Sheet.');
-            
-            // You could display a success notification here, but the confirmation page is already the visual confirmation.
-            // this.showNotification('Appointment details sent successfully!', 'success');
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Appointment saved to MongoDB:', data);
+            } else {
+                console.error('Failed to save to MongoDB:', await response.text());
+                // We proceed anyway since the local backend might not be running in all environments
+            }
+
+            console.log('Form data submission processes initiated.');
 
         } catch (error) {
             console.error('Error submitting form data:', error);
-            this.showNotification('Failed to save appointment details. Please try again.', 'error');
-            // Revert to the previous step or show an error on the current step
-            this.prevStep(4);
+            this.showNotification('Failed to save appointment details locally. Please try again.', 'warning');
         }
     }
 
@@ -757,7 +789,7 @@ class AppointmentCalendar {
     constructor(containerId, options = {}) {
         this.container = document.getElementById(containerId);
         this.options = {
-            onDateSelect: options.onDateSelect || (() => {}),
+            onDateSelect: options.onDateSelect || (() => { }),
             minDate: options.minDate || new Date(),
             maxDate: options.maxDate || null,
             ...options

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -42,31 +43,36 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
     <link rel="stylesheet" href="src/styles/aisymtom.css">
-    
+
 </head>
+
 <body class="bg-grayLightBg text-grayTextDark p-8 font-inter transition-colors duration-300">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 12l2 2 4-4"/>
-                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z"/>
+                    <path d="M9 12l2 2 4-4" />
+                    <path
+                        d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z" />
                 </svg>
-                    <span class="logo-text">Nexus Care</span>
+                <span class="logo-text">Nexus Care</span>
             </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link active">Home</a></li>
-                <li><a href="doctors.html" class="nav-link">Find a Doctor</a></li>
-                <li><a href="appointment.html" class="nav-link">Book Appointment</a></li>
-                <li><a href="onlinetelemedince.html" class="nav-link">Online Telemedicine</a></li>
-                
-                <li><a href="aisymtom.html" class="nav-link">Ai Symtoms</a></li>
+                <li><a href="index.html" class="nav-link" data-i18n="nav_home">Home</a></li>
+                <li><a href="doctors.html" class="nav-link" data-i18n="nav_doctors">Find a Doctor</a></li>
+                <li><a href="onlinetelemedince.html" class="nav-link" data-i18n="nav_telemedicine">Online
+                        Telemedicine</a></li>
+                <li><a href="ai-mentor.html" class="nav-link" data-i18n="nav_ai_mentor">AI Mentor</a></li>
+                <li><a href="aisymtom.html" class="nav-link active" data-i18n="nav_ai_symptoms">AI Symptoms</a></li>
+                <li><a href="meditranslate.html" class="nav-link" data-i18n="nav_meditranslate">MediTranslate</a></li>
+                <li><a href="reminder.html" class="nav-link" data-i18n="nav_reminder">Reminder</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="btn btn-outline">Emergency</button>
-                
+                <a href="emergency.html" class="btn btn-outline" data-i18n="nav_emergency">Emergency</a>
+
             </div>
             <button class="mobile-menu-toggle" id="mobileMenuToggle">
                 <span></span>
@@ -77,7 +83,8 @@
     </nav>
     <div class="max-w-8xl mx-auto">
         <header class="flex flex-col md:flex-row md:items-center justify-between mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 md:mb-0 text-primary">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 md:mb-0 text-primary"
+                data-i18n="dash_title">
                 Advanced Health Dashboard
             </h1>
         </header>
@@ -86,33 +93,37 @@
             <div class="lg:col-span-2 space-y-10">
                 <section
                     class="bg-white rounded-3xl shadow-deeper border border-grayMediumBg hover:shadow-primary transition-shadow p-10">
-                    <h2 class="text-3xl font-bold text-primary mb-6">
+                    <h2 class="text-3xl font-bold text-primary mb-6" data-i18n="dash_predictive">
                         AI Predictive Analytics
                     </h2>
-                    <p class="text-grayDarkBg mb-8 text-lg max-w-3xl">
+                    <p class="text-grayDarkBg mb-8 text-lg max-w-3xl" data-i18n="dash_predictive_desc">
                         Enter your daily health data to receive a personalized risk score and proactive recommendations.
                     </p>
                     <form id="analytics-form" class="grid grid-cols-1 md:grid-cols-3 gap-8" autocomplete="off">
                         <div>
-                            <input aria-label="Average Heart Rate (bpm)" type="number" id="heart-rate" name="heart-rate" min="30"
-                                max="200" placeholder="Heart Rate (bpm)" required class="input-field" />
+                            <input aria-label="Average Heart Rate (bpm)" type="number" id="heart-rate" name="heart-rate"
+                                min="30" max="200" placeholder="Heart Rate (bpm)" required class="input-field"
+                                data-i18n="dash_heart_rate" />
                         </div>
                         <div>
-                            <input aria-label="Sleep (hours)" type="number" id="sleep-hours" name="sleep-hours" min="0" max="24"
-                                step="0.1" placeholder="Sleep (hours)" required class="input-field" />
+                            <input aria-label="Sleep (hours)" type="number" id="sleep-hours" name="sleep-hours" min="0"
+                                max="24" step="0.1" placeholder="Sleep (hours)" required class="input-field"
+                                data-i18n="dash_sleep" />
                         </div>
                         <div>
-                            <input aria-label="Stress Level (1-10)" type="number" id="stress-level" name="stress-level" min="1"
-                                max="10" placeholder="Stress Level (1-10)" required class="input-field" />
+                            <input aria-label="Stress Level (1-10)" type="number" id="stress-level" name="stress-level"
+                                min="1" max="10" placeholder="Stress Level (1-10)" required class="input-field"
+                                data-i18n="dash_stress" />
                         </div>
                         <button type="submit"
-                            class="col-span-full md:col-auto px-12 py-4 text-xl rounded-xl bg-primary text-white font-semibold hover:bg-primaryDark focus:outline-none focus:ring-4 focus:ring-primaryLight transition">
+                            class="col-span-full md:col-auto px-12 py-4 text-xl rounded-xl bg-primary text-white font-semibold hover:bg-primaryDark focus:outline-none focus:ring-4 focus:ring-primaryLight transition"
+                            data-i18n="dash_btn_insights">
                             Get Proactive Insights
                         </button>
                     </form>
                     <div id="analytics-results"
                         class="mt-12 p-6 rounded-2xl bg-primaryLight bg-opacity-10 border border-primaryLight border-opacity-40 hidden transition-max-height max-h-0 overflow-hidden">
-                        <h3 class="text-2xl font-semibold text-primary mb-4">
+                        <h3 class="text-2xl font-semibold text-primary mb-4" data-i18n="dash_report_title">
                             Your Proactive Health Report:
                         </h3>
                         <p id="analytics-text" class="text-primary text-lg"></p>
@@ -121,24 +132,82 @@
 
                 <section
                     class="bg-white rounded-3xl shadow-deeper border border-grayMediumBg hover:shadow-primary transition-shadow p-10">
-                    <h2 class="text-3xl font-bold text-primary mb-6">
-                        Automated Symptom Checker
-                    </h2>
-                    <p class="text-grayDarkBg mb-8 text-lg max-w-3xl">
+                    <h2 class="text-3xl font-bold text-primary mb-2">Automated Symptom Checker</h2>
+                    <p class="text-grayDarkBg mb-8 text-base max-w-3xl">
                         Describe your symptoms below and get AI-driven guidance.
                     </p>
+
+                    <!-- ─── Body Diagram Section (new, non-breaking) ──────────────────── -->
+                    <div class="body-selector-wrapper">
+                        <div class="body-col">
+                            <div class="body-diagram-label">👆 Hover or tap a body part</div>
+
+                            <!-- Tooltip -->
+                            <div id="body-tooltip" class="body-tooltip hidden"></div>
+
+                            <!-- Human Body SVG (front view, schematic) -->
+                            <svg id="body-svg" viewBox="0 0 200 520" xmlns="http://www.w3.org/2000/svg" class="body-svg"
+                                aria-label="Human body diagram">
+                                <!-- HEAD -->
+                                <ellipse id="part-head" cx="100" cy="45" rx="32" ry="38" class="body-part"
+                                    data-part="Head" />
+                                <!-- NECK -->
+                                <rect id="part-neck" x="88" y="80" width="24" height="22" rx="6" class="body-part"
+                                    data-part="Neck" />
+                                <!-- CHEST -->
+                                <rect id="part-chest" x="62" y="102" width="76" height="80" rx="14" class="body-part"
+                                    data-part="Chest" />
+                                <!-- ABDOMEN -->
+                                <rect id="part-abdomen" x="66" y="182" width="68" height="72" rx="14" class="body-part"
+                                    data-part="Abdomen" />
+                                <!-- LEFT ARM (user's right side on screen) -->
+                                <rect id="part-left-arm" x="18" y="102" width="40" height="120" rx="20"
+                                    class="body-part" data-part="Left Arm" />
+                                <!-- RIGHT ARM -->
+                                <rect id="part-right-arm" x="142" y="102" width="40" height="120" rx="20"
+                                    class="body-part" data-part="Right Arm" />
+                                <!-- LEFT LEG -->
+                                <rect id="part-left-leg" x="66" y="258" width="36" height="160" rx="18"
+                                    class="body-part" data-part="Left Leg" />
+                                <!-- RIGHT LEG -->
+                                <rect id="part-right-leg" x="106" y="258" width="36" height="160" rx="18"
+                                    class="body-part" data-part="Right Leg" />
+                                <!-- FEET -->
+                                <ellipse cx="84" cy="426" rx="20" ry="10" class="body-part-foot" />
+                                <ellipse cx="124" cy="426" rx="20" ry="10" class="body-part-foot" />
+                            </svg>
+                        </div>
+
+                        <!-- Symptom Suggestions Panel -->
+                        <div id="symptom-panel" class="symptom-panel">
+                            <div id="panel-placeholder" class="panel-placeholder">
+                                <div style="font-size:2.5rem; margin-bottom:0.5rem;">🩺</div>
+                                <p>Hover over a body part to see<br>suggested symptoms</p>
+                            </div>
+                            <div id="panel-content" class="hidden">
+                                <div id="panel-title" class="panel-title"></div>
+                                <div id="panel-symptoms" class="panel-symptoms-list"></div>
+                                <p class="panel-hint">Click a symptom to auto-analyze →</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider-label">── or describe symptoms in your own words ──</div>
+
                     <form id="symptom-form" class="flex flex-col gap-6" autocomplete="off">
                         <textarea id="symptom-input" rows="5"
                             placeholder="I have a persistent cough and a headache that won't go away."
-                            class="textarea-field"></textarea>
+                            class="textarea-field" data-i18n="dash_symptom_placeholder"></textarea>
                         <button type="submit"
-                            class="self-start px-10 py-4 rounded-xl bg-primary text-white text-xl font-semibold hover:bg-primaryDark focus:outline-none focus:ring-4 focus:ring-primaryLight transition">
+                            class="self-start px-10 py-4 rounded-xl bg-primary text-white text-xl font-semibold hover:bg-primaryDark focus:outline-none focus:ring-4 focus:ring-primaryLight transition"
+                            data-i18n="dash_btn_analysis">
                             Get Symptom Analysis
                         </button>
                     </form>
                     <div id="symptom-results"
                         class="mt-12 p-6 rounded-2xl bg-primaryLight bg-opacity-10 border border-primaryLight border-opacity-40 hidden transition-max-height max-h-0 overflow-hidden">
-                        <h3 class="text-2xl font-semibold text-primary mb-6">Analysis Results:</h3>
+                        <h3 class="text-2xl font-semibold text-primary mb-6" data-i18n="dash_analysis_title">Analysis
+                            Results:</h3>
                         <div id="symptom-text" class="text-primary text-lg"></div>
                     </div>
                 </section>
@@ -147,10 +216,10 @@
             <aside class="space-y-10">
                 <section
                     class="bg-white rounded-3xl shadow-deeper border border-grayMediumBg hover:shadow-primary transition-shadow p-10">
-                    <h2 class="text-3xl font-bold text-primary mb-6">
+                    <h2 class="text-3xl font-bold text-primary mb-6" data-i18n="dash_monitoring">
                         Remote Patient Monitoring
                     </h2>
-                    <p class="text-grayDarkBg mb-10">
+                    <p class="text-grayDarkBg mb-10" data-i18n="dash_monitoring_desc">
                         Live health data from connected wearables.
                     </p>
                     <dl class="space-y-6">
@@ -165,7 +234,7 @@
                         </div>
                         <div
                             class="flex items-center justify-between bg-grayLightBg p-6 rounded-xl border border-grayMediumBg shadow-subtle">
-                            <dt class="text-lg font-medium text-grayDarkBg">
+                            <dt class="text-lg font-medium text-grayDarkBg" data-i18n="dash_blood_oxygen">
                                 Blood Oxygen (%)
                             </dt>
                             <dd id="live-blood-oxygen" class="text-4xl font-extrabold text-primary">
@@ -181,20 +250,25 @@
 
                 <section
                     class="bg-white rounded-3xl shadow-deeper border border-grayMediumBg hover:shadow-primary transition-shadow p-10">
-                    <h2 class="text-3xl font-bold text-primary mb-6">
+                    <h2 class="text-3xl font-bold text-primary mb-6" data-i18n="dash_privacy">
                         Privacy & Security
                     </h2>
-                    <p class="text-grayDarkBg text-lg leading-relaxed">
-                        This dashboard uses a <strong>Privacy-First Data Architecture</strong>. AI processing runs client-side and does not store your personal health data.
+                    <p class="text-grayDarkBg text-lg leading-relaxed" data-i18n="dash_privacy_desc">
+                        This dashboard uses a <strong>Privacy-First Data Architecture</strong>. AI processing runs
+                        client-side and does not store your personal health data.
                     </p>
                     <p class="text-grayTextLight mt-4 text-sm max-w-md">
-                        In production, secure decentralized systems like blockchain ensure your data remains under your control.
+                        In production, secure decentralized systems like blockchain ensure your data remains under your
+                        control.
                     </p>
                 </section>
             </aside>
         </div>
     </div>
     <script type="module" src="https://cdn.skypack.dev/@google/generative-ai"></script>
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/translations.js"></script>
     <script src="src/js/aisymtom.js"></script>
 </body>
+
 </html>

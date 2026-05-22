@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness Mentor | Nexus Care</title>
+    <!-- Core styles -->
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
+    <!-- Component styles -->
+    <link rel="stylesheet" href="src/styles/wellness.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="with-sidebar">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <nav class="navbar glassmorphic">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="flex items-center gap-2">
+                    <div class="logo-icon bg-blue-600 text-white p-2 rounded-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                            </path>
+                        </svg>
+                    </div>
+                    <span
+                        class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Nexus
+                        Care</span>
+                </a>
+            </div>
+            <div class="nav-actions">
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=User&background=0D8ABC&color=fff" alt="Profile"
+                        class="h-10 w-10 rounded-full border-2 border-primary">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-container glass-theme" id="mainContent">
+        <!-- ─── HEADER ──────────────────────────────────────── -->
+        <header class="page-header text-center mb-10">
+            <h1 class="text-4xl font-bold text-gray-900 mb-2">Personal Health Guide</h1>
+            <p class="text-gray-600 text-lg">Actionable insights tailored to your daily wellness data</p>
+        </header>
+
+        <!-- ─── SCORE & INSIGHTS HERO ────────────────────────── -->
+        <section class="wm-hero-section mb-10">
+            <div class="glass-card flex-row justify-between align-center p-8 hero-grid">
+                <div class="hero-score-area text-center">
+                    <div class="score-circle" id="wm-score-circle">
+                        <span class="score-val" id="wm-score-val">--</span>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4" id="wm-score-status">Log data to get score</h3>
+                    <p class="text-sm text-gray-500 mt-1">Based on sleep, exercise, and habits</p>
+                </div>
+                <div class="hero-tips-area">
+                    <h3 class="text-lg font-bold mb-4 flex items-center gap-2"><span class="text-2xl">✨</span>
+                        Personalized Tips</h3>
+                    <ul class="tips-list" id="wm-personal-tips">
+                        <li class="tip-item empty-state">Complete your daily check-in to generate tailored advice.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── DAILY CHECK-IN ──────────────────────────────── -->
+        <section class="mb-12">
+            <h2 class="section-title text-2xl font-bold mb-6">Daily Check-In</h2>
+            <div class="glass-card p-6">
+                <form id="wm-checkin-form" class="checkin-grid">
+                    <!-- Mood -->
+                    <div class="form-group">
+                        <label class="font-semibold mb-3 block">How are you feeling?</label>
+                        <div class="mood-selector" id="mood-selector">
+                            <button type="button" class="mood-btn" data-val="Happy" title="Happy">😄</button>
+                            <button type="button" class="mood-btn" data-val="Neutral" title="Neutral">😐</button>
+                            <button type="button" class="mood-btn" data-val="Stressed" title="Stressed">😫</button>
+                            <button type="button" class="mood-btn" data-val="Sad" title="Sad">😢</button>
+                        </div>
+                        <input type="hidden" id="entry-mood" required>
+                    </div>
+
+                    <!-- Sleep -->
+                    <div class="form-group">
+                        <label class="font-semibold mb-2 block">Sleep (Hours)</label>
+                        <input type="number" id="entry-sleep" class="glass-input w-full" min="0" max="24" step="0.5"
+                            placeholder="e.g. 7.5" required>
+                    </div>
+
+                    <!-- Water -->
+                    <div class="form-group">
+                        <label class="font-semibold mb-2 block">Water Intake (Glasses)</label>
+                        <div class="water-tracker">
+                            <input type="range" id="entry-water" min="0" max="15" value="0" class="w-full">
+                            <span id="water-val" class="font-bold text-blue-600 mt-2 block text-center">0 glasses</span>
+                        </div>
+                    </div>
+
+                    <!-- Exercise -->
+                    <div class="form-group">
+                        <label class="font-semibold mb-2 block">Exercise (Minutes)</label>
+                        <input type="number" id="entry-exercise" class="glass-input w-full" min="0" max="300" step="5"
+                            placeholder="e.g. 45" required>
+                    </div>
+
+                    <!-- Energy -->
+                    <div class="form-group">
+                        <label class="font-semibold mb-2 block">Energy Level (1-5)</label>
+                        <div class="energy-selector" id="energy-selector">
+                            <button type="button" class="energy-btn" data-val="1">1</button>
+                            <button type="button" class="energy-btn" data-val="2">2</button>
+                            <button type="button" class="energy-btn" data-val="3">3</button>
+                            <button type="button" class="energy-btn" data-val="4">4</button>
+                            <button type="button" class="energy-btn" data-val="5">5</button>
+                        </div>
+                        <input type="hidden" id="entry-energy" required>
+                    </div>
+
+                    <div class="form-actions col-span-full mt-4 flex justify-end">
+                        <button type="submit" class="btn btn-primary">Save Check-In</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ─── HABITS & CONDITIONS GRID ─────────────────────── -->
+        <div class="habits-conditions-grid mb-12">
+
+            <!-- Micro Habits -->
+            <section class="habit-section">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="section-title text-2xl font-bold">Micro Habits</h2>
+                    <span class="text-sm font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full"><span
+                            id="wm-habit-percent">0</span>% Completed</span>
+                </div>
+                <div class="glass-card p-6">
+                    <div class="habit-list" id="wm-habit-list">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Condition Guides -->
+            <section class="conditions-section">
+                <h2 class="section-title text-2xl font-bold mb-6">Condition Guides</h2>
+                <div class="glass-card p-6">
+                    <div class="accordion" id="wm-conditions-accordion">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ─── BREATHING & RELAXATION ───────────────────────── -->
+        <section class="mb-12">
+            <h2 class="section-title text-2xl font-bold mb-6">Relaxation Exercises</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="wm-relaxation-grid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/wellness.js"></script>
+</body>
+
+</html>

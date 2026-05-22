@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Blog - Nexus Care</title>
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .blog-card {
+            background: white;
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 1px solid #f1f5f9;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-badge {
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+
+<body class="with-sidebar bg-slate-50">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main id="mainContent" style="margin-left: 260px; transition: margin-left 0.5s cubic-bezier(0.4,0,0.2,1);">
+        <!-- Hero Blog Section -->
+        <section class="relative bg-gray-900 h-[500px] flex items-center overflow-hidden">
+            <img src="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                class="absolute inset-0 w-full h-full object-cover opacity-50">
+            <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/40 to-transparent"></div>
+
+            <div class="container mx-auto px-10 relative z-10">
+                <span
+                    class="px-4 py-1.5 bg-blue-600 text-white text-xs font-black uppercase tracking-widest rounded-full mb-6 inline-block">Featured
+                    Article</span>
+                <h1 class="text-5xl md:text-6xl font-black text-white max-w-3xl leading-tight mb-6">
+                    Understanding the Future of AI in Modern Healthcare
+                </h1>
+                <p class="text-xl text-gray-300 max-w-2xl mb-8 leading-relaxed">
+                    Explore how artificial intelligence is transforming patient diagnostics and personalized treatment
+                    plans in 2024 and beyond.
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-500 rounded-full border-2 border-white/20"></div>
+                    <div>
+                        <p class="text-white font-bold">Dr. James Wilson</p>
+                        <p class="text-gray-400 text-sm">Medical Director, Nexus Care</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Content Grid -->
+        <section class="py-20 px-10">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+                <div>
+                    <h2 class="text-4xl font-black text-gray-900 mb-4">Latest Insights</h2>
+                    <p class="text-gray-500 font-medium text-lg">Stay updated with the latest in medical science and
+                        wellness.</p>
+                </div>
+                <div class="flex gap-2">
+                    <button
+                        class="px-6 py-2 bg-white border border-slate-200 rounded-full text-sm font-bold text-gray-600 hover:bg-blue-600 hover:text-white transition">All
+                        Posts</button>
+                    <button
+                        class="px-6 py-2 bg-white border border-slate-200 rounded-full text-sm font-bold text-gray-600 hover:bg-blue-600 hover:text-white transition">Wellness</button>
+                    <button
+                        class="px-6 py-2 bg-white border border-slate-200 rounded-full text-sm font-bold text-gray-600 hover:bg-blue-600 hover:text-white transition">Nutrition</button>
+                </div>
+            </div>
+
+            <div id="blogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Blog cards loaded here -->
+                <p class="text-gray-400 italic">Curating latest articles...</p>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="px-10 pb-20">
+            <div class="bg-blue-600 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full -ml-32 -mb-32"></div>
+
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-6 relative z-10">Subscribe to Health Pulse</h2>
+                <p class="text-blue-100 text-lg mb-10 max-w-2xl mx-auto relative z-10">Get weekly health tips, medical
+                    breakthroughs, and exclusive wellness guides delivered to your inbox.</p>
+
+                <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-4 relative z-10">
+                    <input type="email" placeholder="Your email address"
+                        class="flex-1 px-6 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-blue-200 outline-none focus:bg-white/20 transition">
+                    <button
+                        class="px-8 py-4 bg-white text-blue-600 font-black rounded-2xl hover:bg-blue-50 transition">Join
+                        Now</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="src/js/auth.js"></script>
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/blog.js"></script>
+</body>
+
+</html>

@@ -14,7 +14,7 @@ class DoctorsDirectory {
             specialty: '',
             location: ''
         };
-        
+
         this.init();
     }
 
@@ -31,7 +31,7 @@ class DoctorsDirectory {
     loadDoctors() {
         // Show loading state
         this.showLoadingState();
-        
+
         // Simulate API delay
         setTimeout(() => {
             this.doctors = this.generateSampleDoctors();
@@ -48,105 +48,476 @@ class DoctorsDirectory {
         return [
             {
                 id: 1,
-                name: 'Dr. Sarah Johnson',
+                name: 'Dr. Ananya Sharma',
                 specialty: 'Cardiology',
                 location: 'Main Campus',
-                image: 'https://images.pexels.com/photos/5327580/pexels-photo-5327580.jpeg?auto=compress&cs=tinysrgb&w=300',
-                rating: 4.9,
+                image: 'https://images.pexels.com/photos/5327921/pexels-photo-5327921.jpeg?auto=compress&cs=tinysrgb&w=300',
+                rating: 4.8,
                 reviewCount: 127,
                 experience: 15,
-                education: 'Harvard Medical School',
+                education: 'AIIMS Delhi',
                 phone: '(555) 123-4567',
-                email: 'sarah.johnson@medicare.com',
-                bio: 'Dr. Johnson is a board-certified cardiologist with over 15 years of experience in treating complex cardiac conditions.',
+                email: 'ananya.sharma@medicare.com',
+                bio: 'Dr. Sharma is a board-certified cardiologist with over 15 years of experience in treating complex cardiac conditions.',
                 availability: 'available',
-                languages: ['English', 'Spanish'],
-                services: ['Cardiac Catheterization', 'Echocardiogram', 'Stress Testing']
+                languages: ['English', 'Hindi'],
+                services: ['Cardiac Catheterization', 'Echocardiogram', 'Stress Testing'],
+                education_details: [
+                    { degree: 'Doctor of Medicine (MD)', institution: 'AIIMS Delhi', year: '2009' },
+                    { degree: 'Cardiology Fellowship', institution: 'Tata Memorial Hospital', year: '2012-2015' },
+                    { degree: 'Internal Medicine Residency', institution: 'Maulana Azad Medical College', year: '2009-2012' }
+                ],
+                certifications: ['Indian Board of Cardiology', 'Medical Council of India', 'ACLS Certified'],
+                awards: [
+                    { title: 'Top Doctor Award', description: 'Recognized for excellence in cardiology', year: '2023' },
+                    { title: 'Patient Choice Award', description: 'Voted by patients for compassionate care', year: '2022' }
+                ],
+                office_hours: [
+                    { day: 'Monday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Tuesday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Wednesday', hours: '9:00 AM - 1:00 PM', closed: false },
+                    { day: 'Thursday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Friday', hours: '9:00 AM - 4:00 PM', closed: false }
+                ],
+                insurance_accepted: ['LIC Health', 'Apollo Munich', 'Star Health', 'HDFC ERGO']
             },
             {
                 id: 2,
-                name: 'Dr. Michael Chen',
+                name: 'Dr. Rajesh Kumar',
                 specialty: 'Pediatrics',
                 location: 'North Branch',
-                image: 'https://images.pexels.com/photos/612349/pexels-photo-612349.jpeg?auto=compress&cs=tinysrgb&w=300',
-                rating: 4.8,
+                image: 'https://images.pexels.com/photos/6749778/pexels-photo-6749778.jpeg?auto=compress&cs=tinysrgb&w=300',
+                rating: 4.9,
                 reviewCount: 89,
                 experience: 12,
-                education: 'Johns Hopkins University',
+                education: 'NIMHANS Bangalore',
                 phone: '(555) 123-4568',
-                email: 'michael.chen@medicare.com',
-                bio: 'Dr. Chen specializes in pediatric care with a focus on child development and preventive medicine.',
+                email: 'rajesh.kumar@medicare.com',
+                bio: 'Dr. Kumar specializes in pediatric care with a focus on child development and preventive medicine.',
                 availability: 'available',
-                languages: ['English', 'Mandarin'],
-                services: ['Well-child visits', 'Immunizations', 'Developmental assessments']
+                languages: ['English', 'Hindi', 'Kannada'],
+                services: ['Well-child visits', 'Immunizations', 'Developmental assessments'],
+                education_details: [
+                    { degree: 'MD Pediatrics', institution: 'NIMHANS Bangalore', year: '2012' },
+                    { degree: 'MBBS', institution: 'Bangalore Medical College', year: '2008' }
+                ],
+                certifications: ['Indian Academy of Pediatrics', 'PALS Certified'],
+                awards: [
+                    { title: 'Best Pediatrician', description: 'Annual Health Excellence Awards', year: '2021' }
+                ],
+                office_hours: [
+                    { day: 'Monday', hours: '10:00 AM - 6:00 PM', closed: false },
+                    { day: 'Tuesday', hours: '10:00 AM - 6:00 PM', closed: false },
+                    { day: 'Wednesday', hours: '10:00 AM - 6:00 PM', closed: false },
+                    { day: 'Thursday', hours: '10:00 AM - 6:00 PM', closed: false },
+                    { day: 'Friday', hours: '10:00 AM - 6:00 PM', closed: false }
+                ],
+                insurance_accepted: ['Star Health', 'Max Bupa', 'Reliance General']
             },
             {
                 id: 3,
-                name: 'Dr. Emily Rodriguez',
+                name: 'Dr. Priya Patel',
                 specialty: 'Orthopedics',
                 location: 'South Branch',
                 image: 'https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=300',
                 rating: 4.7,
                 reviewCount: 156,
                 experience: 18,
-                education: 'Stanford Medical School',
+                education: 'CMC Vellore',
                 phone: '(555) 123-4569',
-                email: 'emily.rodriguez@medicare.com',
-                bio: 'Dr. Rodriguez is an orthopedic surgeon specializing in sports medicine and joint replacement.',
+                email: 'priya.patel@medicare.com',
+                bio: 'Dr. Patel is an orthopedic surgeon specializing in sports medicine and joint replacement.',
                 availability: 'unavailable',
-                languages: ['English', 'Spanish'],
-                services: ['Joint Replacement', 'Sports Medicine', 'Arthroscopy']
+                languages: ['English', 'Gujarati', 'Hindi'],
+                services: ['Joint Replacement', 'Sports Medicine', 'Arthroscopy'],
+                education_details: [
+                    { degree: 'MS Orthopedics', institution: 'CMC Vellore', year: '2006' },
+                    { degree: 'Fellowship in Sports Medicine', institution: 'Sydney, Australia', year: '2008' }
+                ],
+                certifications: ['Indian Orthopedic Association', 'Board of Sports Medicine'],
+                awards: [
+                    { title: 'Excellence in Surgery', description: 'Surgical Society Honor', year: '2019' }
+                ],
+                office_hours: [
+                    { day: 'Monday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Wednesday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Friday', hours: '9:00 AM - 5:00 PM', closed: false }
+                ],
+                insurance_accepted: ['Apollo Munich', 'United India Insurance', 'Niva Bupa']
             },
             {
                 id: 4,
-                name: 'Dr. James Wilson',
+                name: 'Dr. Vikram Singh',
                 specialty: 'Neurology',
                 location: 'Main Campus',
-                image: 'https://images.pexels.com/photos/5327921/pexels-photo-5327921.jpeg?auto=compress&cs=tinysrgb&w=300',
+                image: 'https://images.pexels.com/photos/6749814/pexels-photo-6749814.jpeg?auto=compress&cs=tinysrgb&w=300',
                 rating: 4.9,
                 reviewCount: 203,
                 experience: 20,
-                education: 'Mayo Clinic College of Medicine',
+                education: 'PGIMER Chandigarh',
                 phone: '(555) 123-4570',
                 email: 'james.wilson@medicare.com',
-                bio: 'Dr. Wilson is a neurologist with expertise in treating stroke, epilepsy, and movement disorders.',
+                bio: 'Dr. Singh is a neurologist with expertise in treating stroke, epilepsy, and movement disorders.',
                 availability: 'available',
-                languages: ['English'],
-                services: ['Stroke Treatment', 'Epilepsy Management', 'EEG Testing']
+                languages: ['English', 'Punjabi', 'Hindi'],
+                services: ['Stroke Treatment', 'Epilepsy Management', 'EEG Testing'],
+                education_details: [
+                    { degree: 'DM Neurology', institution: 'PGIMER Chandigarh', year: '2004' },
+                    { degree: 'MD Medicine', institution: 'AIIMS Delhi', year: '2001' }
+                ],
+                certifications: ['Indian Academy of Neurology', 'World Stroke Organization'],
+                awards: [
+                    { title: 'Stroke Researcher of the Year', description: 'Neurology Research Institute', year: '2020' }
+                ],
+                office_hours: [
+                    { day: 'Monday', hours: '8:00 AM - 4:00 PM', closed: false },
+                    { day: 'Tuesday', hours: '8:00 AM - 4:00 PM', closed: false },
+                    { day: 'Thursday', hours: '8:00 AM - 4:00 PM', closed: false },
+                    { day: 'Friday', hours: '8:00 AM - 4:00 PM', closed: false }
+                ],
+                insurance_accepted: ['HDFC ERGO', 'Tata AIG', 'Star Health']
             },
             {
                 id: 5,
-                name: 'Dr. Lisa Park',
+                name: 'Dr. Kavita Reddy',
                 specialty: 'Oncology',
                 location: 'East Clinic',
                 image: 'https://images.pexels.com/photos/5327656/pexels-photo-5327656.jpeg?auto=compress&cs=tinysrgb&w=300',
                 rating: 4.8,
                 reviewCount: 98,
                 experience: 14,
-                education: 'University of Pennsylvania',
+                education: 'Tata Memorial Hospital',
                 phone: '(555) 123-4571',
-                email: 'lisa.park@medicare.com',
-                bio: 'Dr. Park is an oncologist specializing in breast cancer and immunotherapy treatments.',
+                email: 'kavita.reddy@medicare.com',
+                bio: 'Dr. Reddy is an oncologist specializing in breast cancer and immunotherapy treatments.',
                 availability: 'available',
-                languages: ['English', 'Korean'],
-                services: ['Chemotherapy', 'Immunotherapy', 'Cancer Screening']
+                languages: ['English', 'Telugu', 'Hindi'],
+                services: ['Chemotherapy', 'Immunotherapy', 'Cancer Screening'],
+                education_details: [
+                    { degree: 'DM Oncology', institution: 'Tata Memorial Hospital', year: '2010' },
+                    { degree: 'MD Medicine', institution: 'Osmania Medical College', year: '2007' }
+                ],
+                certifications: ['Indian Society of Oncology', 'ESMO Certified'],
+                awards: [
+                    { title: 'Service Excellence', description: 'Hospital Merit Award', year: '2022' }
+                ],
+                office_hours: [
+                    { day: 'Monday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Tuesday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Wednesday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Thursday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Friday', hours: '9:00 AM - 5:00 PM', closed: false }
+                ],
+                insurance_accepted: ['LIC Health', 'Religare Health', 'Star Health']
             },
             {
                 id: 6,
-                name: 'Dr. Robert Davis',
+                name: 'Dr. Arjun Mehra',
                 specialty: 'General Medicine',
                 location: 'Main Campus',
                 image: 'https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg?auto=compress&cs=tinysrgb&w=300',
                 rating: 4.6,
                 reviewCount: 175,
                 experience: 22,
-                education: 'University of California, San Francisco',
+                education: 'Maulana Azad Medical College',
                 phone: '(555) 123-4572',
-                email: 'robert.davis@medicare.com',
-                bio: 'Dr. Davis is a primary care physician with extensive experience in internal medicine.',
+                email: 'arjun.mehra@medicare.com',
+                bio: 'Dr. Mehra is a primary care physician with extensive experience in internal medicine.',
                 availability: 'available',
-                languages: ['English'],
-                services: ['Annual Physicals', 'Chronic Disease Management', 'Preventive Care']
+                languages: ['English', 'Hindi'],
+                services: ['Annual Physicals', 'Chronic Disease Management', 'Preventive Care'],
+                education_details: [
+                    { degree: 'MD Internal Medicine', institution: 'MAMC Delhi', year: '2002' },
+                    { degree: 'MBBS', institution: 'MAMC Delhi', year: '1998' }
+                ],
+                certifications: ['Indian Medical Association', 'Board of Internal Medicine'],
+                awards: [
+                    { title: 'Lifetime achievement', description: 'Medical Association Honor', year: '2023' }
+                ],
+                office_hours: [
+                    { day: 'Monday', hours: '8:00 AM - 12:00 PM', closed: false },
+                    { day: 'Tuesday', hours: '8:00 AM - 12:00 PM', closed: false },
+                    { day: 'Wednesday', hours: '8:00 AM - 12:00 PM', closed: false },
+                    { day: 'Thursday', hours: '8:00 AM - 12:00 PM', closed: false },
+                    { day: 'Friday', hours: '8:00 AM - 12:00 PM', closed: false }
+                ],
+                insurance_accepted: ['All Major Insurances']
+            },
+            {
+                id: 7,
+                name: 'Dr. Sunita Rao',
+                specialty: 'Psychology',
+                location: 'East Clinic',
+                image: 'https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg?auto=compress&cs=tinysrgb&w=300',
+                rating: 4.7,
+                reviewCount: 112,
+                experience: 9,
+                education: 'PhD from IHBAS Delhi',
+                phone: '(555) 123-4573',
+                email: 'sunita.rao@medicare.com',
+                bio: 'Dr. Rao is an expert in clinical psychology and behavioral therapy.',
+                availability: 'available',
+                languages: ['English', 'Hindi', 'Kannada'],
+                services: ['Cognitive Behavioral Therapy', 'Family Counseling', 'Stress Management'],
+                education_details: [
+                    { degree: 'PhD Clinical Psychology', institution: 'IHBAS Delhi', year: '2015' },
+                    { degree: 'M.Phil Psychology', institution: 'NIMHANS', year: '2012' }
+                ],
+                certifications: ['Rehabilitation Council of India', 'Clinical Psychologist License'],
+                awards: [
+                    { title: 'Compassionate Care', description: 'Psychology Association', year: '2021' }
+                ],
+                office_hours: [
+                    { day: 'Monday', hours: '11:00 AM - 7:00 PM', closed: false },
+                    { day: 'Wednesday', hours: '11:00 AM - 7:00 PM', closed: false },
+                    { day: 'Saturday', hours: '10:00 AM - 2:00 PM', closed: false }
+                ],
+                insurance_accepted: ['Self-pay Only']
+            },
+            {
+                id: 8,
+                name: 'Dr. Amit Shah',
+                specialty: 'Nephrology',
+                location: 'Main Campus',
+                image: 'https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=300',
+                rating: 4.9,
+                reviewCount: 145,
+                experience: 16,
+                education: 'AIIMS Delhi',
+                phone: '(555) 123-4574',
+                email: 'amit.shah@medicare.com',
+                bio: 'Dr. Shah specializes in renal transplant and chronic kidney diseases.',
+                availability: 'available',
+                languages: ['English', 'Hindi', 'Gujarati'],
+                services: ['Dialysis', 'Kidney Biopsy', 'Transplant Care'],
+                education_details: [
+                    { degree: 'DM Nephrology', institution: 'AIIMS Delhi', year: '2008' },
+                    { degree: 'MD Medicine', institution: 'BJ Medical College', year: '2005' }
+                ],
+                certifications: ['Indian Society of Nephrology', 'American Society of Nephrology'],
+                awards: [
+                    { title: 'Transplant Pioneer', description: 'National Kidney Foundation', year: '2018' }
+                ],
+                office_hours: [
+                    { day: 'Tuesday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Thursday', hours: '9:00 AM - 5:00 PM', closed: false }
+                ],
+                insurance_accepted: ['Medicare', 'Medicaid', 'Star Health']
+            },
+            {
+                id: 9,
+                name: 'Dr. Meera Nambiar',
+                specialty: 'Endocrinology',
+                location: 'South Branch',
+                image: 'https://images.pexels.com/photos/5452296/pexels-photo-5452296.jpeg?auto=compress&cs=tinysrgb&w=300',
+                rating: 4.8,
+                reviewCount: 96,
+                experience: 11,
+                education: 'Madras Medical College',
+                phone: '(555) 123-4575',
+                email: 'meera.nambiar@medicare.com',
+                bio: 'Dr. Nambiar is an expert in diabetes management and thyroid disorders.',
+                availability: 'available',
+                languages: ['English', 'Malayalam', 'Hindi'],
+                services: ['Diabetes Care', 'Thyroid Management', 'Hormone Therapy'],
+                education_details: [
+                    { degree: 'DM Endocrinology', institution: 'Madras Medical College', year: '2013' },
+                    { degree: 'MD Medicine', institution: 'CMC Vellore', year: '2010' }
+                ],
+                certifications: ['Endocrine Society of India', 'Diabetes Educator License'],
+                awards: [
+                    { title: 'Young Endocrinologist Award', description: 'State Medical Council', year: '2019' }
+                ],
+                office_hours: [
+                    { day: 'Monday', hours: '10:00 AM - 4:00 PM', closed: false },
+                    { day: 'Wednesday', hours: '10:00 AM - 4:00 PM', closed: false },
+                    { day: 'Friday', hours: '10:00 AM - 4:00 PM', closed: false }
+                ],
+                insurance_accepted: ['Apollo Munich', 'United India', 'Bajaj Allianz']
+            },
+            {
+                id: 10,
+                name: 'Dr. Rahul Gupta',
+                specialty: 'Pulmonology',
+                location: 'North Branch',
+                image: 'https://images.pexels.com/photos/6749777/pexels-photo-6749777.jpeg?auto=compress&cs=tinysrgb&w=300',
+                rating: 4.7,
+                reviewCount: 132,
+                experience: 13,
+                education: 'KGMU Lucknow',
+                phone: '(555) 123-4576',
+                email: 'rahul.gupta@medicare.com',
+                bio: 'Dr. Gupta is a specialist in respiratory diseases and critical care.',
+                availability: 'available',
+                languages: ['English', 'Hindi'],
+                services: ['Asthma Treatment', 'COPD Management', 'Sleep Study'],
+                education_details: [
+                    { degree: 'MD Pulmonology', institution: 'KGMU Lucknow', year: '2011' },
+                    { degree: 'Fellowship in Critical Care', institution: 'AIIMS Delhi', year: '2013' }
+                ],
+                certifications: ['Indian Chest Society', 'Critical Care Board'],
+                awards: [
+                    { title: 'Excellence in Chest Medicine', description: 'National Pulmocon', year: '2022' }
+                ],
+                office_hours: [
+                    { day: 'Monday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Tuesday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Thursday', hours: '9:00 AM - 5:00 PM', closed: false }
+                ],
+                insurance_accepted: ['Star Health', 'Max Bupa', 'SBI General']
+            },
+            {
+                id: 11,
+                name: 'Dr. Deepa Iyer',
+                specialty: 'Gastroenterology',
+                location: 'East Clinic',
+                image: 'https://images.pexels.com/photos/5215016/pexels-photo-5215016.jpeg?auto=compress&cs=tinysrgb&w=300',
+                rating: 4.8,
+                reviewCount: 118,
+                experience: 10,
+                education: 'JIPMER Puducherry',
+                phone: '(555) 123-4577',
+                email: 'deepa.iyer@medicare.com',
+                bio: 'Dr. Iyer is an expert in digestive system disorders and liver diseases.',
+                availability: 'available',
+                languages: ['English', 'Tamil', 'Hindi'],
+                services: ['Endoscopy', 'Colonoscopy', 'Liver Function Test'],
+                education_details: [
+                    { degree: 'DM Gastroenterology', institution: 'JIPMER Puducherry', year: '2014' },
+                    { degree: 'MD Medicine', institution: 'Madras Medical College', year: '2011' }
+                ],
+                certifications: ['Indian Society of Gastroenterology', 'Fellow of ISG'],
+                awards: [
+                    { title: 'Best Physician', description: 'Puducherry Medical Award', year: '2020' }
+                ],
+                office_hours: [
+                    { day: 'Wednesday', hours: '12:00 PM - 8:00 PM', closed: false },
+                    { day: 'Friday', hours: '12:00 PM - 8:00 PM', closed: false }
+                ],
+                insurance_accepted: ['United India', 'New India Assurance', 'Oriental Insurance']
+            },
+            {
+                id: 12,
+                name: 'Dr. Sanjay Deshmukh',
+                specialty: 'Rheumatology',
+                location: 'Main Campus',
+                image: 'https://images.pexels.com/photos/6749817/pexels-photo-6749817.jpeg?auto=compress&cs=tinysrgb&w=300',
+                rating: 4.9,
+                reviewCount: 87,
+                experience: 15,
+                education: 'GSMC Mumbai',
+                phone: '(555) 123-4578',
+                email: 'sanjay.deshmukh@medicare.com',
+                bio: 'Dr. Deshmukh specializes in autoimmune diseases and joint inflammatory conditions.',
+                availability: 'available',
+                languages: ['English', 'Marathi', 'Hindi'],
+                services: ['Arthritis Care', 'Lupus Treatment', 'Infusion Therapy'],
+                education_details: [
+                    { degree: 'DM Rheumatology', institution: 'KEM Hospital Mumbai', year: '2011' },
+                    { degree: 'MD Medicine', institution: 'GSMC Mumbai', year: '2008' }
+                ],
+                certifications: ['Indian Rheumatology Association', 'Board of Rheumatology'],
+                awards: [
+                    { title: 'Top Rheumatologist', description: 'Maharashtra Health Forum', year: '2023' }
+                ],
+                office_hours: [
+                    { day: 'Monday', hours: '9:00 AM - 5:00 PM', closed: false },
+                    { day: 'Thursday', hours: '9:00 AM - 5:00 PM', closed: false }
+                ],
+                insurance_accepted: ['HDFC ERGO', 'Reliance General', 'Star Health']
+            },
+            {
+                id: 13,
+                name: 'Dr. Anita Joshi',
+                specialty: 'Gynecology',
+                location: 'West Clinic',
+                image: 'https://images.pexels.com/photos/5452291/pexels-photo-5452291.jpeg?auto=compress&cs=tinysrgb&w=300',
+                rating: 4.9,
+                reviewCount: 164,
+                experience: 18,
+                education: 'Lady Hardinge Medical College',
+                phone: '(555) 123-4579',
+                email: 'anita.joshi@medicare.com',
+                bio: 'Dr. Joshi is an expert in maternal-fetal medicine and reproductive health.',
+                availability: 'available',
+                languages: ['English', 'Hindi'],
+                services: ['Prenatal Care', 'Gyn Surgery', 'Menopause Management'],
+                education_details: [
+                    { degree: 'MD Obs & Gyn', institution: 'Lady Hardinge MC Delhi', year: '2006' },
+                    { degree: 'Fellowship in Fetal Medicine', institution: 'Bangalore', year: '2008' }
+                ],
+                certifications: ['FOGSI Certified', 'Indian Board of Obs & Gyn'],
+                awards: [
+                    { title: 'Women Health Excellence', description: 'National Gyn Conference', year: '2021' }
+                ],
+                office_hours: [
+                    { day: 'Monday', hours: '9:00 AM - 4:00 PM', closed: false },
+                    { day: 'Tuesday', hours: '10:00 AM - 6:00 PM', closed: false },
+                    { day: 'Thursday', hours: '9:00 AM - 4:00 PM', closed: false }
+                ],
+                insurance_accepted: ['Star Health', 'Apollo Munich', 'Max Life']
+            },
+            {
+                id: 14,
+                name: 'Dr. Manoj Tiwari',
+                specialty: 'Orthopedics',
+                location: 'South Branch',
+                image: 'https://images.pexels.com/photos/6749780/pexels-photo-6749780.jpeg?auto=compress&cs=tinysrgb&w=300',
+                rating: 4.7,
+                reviewCount: 192,
+                experience: 20,
+                education: 'BHU Varanasi',
+                phone: '(555) 123-4580',
+                email: 'manoj.tiwari@medicare.com',
+                bio: 'Dr. Tiwari is specialized in joint replacement and trauma surgery.',
+                availability: 'available',
+                languages: ['English', 'Hindi', 'Bhojpuri'],
+                services: ['Knee Replacement', 'Hip Replacement', 'Fracture Care'],
+                education_details: [
+                    { degree: 'MS Orthopedics', institution: 'BHU Varanasi', year: '2004' },
+                    { degree: 'MBBS', institution: 'IMS BHU', year: '2000' }
+                ],
+                certifications: ['Indian Orthopedic Association', 'Hip & Knee Surgeon Board'],
+                awards: [
+                    { title: 'Best Trauma Surgeon', description: 'UP Health Summit', year: '2020' }
+                ],
+                office_hours: [
+                    { day: 'Monday', hours: '10:00 AM - 6:00 PM', closed: false },
+                    { day: 'Wednesday', hours: '10:00 AM - 6:00 PM', closed: false },
+                    { day: 'Friday', hours: '10:00 AM - 6:00 PM', closed: false }
+                ],
+                insurance_accepted: ['Oriental Insurance', 'United India', 'Star Health']
+            },
+            {
+                id: 15,
+                name: 'Dr. Swati Mishra',
+                specialty: 'Psychiatry',
+                location: 'North Branch',
+                image: 'https://images.pexels.com/photos/5215021/pexels-photo-5215021.jpeg?auto=compress&cs=tinysrgb&w=300',
+                rating: 4.8,
+                reviewCount: 143,
+                experience: 12,
+                education: 'AIIMS Delhi',
+                phone: '(555) 123-4581',
+                email: 'swati.mishra@medicare.com',
+                bio: 'Dr. Mishra is an expert in mental health, stress management, and clinical psychiatry.',
+                availability: 'available',
+                languages: ['English', 'Hindi'],
+                services: ['Mental Health Assessment', 'Medication Management', 'Psychotherapy'],
+                education_details: [
+                    { degree: 'MD Psychiatry', institution: 'AIIMS Delhi', year: '2012' },
+                    { degree: 'MBBS', institution: 'Lady Hardinge MC', year: '2008' }
+                ],
+                certifications: ['Indian Psychiatric Society', 'Certified Psychotherapist'],
+                awards: [
+                    { title: 'Inpatient Care Award', description: 'AIIMS Excellence', year: '2015' }
+                ],
+                office_hours: [
+                    { day: 'Tuesday', hours: '11:00 AM - 7:00 PM', closed: false },
+                    { day: 'Thursday', hours: '11:00 AM - 7:00 PM', closed: false },
+                    { day: 'Saturday', hours: '9:00 AM - 1:00 PM', closed: false }
+                ],
+                insurance_accepted: ['Star Health', 'HDFC ERGO', 'Apollo Munich']
             }
         ];
     }
@@ -202,12 +573,12 @@ class DoctorsDirectory {
      */
     setupViewToggle() {
         const viewButtons = document.querySelectorAll('.view-btn');
-        
+
         viewButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 const view = btn.dataset.view;
                 this.switchView(view);
-                
+
                 // Update button states
                 viewButtons.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
@@ -220,10 +591,10 @@ class DoctorsDirectory {
      */
     parseUrlParameters() {
         const urlParams = new URLSearchParams(window.location.search);
-        
+
         const search = urlParams.get('search');
         const specialty = urlParams.get('specialty');
-        
+
         if (search) {
             const searchInput = document.getElementById('doctorSearchInput');
             if (searchInput) {
@@ -231,7 +602,7 @@ class DoctorsDirectory {
                 this.currentFilters.search = search;
             }
         }
-        
+
         if (specialty) {
             const specialtyFilter = document.getElementById('specialtyFilter');
             if (specialtyFilter) {
@@ -239,7 +610,7 @@ class DoctorsDirectory {
                 this.currentFilters.specialty = specialty;
             }
         }
-        
+
         // Apply initial filters if any
         if (search || specialty) {
             setTimeout(() => {
@@ -290,16 +661,17 @@ class DoctorsDirectory {
             }
 
             // Specialty filter
-            if (this.currentFilters.specialty && 
+            if (this.currentFilters.specialty &&
                 doctor.specialty.toLowerCase() !== this.currentFilters.specialty.toLowerCase()) {
                 return false;
             }
 
             // Location filter
-            if (this.currentFilters.location && 
-                doctor.location.toLowerCase() !== this.currentFilters.location.toLowerCase().replace('-', ' ')) {
+            if (this.currentFilters.location &&
+                doctor.location.toLowerCase() !== this.currentFilters.location.toLowerCase()) {
                 return false;
             }
+
 
             return true;
         });
@@ -314,7 +686,7 @@ class DoctorsDirectory {
     switchView(view) {
         this.currentView = view;
         const doctorsGrid = document.getElementById('doctorsGrid');
-        
+
         if (doctorsGrid) {
             doctorsGrid.className = `doctors-grid ${view === 'list' ? 'list-view' : ''}`;
         }
@@ -436,7 +808,7 @@ class DoctorsDirectory {
     showLoadingState() {
         const loadingState = document.getElementById('loadingState');
         const doctorsGrid = document.getElementById('doctorsGrid');
-        
+
         if (loadingState) loadingState.style.display = 'flex';
         if (doctorsGrid) doctorsGrid.innerHTML = '';
     }
@@ -618,7 +990,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (specialtyFilter) {
             specialtyFilter.value = specialty;
             // You would then trigger a function to filter your doctor list
-            filterDoctors(specialty); 
+            filterDoctors(specialty);
         }
     }
 });

@@ -9,59 +9,285 @@ let state = {
     doctors: [
         {
             id: '1',
-            name: 'Dr. Sarah Johnson',
-            specialty: 'Cardiologist',
+            name: 'Dr. Ananya Sharma',
+            specialty: 'Cardiology',
             experience: '15 years',
             rating: 4.8,
             image: 'https://images.pexels.com/photos/5327921/pexels-photo-5327921.jpeg?auto=compress&cs=tinysrgb&w=300',
             available: true,
             consultationFee: 150,
             description: 'Specialized in heart diseases and cardiovascular surgery with over 15 years of experience.',
-            education: 'MD from Harvard Medical School',
-            languages: ['English', 'Spanish'],
-            email: 'sarah.johnson@healthcare.com'
+            education: 'MD from AIIMS Delhi',
+            languages: ['English', 'Hindi'],
+            email: 'ananya.sharma@healthcare.com',
+            education_certifications: 'MD Cardiology - AIIMS Delhi, Fellowship in Interventional Cardiology - Cleveland Clinic, Board Certified in Cardiovascular Disease.',
+            specialties_services: 'Heart Failure Management, Coronary Angioplasty, Echocardiography, Preventative Cardiology.',
+            awards_recognition: 'Best Cardiologist Award 2023 - Medical Council of India, Excellence in Patient Care - AIIMS.',
+            contact_phone: '+91 98765 43210',
+            office_hours: 'Mon-Fri: 9:00 AM - 5:00 PM, Sat: 10:00 AM - 1:00 PM',
+            insurance_accepted: 'BlueCross BlueShield, UnitedHealthcare, Aetna, Cigna.'
         },
         {
             id: '2',
-            name: 'Dr. Michael Chen',
-            specialty: 'Neurologist',
+            name: 'Dr. Rajesh Kumar',
+            specialty: 'Neurology',
             experience: '12 years',
             rating: 4.9,
             image: 'https://images.pexels.com/photos/6749778/pexels-photo-6749778.jpeg?auto=compress&cs=tinysrgb&w=300',
             available: false,
             consultationFee: 180,
             description: 'Expert in treating neurological disorders and brain-related conditions.',
-            education: 'MD from Johns Hopkins University',
-            languages: ['English', 'Mandarin'],
-            email: 'michael.chen@healthcare.com'
+            education: 'MD from NIMHANS Bangalore',
+            languages: ['English', 'Hindi', 'Kannada'],
+            email: 'rajesh.kumar@healthcare.com',
+            education_certifications: 'MD Neurology - NIMHANS, PhD in Neuroscience - University of Oxford, Certified Stroke Specialist.',
+            specialties_services: 'Stroke Treatment, Epilepsy Management, Parkinson\'s Disease, Neuro-rehabilitation.',
+            awards_recognition: 'Research Excellence Award - Indian Academy of Neurology, Young Scientist Award - NIMHANS.',
+            contact_phone: '+91 98765 43211',
+            office_hours: 'Mon-Thu: 10:00 AM - 6:00 PM, Sat: 9:00 AM - 12:00 PM',
+            insurance_accepted: 'Medicare, Medicaid, Humana, Kaiser Permanente.'
         },
         {
             id: '3',
-            name: 'Dr. Emily Rodriguez',
-            specialty: 'Pediatrician',
+            name: 'Dr. Priya Patel',
+            specialty: 'Pediatrics',
             experience: '10 years',
             rating: 4.7,
             image: 'https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=300',
             available: true,
             consultationFee: 120,
             description: 'Dedicated to providing comprehensive healthcare for children and adolescents.',
-            education: 'MD from Stanford University',
-            languages: ['English', 'Spanish', 'Portuguese'],
-            email: 'emily.rodriguez@healthcare.com'
+            education: 'MD from CMC Vellore',
+            languages: ['English', 'Gujarati', 'Hindi'],
+            email: 'priya.patel@healthcare.com',
+            education_certifications: 'MD Pediatrics - CMC Vellore, Fellowship in Neonatology - Boston Children\'s Hospital.',
+            specialties_services: 'Newborn Care, Pediatric Immunization, Growth & Development Monitoring, Adolescent Health.',
+            awards_recognition: 'Pediatrician of the Year 2022, Compassionate Care Award - CMC.',
+            contact_phone: '+91 98765 43212',
+            office_hours: 'Mon-Sat: 8:00 AM - 2:00 PM',
+            insurance_accepted: 'All Major PPO/HMO Plans, Tricare, CHIP.'
         },
         {
             id: '4',
-            name: 'Dr. James Wilson',
-            specialty: 'Dermatologist',
+            name: 'Dr. Vikram Singh',
+            specialty: 'Dermatology',
             experience: '8 years',
             rating: 4.6,
             image: 'https://images.pexels.com/photos/6749814/pexels-photo-6749814.jpeg?auto=compress&cs=tinysrgb&w=300',
             available: true,
             consultationFee: 130,
             description: 'Specialist in skin conditions, cosmetic dermatology, and skin cancer treatment.',
-            education: 'MD from UCLA School of Medicine',
-            languages: ['English', 'French'],
-            email: 'james.wilson@healthcare.com'
+            education: 'MD from PGIMER Chandigarh',
+            languages: ['English', 'Punjabi', 'Hindi'],
+            email: 'vikram.singh@healthcare.com',
+            education_certifications: 'MD Dermatology - PGIMER, Diploma in Aesthetic Medicine - American Academy of Aesthetic Medicine.',
+            specialties_services: 'Acne Treatment, Laser Skin Resurfacing, Skin Cancer Screening, Botox & Fillers.',
+            awards_recognition: 'Rising Star in Dermatology 2021, Top Skin Specialist in Chandigarh.',
+            contact_phone: '+91 98765 43213',
+            office_hours: 'Tue-Sun: 11:00 AM - 7:00 PM',
+            insurance_accepted: 'Aetna, Cigna, WellCare, Molina Healthcare.'
+        },
+        {
+            id: '5',
+            name: 'Dr. Kavita Reddy',
+            specialty: 'Oncology',
+            experience: '14 years',
+            rating: 4.8,
+            image: 'https://images.pexels.com/photos/5327656/pexels-photo-5327656.jpeg?auto=compress&cs=tinysrgb&w=300',
+            available: true,
+            consultationFee: 200,
+            description: 'Specialist in breast cancer and advanced immunotherapy treatments.',
+            education: 'MD from Tata Memorial Hospital',
+            languages: ['English', 'Telugu', 'Hindi'],
+            email: 'kavita.reddy@healthcare.com',
+            education_certifications: 'MD Medical Oncology - Tata Memorial, Fellowship in Immuno-Oncology - MD Anderson Cancer Center.',
+            specialties_services: 'Chemotherapy, Targeted Therapy, Immunotherapy, Cancer Genetic Counseling.',
+            awards_recognition: 'National Cancer Research Award, Distinguished Alumni - Tata Memorial.',
+            contact_phone: '+91 98765 43214',
+            office_hours: 'Mon-Fri: 9:00 AM - 4:00 PM',
+            insurance_accepted: 'BlueCross, UnitedHealthcare, Medicare Advantage.'
+        },
+        {
+            id: '6',
+            name: 'Dr. Arjun Mehra',
+            specialty: 'General Medicine',
+            experience: '22 years',
+            rating: 4.6,
+            image: 'https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg?auto=compress&cs=tinysrgb&w=300',
+            available: true,
+            consultationFee: 100,
+            description: 'Extensive experience in internal medicine and chronic disease management.',
+            education: 'MD from Maulana Azad Medical College',
+            languages: ['English', 'Hindi'],
+            email: 'arjun.mehra@healthcare.com',
+            education_certifications: 'MD Internal Medicine - MAMC, Diploma in Geriatric Medicine.',
+            specialties_services: 'Chronic Disease Management (Diabetes, Hypertension), Preventive Health Check-ups, Infectious Diseases.',
+            awards_recognition: 'Lifetime Achievement Award in Community Medicine, Best Physician - MAMC.',
+            contact_phone: '+91 98765 43215',
+            office_hours: 'Mon-Sat: 10:00 AM - 1:00 PM & 4:00 PM - 7:00 PM',
+            insurance_accepted: 'All Government Health Schemes, Star Health, Apollo Munich.'
+        },
+        {
+            id: '7',
+            name: 'Dr. Sunita Rao',
+            specialty: 'Psychology',
+            experience: '9 years',
+            rating: 4.7,
+            image: 'https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg?auto=compress&cs=tinysrgb&w=300',
+            available: true,
+            consultationFee: 110,
+            description: 'Expert in clinical psychology and behavioral therapy.',
+            education: 'PhD from IHBAS Delhi',
+            languages: ['English', 'Hindi', 'Kannada'],
+            email: 'sunita.rao@healthcare.com',
+            education_certifications: 'PhD Clinical Psychology - IHBAS, M.Phil in Medical & Social Psychology, Certified CBT Therapist.',
+            specialties_services: 'Anxiety & Depression Counseling, Cognitive Behavioral Therapy, Marriage Counseling, Child Psychology.',
+            awards_recognition: 'Excellence in Mental Health Communication, Best Researcher - IHBAS.',
+            contact_phone: '+91 98765 43216',
+            office_hours: 'Mon-Fri: 11:00 AM - 6:00 PM',
+            insurance_accepted: 'Magellan Health, Beacon Health Options, Optum.'
+        },
+        {
+            id: '8',
+            name: 'Dr. Amit Shah',
+            specialty: 'Nephrology',
+            experience: '16 years',
+            rating: 4.9,
+            image: 'https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=300',
+            available: true,
+            consultationFee: 170,
+            description: 'Specialized in renal transplant and chronic kidney diseases.',
+            education: 'MD from AIIMS Delhi',
+            languages: ['English', 'Hindi', 'Gujarati'],
+            email: 'amit.shah@healthcare.com',
+            education_certifications: 'MD Nephrology - AIIMS Delhi, Fellowship in Renal Transplant Medicine - University of Toronto.',
+            specialties_services: 'Hemodialysis, Peritoneal Dialysis, Kidney Transplant Evaluation, Glomerular Diseases.',
+            awards_recognition: 'Sushruta Award for Excellence in Nephrology, Best Doctor Award - Gujarat Medical Council.',
+            contact_phone: '+91 98765 43217',
+            office_hours: 'Mon, Wed, Fri: 9:00 AM - 3:00 PM',
+            insurance_accepted: 'Medicare, Medicaid, BlueCross, Aetna.'
+        },
+        {
+            id: '9',
+            name: 'Dr. Meera Nambiar',
+            specialty: 'Endocrinology',
+            experience: '11 years',
+            rating: 4.8,
+            image: 'https://images.pexels.com/photos/5452296/pexels-photo-5452296.jpeg?auto=compress&cs=tinysrgb&w=300',
+            available: true,
+            consultationFee: 140,
+            description: 'Expert in diabetes management and thyroid disorders.',
+            education: 'MD from Madras Medical College',
+            languages: ['English', 'Malayalam', 'Hindi'],
+            email: 'meera.nambiar@healthcare.com',
+            education_certifications: 'MD Endocrinology - Madras Medical College, Board Certified in Endocrinology, Diabetes & Metabolism.',
+            specialties_services: 'Diabetes Type 1 & 2 Management, Thyroid Disorder Treatment, PCOS Management, Pituitary Disorders.',
+            awards_recognition: 'Outstanding Endocrinologist Award - South India, Best Clinical Research - MMC.',
+            contact_phone: '+91 98765 43218',
+            office_hours: 'Mon-Sat: 10:00 AM - 5:00 PM',
+            insurance_accepted: 'Cigna, UnitedHealthcare, Humana, Kaiser.'
+        },
+        {
+            id: '10',
+            name: 'Dr. Rahul Gupta',
+            specialty: 'Pulmonology',
+            experience: '13 years',
+            rating: 4.7,
+            image: 'https://images.pexels.com/photos/6749777/pexels-photo-6749777.jpeg?auto=compress&cs=tinysrgb&w=300',
+            available: true,
+            consultationFee: 150,
+            description: 'Specialist in respiratory diseases and critical care.',
+            education: 'MD from KGMU Lucknow',
+            languages: ['English', 'Hindi'],
+            email: 'rahul.gupta@healthcare.com',
+            education_certifications: 'MD Pulmonology - KGMU, Fellowship in Critical Care Medicine.',
+            specialties_services: 'Asthma & COPD Management, Sleep Apnea Treatment, Bronchoscopy, Pulmonary Function Testing.',
+            awards_recognition: 'Chest Physician Excellence Award, Top Pulmonologist in Uttar Pradesh.',
+            contact_phone: '+91 98765 43219',
+            office_hours: 'Mon-Fri: 9:00 AM - 6:00 PM',
+            insurance_accepted: 'Tricare, WellCare, Medicare, Aetna.'
+        },
+        {
+            id: '11',
+            name: 'Dr. Deepa Iyer',
+            specialty: 'Gastroenterology',
+            experience: '10 years',
+            rating: 4.8,
+            image: 'https://images.pexels.com/photos/5215016/pexels-photo-5215016.jpeg?auto=compress&cs=tinysrgb&w=300',
+            available: true,
+            consultationFee: 160,
+            description: 'Expert in digestive system disorders and liver diseases.',
+            education: 'MD from JIPMER Puducherry',
+            languages: ['English', 'Tamil', 'Hindi'],
+            email: 'deepa.iyer@healthcare.com',
+            education_certifications: 'MD Gastroenterology - JIPMER, Fellowship in Advanced Endoscopy.',
+            specialties_services: 'Endoscopy, Colonoscopy, Liver Disease Management, GERD Treatment.',
+            awards_recognition: 'Gastroenterologist of the Year 2023, JIPMER Merit Award.',
+            contact_phone: '+91 98765 43220',
+            office_hours: 'Mon-Sat: 11:00 AM - 4:00 PM',
+            insurance_accepted: 'All Major Insurance Carriers, Government Schemes.'
+        },
+        {
+            id: '12',
+            name: 'Dr. Sanjay Deshmukh',
+            specialty: 'Rheumatology',
+            experience: '15 years',
+            rating: 4.9,
+            image: 'https://images.pexels.com/photos/6749817/pexels-photo-6749817.jpeg?auto=compress&cs=tinysrgb&w=300',
+            available: true,
+            consultationFee: 175,
+            description: 'Specialized in autoimmune diseases and joint inflammatory conditions.',
+            education: 'MD from GSMC Mumbai',
+            languages: ['English', 'Marathi', 'Hindi'],
+            email: 'sanjay.deshmukh@healthcare.com',
+            education_certifications: 'MD Rheumatology - GSMC, PhD in Immunology - University of Sydney.',
+            specialties_services: 'Rheumatoid Arthritis, Lupus Treatment, Osteoarthritis, Gout Management.',
+            awards_recognition: 'Excellence in Rheumatology Award - Maharashtra, Global Health Research Fellow.',
+            contact_phone: '+91 98765 43221',
+            office_hours: 'Tue-Sat: 10:00 AM - 6:00 PM',
+            insurance_accepted: 'BlueCross BlueShield, UnitedHealthcare, Medicare, Aetna.'
+        },
+        {
+            id: '13',
+            name: 'Dr. Anita Joshi',
+            specialty: 'Gynecology',
+            experience: '18 years',
+            rating: 4.9,
+            image: 'https://images.pexels.com/photos/5452291/pexels-photo-5452291.jpeg?auto=compress&cs=tinysrgb&w=300',
+            available: true,
+            consultationFee: 140,
+            description: 'Expert in maternal-fetal medicine and reproductive health.',
+            education: 'MD from Lady Hardinge Medical College',
+            languages: ['English', 'Hindi'],
+            email: 'anita.joshi@healthcare.com'
+        },
+        {
+            id: '14',
+            name: 'Dr. Manoj Tiwari',
+            specialty: 'Orthopedics',
+            experience: '20 years',
+            rating: 4.7,
+            image: 'https://images.pexels.com/photos/6749780/pexels-photo-6749780.jpeg?auto=compress&cs=tinysrgb&w=300',
+            available: true,
+            consultationFee: 190,
+            description: 'Specialized in joint replacement and trauma surgery.',
+            education: 'MS from BHU Varanasi',
+            languages: ['English', 'Hindi', 'Bhojpuri'],
+            email: 'manoj.tiwari@healthcare.com'
+        },
+        {
+            id: '15',
+            name: 'Dr. Swati Mishra',
+            specialty: 'Psychiatry',
+            experience: '12 years',
+            rating: 4.8,
+            image: 'https://images.pexels.com/photos/5215021/pexels-photo-5215021.jpeg?auto=compress&cs=tinysrgb&w=300',
+            available: true,
+            consultationFee: 130,
+            description: 'Expert in mental health, stress management, and clinical psychiatry.',
+            education: 'MD from AIIMS Delhi',
+            languages: ['English', 'Hindi'],
+            email: 'swati.mishra@healthcare.com'
         }
     ],
     prescriptions: [
@@ -69,7 +295,7 @@ let state = {
             id: 'p1',
             patientId: '1',
             doctorId: '1',
-            doctorName: 'Dr. Sarah Johnson',
+            doctorName: 'Dr. Ananya Sharma',
             patientName: 'John Patient',
             medications: [{ name: 'Aspirin', dosage: '81mg', frequency: 'Daily', duration: 'Ongoing' }],
             diagnosis: 'Hypertension',
@@ -99,31 +325,29 @@ let state = {
 function renderHeader() {
     const headerEl = document.getElementById('header');
     headerEl.innerHTML = `
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-center items-center py-4">
-                <a href="#" onclick="navigate('/')" class="flex items-center space-x-3">
-                    <nav class="navbar">
+    <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 12l2 2 4-4"/>
-                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z"/>
+                    <path d="M9 12l2 2 4-4" />
+                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z" />
                 </svg>
                 <a href="index.html">
-                    <span class="logo-text">Nexus care</span>
+                    <span class="logo-text">Nexus Care</span>
                 </a>
             </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link active">Home</a></li>
-                <li><a href="doctors.html" class="nav-link">Find a Doctor</a></li>
-                <li><a href="appointment.html" class="nav-link">Book Appointment</a></li>
-                <li><a href="onlinetelemedince.html" class="nav-link">Online Telemedicine</a></li>
-                <li><a href="aisymtom.html" class="nav-link">AI Symptoms</a></li>
-
+                <li><a href="index.html" class="nav-link" data-i18n="nav_home">Home</a></li>
+                <li><a href="doctors.html" class="nav-link" data-i18n="nav_doctors">Find a Doctor</a></li>
+                <li><a href="appointment.html" class="nav-link" data-i18n="nav_appointment">Book Appointment</a></li>
+                <li><a href="onlinetelemedince.html" class="nav-link active" data-i18n="nav_telemedicine">Online Telemedicine</a></li>
+                <li><a href="ai-mentor.html" class="nav-link" data-i18n="nav_ai_mentor">AI Mentor</a></li>
+                <li><a href="aisymtom.html" class="nav-link" data-i18n="nav_ai_symptoms">AI Symptoms</a></li>
+                <li><a href="meditranslate.html" class="nav-link" data-i18n="nav_meditranslate">MediTranslate</a></li>
+                <li><a href="reminder.html" class="nav-link" data-i18n="nav_reminder">Reminder</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="btn btn-outline">Emergency</button>
-                <button class="btn btn-primary">Book Now</button>
+                <a href="emergency.html" class="btn btn-outline" data-i18n="nav_emergency">Emergency</a>
             </div>
             <button class="mobile-menu-toggle" id="mobileMenuToggle">
                 <span></span>
@@ -132,10 +356,6 @@ function renderHeader() {
             </button>
         </div>
     </nav>
-                
-                </a>
-            </div>
-        </div>
     `;
 }
 
@@ -220,9 +440,9 @@ function renderDoctorList() {
 function renderDoctorProfile(id) {
     const doctor = state.doctors.find(d => d.id === id);
     if (!doctor) return `<div class="text-center">Doctor not found.</div>`;
-    
+
     // Conditional rendering based on payment status
-    const buttons = state.paymentStatus === 'paid' ? 
+    const buttons = state.paymentStatus === 'paid' ?
         `
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <button onclick="startPhoneCall('${doctor.id}')" class="flex items-center justify-center space-x-2 py-3 px-6 rounded-xl font-semibold transition-all duration-200 ${doctor.available ? 'bg-gradient-to-r from-green-600 to-green-700 text-white hover:from-green-700 hover:to-green-800' : 'bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800'}">
@@ -246,7 +466,7 @@ function renderDoctorProfile(id) {
             </button>
         </div>
         `
-    
+
     return `
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <a href="#" onclick="navigate('/')" class="text-blue-600 hover:text-blue-700 mb-6 flex items-center space-x-2">
@@ -287,6 +507,49 @@ function renderDoctorProfile(id) {
                             <h3 class="text-lg font-semibold text-gray-900 mb-3">About</h3>
                             <p class="text-gray-600 leading-relaxed">${doctor.description}</p>
                         </div>
+
+                        ${doctor.education_certifications ? `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 pt-8 border-t border-gray-100">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-blue-600"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                                    Education & Certifications
+                                </h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">${doctor.education_certifications}</p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-blue-600"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                                    Specialties & Services
+                                </h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">${doctor.specialties_services}</p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-blue-600"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                                    Awards & Recognition
+                                </h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">${doctor.awards_recognition}</p>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-blue-600"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                    Contact & Hours
+                                </h3>
+                                <div class="space-y-2">
+                                    <p class="text-gray-600 text-sm"><strong>Phone:</strong> ${doctor.contact_phone}</p>
+                                    <p class="text-gray-600 text-sm"><strong>Office Hours:</strong> ${doctor.office_hours}</p>
+                                </div>
+                            </div>
+                            <div class="md:col-span-2">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2 text-blue-600"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                    Insurance Accepted
+                                </h3>
+                                <p class="text-gray-600 text-sm">${doctor.insurance_accepted}</p>
+                            </div>
+                        </div>
+                        ` : ''}
                         
                         ${buttons}
 
@@ -295,13 +558,45 @@ function renderDoctorProfile(id) {
                 </div>
             </div>
             <div id="booking-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-                <div class="bg-white rounded-2xl p-8 max-w-md w-full">
+                <div class="bg-white rounded-2xl p-8 max-w-md w-full max-h-[90vh] overflow-y-auto">
                     <h3 class="text-xl font-bold mb-4">Book Consultation</h3>
-                    <p class="text-gray-600 mb-6">Please call 818484488 to schedule an appointment with ${doctor.name}.</p>
-                    <div class="flex space-x-3">
-                        <button onclick="window.open('tel:818484488', '_self')" class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">Call Now</button>
-                        <button onclick="hideBookingModal()" class="flex-1 bg-gray-200 text-gray-800 py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors">Close</button>
-                    </div>
+                    
+                    <form id="booking-form" class="space-y-4">
+                        <input type="hidden" id="booking-doctor-id" value="${doctor.id}">
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Consultation Mode</label>
+                            <select id="consultation-mode" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" onchange="toggleConsultationFields()">
+                                <option value="audio">Normal Audio Call</option>
+                                <option value="meet">Google Meet</option>
+                                <option value="skype">Skype</option>
+                            </select>
+                        </div>
+
+                        <div id="mode-audio-info" class="p-3 bg-blue-50 text-blue-800 rounded-lg text-sm">
+                            Phone consultation will be initiated at scheduled time.
+                        </div>
+
+                        <div id="mode-meet-field" class="hidden">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Google Meet Link</label>
+                            <input type="url" id="meet-link" placeholder="https://meet.google.com/..." class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+
+                        <div id="mode-skype-field" class="hidden">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Skype ID</label>
+                            <input type="text" id="skype-id" placeholder="live:.cid.xxxx" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Date & Time</label>
+                            <input type="datetime-local" id="booking-time" required class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+
+                        <div class="flex space-x-3 pt-4">
+                            <button type="button" onclick="submitBooking()" class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors font-bold">Confirm Booking</button>
+                            <button type="button" onclick="hideBookingModal()" class="flex-1 bg-gray-200 text-gray-800 py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors">Close</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -416,7 +711,7 @@ function switchRole(role) {
 }
 
 function handleGoogleMeet() {
-    window.open('http://meet.google.com/xng-fjex-pkd', '_blank');
+    window.open('https://meet.google.com/drt-nudr-zhj', '_blank');
 }
 
 function endVideoCall() {
@@ -434,12 +729,79 @@ function hideBookingModal() {
     if (modal) modal.classList.add('hidden');
 }
 
-// ======== Router & renderer ========
 
-function navigate(path) {
-    history.pushState(null, '', path);
+window.navigate = (path) => {
+    window.history.pushState({}, '', path);
     renderApp();
+};
+
+function toggleConsultationFields() {
+    const mode = document.getElementById('consultation-mode').value;
+    const audioInfo = document.getElementById('mode-audio-info');
+    const meetField = document.getElementById('mode-meet-field');
+    const skypeField = document.getElementById('mode-skype-field');
+
+    if (audioInfo) audioInfo.classList.toggle('hidden', mode !== 'audio');
+    if (meetField) meetField.classList.toggle('hidden', mode !== 'meet');
+    if (skypeField) skypeField.classList.toggle('hidden', mode !== 'skype');
 }
+
+async function submitBooking() {
+    const doctorId = document.getElementById('booking-doctor-id').value;
+    const mode = document.getElementById('consultation-mode').value;
+    const time = document.getElementById('booking-time').value;
+    const meetLink = document.getElementById('meet-link').value;
+    const skypeId = document.getElementById('skype-id').value;
+
+    if (!time) {
+        alert('Please select a date and time.');
+        return;
+    }
+
+    if (mode === 'meet' && !meetLink) {
+        alert('Please provide a Google Meet link.');
+        return;
+    }
+
+    if (mode === 'skype' && !skypeId) {
+        alert('Please provide your Skype ID.');
+        return;
+    }
+
+    const bookingData = {
+        doctorId,
+        patientId: state.user.id,
+        mode,
+        time,
+        meetLink: mode === 'meet' ? meetLink : null,
+        skypeId: mode === 'skype' ? skypeId : null
+    };
+
+    try {
+        const response = await fetch('/api/consultation/book-consultation', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData)
+        });
+
+        if (response.ok) {
+            alert('Booking successful!');
+            hideBookingModal();
+            // Redirect to Google Meet if mode is meet
+            if (mode === 'meet') {
+                const finalLink = meetLink || 'https://meet.google.com/drt-nudr-zhj';
+                window.open(finalLink, '_blank');
+            }
+        } else {
+            alert('Failed to book. Please try again.');
+        }
+    } catch (error) {
+        console.error('Booking error:', error);
+        alert('Connection error. Is the backend running?');
+    }
+}
+
+// ======== Router & renderer ========
 
 function renderApp() {
     renderHeader();
@@ -458,16 +820,10 @@ function renderApp() {
     } else {
         appContainer.innerHTML = renderDoctorList();
     }
+
+    // Re-apply translations for dynamically rendered content
+    if (window.applyTranslations) window.applyTranslations();
 }
-
-// Initial render and popstate listener
-window.onload = () => {
-    renderApp();
-};
-
-window.onpopstate = () => {
-    renderApp();
-};
 
 // ========== Admin Dashboard function ==========
 function renderAdminDashboard() {

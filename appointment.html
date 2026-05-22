@@ -1,68 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Appointment - MediCare Hospital</title>
+    <title>Book Appointment - Nexus Care</title>
     <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
     <link rel="stylesheet" href="src/styles/appointment.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-     <!-- Navigation -->
+
+<body class="with-sidebar">
+    <aside class="sidebar" id="sidebar"></aside>
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
                 <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 12l2 2 4-4"/>
-                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z"/>
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <path d="M9 12l2 2 4-4" />
                 </svg>
-                <span class="logo-text">MediCare</span>
+                <span class="logo-text">Nexus Care</span>
             </div>
             <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="doctors.html" class="nav-link">Find a Doctor</a></li>
-                <li><a href="appointment.html" class="nav-link">Book Appointment</a></li>
-                <li><a href="onlinetelemedince.html" class="nav-link">Online Telemedicine</a></li>
-                
-                <li><a href="aisymtom.html" class="nav-link">Ai Symtoms</a></li>
-
+                <li><a href="appointment.html" class="nav-link active">Book Appointment</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="btn btn-outline">Emergency</button>
-                
+                <select class="lang-selector">
+                    <option>English</option>
+                </select>
+                <a href="emergency.html"
+                    class="btn btn-outline border-rose-200 text-rose-600 hover:bg-rose-50">Emergency</a>
             </div>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </nav>
 
     <main class="appointment-main">
-        <div class="container">
-            <div class="appointment-header">
-                <h1>Book an Appointment</h1>
-                <p>Schedule your visit with our healthcare professionals</p>
+        <section
+            class="appointment-hero bg-gradient-to-br from-blue-600 to-indigo-700 py-20 text-white rounded-b-[40px] mb-12 shadow-2xl">
+            <div class="container text-center">
+                <h1 class="text-5xl font-bold mb-4" data-i18n="apt_title">Book an Appointment</h1>
+                <p class="text-xl text-blue-50/90 max-w-2xl mx-auto" data-i18n="apt_subtitle">
+                    Schedule your visit with our healthcare professionals.
+                    Your journey to better health starts with a simple step.
+                </p>
             </div>
+        </section>
+
+        <div class="container">
 
             <div class="progress-indicator">
                 <div class="progress-step active" data-step="1">
                     <div class="step-number">1</div>
-                    <span class="step-label">Personal Info</span>
+                    <span class="step-label" data-i18n="apt_step1">Personal Info</span>
                 </div>
                 <div class="progress-step" data-step="2">
                     <div class="step-number">2</div>
-                    <span class="step-label">Insurance</span>
+                    <span class="step-label" data-i18n="apt_step2">Insurance</span>
                 </div>
                 <div class="progress-step" data-step="3">
                     <div class="step-number">3</div>
-                    <span class="step-label">Appointment</span>
+                    <span class="step-label" data-i18n="apt_step3">Appointment</span>
                 </div>
                 <div class="progress-step" data-step="4">
                     <div class="step-number">4</div>
-                    <span class="step-label">Confirmation</span>
+                    <span class="step-label" data-i18n="apt_step4">Confirmation</span>
                 </div>
             </div>
 
@@ -136,7 +141,8 @@
                         <h2 class="form-title">Insurance Information</h2>
                         <div class="form-group">
                             <label>
-                                <input type="checkbox" id="hasInsurance" name="hasInsurance" onchange="toggleInsuranceFields()">
+                                <input type="checkbox" id="hasInsurance" name="hasInsurance"
+                                    onchange="toggleInsuranceFields()">
                                 I have insurance coverage
                             </label>
                         </div>
@@ -214,16 +220,17 @@
                         </div>
                         <div class="form-group full-width">
                             <label for="reasonForVisit">Reason for Visit *</label>
-                            <textarea id="reasonForVisit" name="reasonForVisit" rows="4" placeholder="Please describe the reason for your visit..." required></textarea>
+                            <textarea id="reasonForVisit" name="reasonForVisit" rows="4"
+                                placeholder="Please describe the reason for your visit..." required></textarea>
                         </div>
-                        
+
                         <div class="appointment-scheduler">
                             <h3>Select Date and Time</h3>
                             <div class="scheduler-grid">
                                 <div class="calendar-section">
                                     <h4>Choose Date</h4>
                                     <div class="calendar" id="appointmentCalendar">
-                                        </div>
+                                    </div>
                                 </div>
                                 <div class="time-section">
                                     <h4>Available Times</h4>
@@ -245,18 +252,21 @@
                         <h2 class="form-title">Appointment Confirmation</h2>
                         <div class="confirmation-card">
                             <div class="confirmation-header">
-                                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                    <polyline points="22,4 12,14.01 9,11.01"/>
+                                <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                    <polyline points="22,4 12,14.01 9,11.01" />
                                 </svg>
                                 <h3>Appointment Booked Successfully!</h3>
                                 <p id="confirmationNumberDisplay" class="confirmation-number-display"></p>
                             </div>
                             <div class="confirmation-details" id="confirmationDetails">
-                                </div>
+                            </div>
                             <div class="confirmation-actions">
-                                <button type="button" class="btn btn-outline" onclick="printConfirmation()">Print Confirmation</button>
-                                <button type="button" class="btn btn-primary" onclick="location.href='index.html'">Back to Home</button>
+                                <button type="button" class="btn btn-outline" onclick="printConfirmation()">Print
+                                    Confirmation</button>
+                                <button type="button" class="btn btn-primary" onclick="location.href='index.html'">Back
+                                    to Home</button>
                             </div>
                         </div>
                     </div>
@@ -265,6 +275,9 @@
         </div>
     </main>
 
+    <script src="src/js/translations.js"></script>
     <script src="src/js/appointment.js"></script>
+    <script src="src/js/navigation.js"></script>
 </body>
+
 </html>

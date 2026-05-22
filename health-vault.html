@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Health Vault | Nexus Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .drop-zone {
+            border: 2px dashed #cbd5e1;
+            transition: all 0.3s ease;
+        }
+
+        .drop-zone.active {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .qr-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        #qrcode img {
+            margin: 0 auto;
+        }
+
+        /* Custom Scrollbar for Records List */
+        .records-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .records-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .records-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Sidebar content will be injected by navigation.js -->
+    </aside>
+
+    <main class="ml-[260px] p-8 pt-24 transition-all duration-300">
+        <div class="max-w-7xl mx-auto">
+            <header class="mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                <div>
+                    <h1 class="text-4xl font-bold text-slate-900 mb-2">Secure Health Vault</h1>
+                    <p class="text-slate-500 text-lg">Centralize your medical history. Controlled by you. Decrypted by
+                        AI.</p>
+                </div>
+                <div class="flex gap-3">
+                    <button id="showQRBtn"
+                        class="bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-indigo-700 transition flex items-center gap-2">
+                        <span>📱</span> Emergency QR
+                    </button>
+                </div>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left: Upload & Documents -->
+                <div class="lg:col-span-2 space-y-8">
+
+                    <!-- Upload Zone -->
+                    <div id="dropZone" class="drop-zone glass-card rounded-3xl p-10 text-center cursor-pointer">
+                        <input type="file" id="fileInput" class="hidden" accept=".pdf,.jpg,.jpeg,.png">
+                        <div class="text-5xl mb-4">📄</div>
+                        <h2 class="text-xl font-bold text-slate-800 mb-2">Upload Medical Report</h2>
+                        <p class="text-slate-500 mb-6">Drag and drop your lab results or prescriptions here.<br>Our AI
+                            will summarize the findings instantly.</p>
+                        <button onclick="document.getElementById('fileInput').click()"
+                            class="bg-slate-200 text-slate-800 px-6 py-2 rounded-xl font-semibold hover:bg-slate-300 transition">Browse
+                            Files</button>
+                    </div>
+
+                    <!-- Records Section -->
+                    <div class="glass-card rounded-3xl p-6">
+                        <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+                            <h3 class="text-lg font-bold text-slate-800">Your Medical Records</h3>
+
+                            <!-- Filters -->
+                            <div class="flex gap-3 w-full sm:w-auto">
+                                <select id="filterType"
+                                    class="bg-white border border-slate-200 text-slate-700 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 outline-none transition cursor-pointer">
+                                    <option value="All">All Types</option>
+                                    <option value="Prescription">Prescriptions</option>
+                                    <option value="Lab Report">Lab Reports</option>
+                                    <option value="Scan">Scans & X-Rays</option>
+                                </select>
+                                <select id="filterDate"
+                                    class="bg-white border border-slate-200 text-slate-700 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5 outline-none transition cursor-pointer">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic List (Scrollable) -->
+                        <div id="recordsList" class="space-y-3 max-h-[500px] overflow-y-auto records-scroll pr-2">
+                            <!-- Populated by health-vault.js -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Analysis Panel -->
+                <div class="lg:col-span-1">
+                    <div id="analysisPanel" class="glass-card p-6 rounded-3xl sticky top-24 min-h-[400px]">
+                        <div id="analysisPlaceholder"
+                            class="flex flex-col items-center justify-center h-full text-center py-20 text-slate-400">
+                            <div class="text-4xl mb-4">🔍</div>
+                            <h3 class="font-bold text-slate-700 mb-2">AI Analysis</h3>
+                            <p class="text-sm">Select or upload a document to see the AI analysis and summary.</p>
+                        </div>
+
+                        <div id="analysisLoading"
+                            class="hidden flex flex-col items-center justify-center h-full text-center py-20">
+                            <div
+                                class="w-12 h-12 border-4 border-slate-200 border-t-indigo-600 rounded-full animate-spin mb-4">
+                            </div>
+                            <p class="text-sm font-bold text-slate-800">Summarizing Document...</p>
+                        </div>
+
+                        <div id="analysisContent" class="hidden">
+                            <div class="flex items-center gap-2 mb-6">
+                                <span class="bg-indigo-100 text-indigo-600 p-2 rounded-lg">✨</span>
+                                <h3 class="font-bold text-lg text-slate-900">Nexus Insight</h3>
+                            </div>
+                            <div id="summaryBody" class="prose prose-slate text-sm">
+                                <!-- AI Content -->
+                            </div>
+                            <hr class="my-6 border-slate-100">
+                            <div class="bg-indigo-50 p-4 rounded-2xl">
+                                <p class="text-xs font-bold text-indigo-600 uppercase mb-2">Automated Action</p>
+                                <p class="text-xs text-slate-700" id="aiActionText">Health markers consistent with
+                                    profile. Suggested checkup in 6 months.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Detailed Summary Modal -->
+    <div id="recordModal"
+        class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card max-w-2xl w-full rounded-3xl overflow-hidden relative shadow-2xl transform transition-all scale-95 opacity-0"
+            id="recordModalContent">
+
+            <div class="bg-indigo-600 p-6 text-white flex justify-between items-center">
+                <div>
+                    <h3 class="text-2xl font-bold" id="modalTitle">Record Details</h3>
+                    <p class="text-indigo-200 text-sm mt-1" id="modalSubtitle">Date • Type</p>
+                </div>
+                <button id="closeModalBtn"
+                    class="bg-white/20 hover:bg-white/30 rounded-full w-10 h-10 flex items-center justify-center transition text-xl">&times;</button>
+            </div>
+
+            <div class="p-8 space-y-6 max-h-[70vh] overflow-y-auto">
+                <div class="grid grid-cols-2 gap-6 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                    <div>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Attending Doctor</p>
+                        <p class="text-slate-800 font-semibold flex items-center gap-2">👨‍⚕️ <span id="modalDoc">Dr.
+                                Name</span></p>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Facility / Hospital
+                        </p>
+                        <p class="text-slate-800 font-semibold flex items-center gap-2">🏥 <span id="modalHosp">Hospital
+                                Name</span></p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4
+                        class="text-sm font-bold text-indigo-600 uppercase tracking-widest mb-3 border-b border-indigo-100 pb-2">
+                        Primary Diagnosis / Finding</h4>
+                    <p class="text-slate-700 text-lg font-medium leading-relaxed" id="modalDiag">Diagnosis goes here...
+                    </p>
+                </div>
+
+                <div>
+                    <h4
+                        class="text-sm font-bold text-emerald-600 uppercase tracking-widest mb-3 border-b border-emerald-100 pb-2">
+                        Key Observations</h4>
+                    <ul class="list-disc pl-5 space-y-2 text-slate-600" id="modalObs">
+                        <!-- LI elements injected via JS -->
+                    </ul>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-rose-50 p-4 rounded-2xl border border-rose-100">
+                        <h4
+                            class="text-sm font-bold text-rose-600 uppercase tracking-widest mb-2 flex items-center gap-2">
+                            💊 Prescriptions</h4>
+                        <ul class="text-sm text-rose-900 space-y-1 font-medium list-disc pl-4" id="modalMeds">
+                            <!-- LI elements -->
+                        </ul>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-2xl border border-amber-100 flex flex-col justify-center">
+                        <h4
+                            class="text-sm font-bold text-amber-600 uppercase tracking-widest mb-2 flex items-center gap-2">
+                            📅 Next Visit</h4>
+                        <p class="text-amber-900 font-bold text-lg" id="modalNextVisit">Date / TBD</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 border-t border-slate-200 p-4 flex justify-end gap-3 rounded-b-3xl">
+                <button id="downloadPdfBtn"
+                    class="px-6 py-2.5 text-slate-600 font-semibold hover:bg-slate-200 rounded-xl transition">Download
+                    Original PDF</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- QR Modal -->
+    <div id="qrModal"
+        class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center">
+        <div class="qr-card max-w-sm w-[90%] text-center relative">
+            <button id="closeQR"
+                class="absolute top-4 right-4 text-slate-400 hover:text-slate-900 text-2xl">&times;</button>
+            <div class="bg-red-50 text-red-600 p-2 text-xs font-bold uppercase rounded-lg mb-6 tracking-widest">
+                Emergency Access Identity</div>
+            <div id="qrcode" class="mb-6 flex justify-center"></div>
+            <h3 class="font-bold text-xl text-slate-900 mb-2">Emergency QR Code</h3>
+            <p class="text-sm text-slate-500 mb-6">Paramedics can scan this to see your critical medical info even when
+                your phone is locked.</p>
+            <button class="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-800 transition">Print
+                Sticker</button>
+        </div>
+    </div>
+
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/health-vault.js"></script>
+</body>
+
+</html>

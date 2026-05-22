@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy & Prescriptions - Nexus Care</title>
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .pharmacy-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .pharmacy-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+        }
+
+        .tab-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="with-sidebar bg-slate-50">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main id="mainContent" class="p-8"
+        style="margin-left: 260px; transition: margin-left 0.5s cubic-bezier(0.4,0,0.2,1);">
+
+        <!-- Floating Cart Button -->
+        <button onclick="toggleCart(true)"
+            class="fixed bottom-8 right-8 w-16 h-16 bg-blue-600 text-white rounded-full shadow-2xl z-[60] flex items-center justify-center hover:scale-110 transition group">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" />
+            </svg>
+            <span id="cartBadge"
+                class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-black w-6 h-6 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
+        </button>
+
+        <!-- Cart Drawer -->
+        <div id="cartDrawer"
+            class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl z-[70] translate-x-full transition-transform duration-500 ease-in-out flex flex-col">
+            <div class="p-8 border-b border-slate-100 flex justify-between items-center">
+                <h2 class="text-2xl font-black text-gray-900">Your Cart</h2>
+                <button onclick="toggleCart(false)" class="p-2 hover:bg-slate-100 rounded-full transition">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <div id="cartItemsList" class="flex-grow overflow-y-auto p-8">
+                <!-- Items will be here -->
+            </div>
+
+            <div class="p-8 border-t border-slate-100 bg-slate-50/50">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-gray-500 font-bold">Total Amount</span>
+                    <span id="cartTotal" class="text-2xl font-black text-gray-900">₹0</span>
+                </div>
+                <button onclick="handleCheckout()"
+                    class="w-full py-5 bg-blue-600 text-white font-black rounded-2xl hover:bg-blue-700 shadow-xl shadow-blue-500/20 transition flex items-center justify-center gap-3">
+                    Checkout Now
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+            <div>
+                <h1 class="text-4xl font-black text-gray-900 mb-2">Pharmacy Hub</h1>
+                <p class="text-gray-500 font-medium text-lg">Manage your prescriptions and order health essentials.</p>
+            </div>
+
+            <div class="flex bg-white p-1.5 rounded-2xl shadow-sm border border-slate-200">
+                <button id="productsTab" class="tab-btn active px-6 py-3 rounded-xl font-bold transition">Shop
+                    Products</button>
+                <button id="prescriptionsTab"
+                    class="tab-btn px-6 py-3 rounded-xl font-bold transition text-gray-500 hover:text-blue-600">My
+                    Prescriptions</button>
+            </div>
+        </header>
+
+        <!-- Products Section -->
+        <section id="productsSection" class="space-y-12">
+            <div class="flex flex-wrap gap-4 items-center justify-between">
+                <div class="flex flex-wrap gap-2" id="categoryFilters">
+                    <button
+                        class="category-btn active px-4 py-2 bg-blue-600 text-white rounded-xl text-sm font-bold transition"
+                        data-category="All">All</button>
+                    <button
+                        class="category-btn px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-bold text-gray-600 hover:border-blue-500 transition"
+                        data-category="Medicine">Medicine</button>
+                    <button
+                        class="category-btn px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-bold text-gray-600 hover:border-blue-500 transition"
+                        data-category="Wellness">Wellness</button>
+                    <button
+                        class="category-btn px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-bold text-gray-600 hover:border-blue-500 transition"
+                        data-category="Vitamins & Supplements">Vitamins</button>
+                    <button
+                        class="category-btn px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-bold text-gray-600 hover:border-blue-500 transition"
+                        data-category="Baby Care">Baby</button>
+                    <button
+                        class="category-btn px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-bold text-gray-600 hover:border-blue-500 transition"
+                        data-category="First Aid">First Aid</button>
+                    <button
+                        class="category-btn px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-bold text-gray-600 hover:border-blue-500 transition"
+                        data-category="Medical Devices">Devices</button>
+                </div>
+                <div class="relative w-full max-w-xs">
+                    <input type="text" id="productSearch" placeholder="Search products..."
+                        class="w-full pl-10 pr-4 py-3 bg-white border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition">
+                    <svg class="absolute left-3 top-3.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.3-4.3" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Recommended Section -->
+            <div id="recommendedContainer" class="hidden">
+                <h2 class="text-2xl font-black text-gray-900 mb-6">Recommended for You</h2>
+                <div id="recommendedGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+            </div>
+
+            <div id="productsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Products will be loaded here -->
+                <p class="text-gray-500 italic col-span-full">Loading medical products...</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div class="dashboard-card">
+                    <h2 class="text-2xl font-black text-gray-900 mb-6">Trending Medicines</h2>
+                    <div id="trendingList" class="space-y-4"></div>
+                </div>
+                <div class="dashboard-card border-red-100 bg-red-50/30">
+                    <h2 class="text-2xl font-black text-red-900 mb-6">Emergency Access</h2>
+                    <div id="emergencyGrid" class="grid grid-cols-2 gap-4"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Details Modal -->
+        <div id="productModal"
+            class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div
+                class="bg-white rounded-[2.5rem] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8 shadow-2xl relative">
+                <button id="closeModal" class="absolute top-6 right-6 p-2 hover:bg-slate-100 rounded-full transition">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                </button>
+                <div id="modalContent"></div>
+            </div>
+        </div>
+
+        <!-- Prescriptions Section -->
+        <section id="prescriptionsSection" class="hidden space-y-12">
+            <!-- Prescription Scanner Area -->
+            <div
+                class="dashboard-card bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-10 relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-black mb-4">Smart Prescription Scanner</h2>
+                    <p class="text-blue-100 mb-8 max-w-lg">Upload your prescription image or PDF. Our AI will
+                        automatically extract medicine details and link them to the pharmacy catalog.</p>
+                    <div class="flex gap-4">
+                        <label
+                            class="px-8 py-4 bg-white text-blue-600 font-bold rounded-2xl cursor-pointer hover:bg-blue-50 transition shadow-lg shadow-blue-900/20">
+                            Upload Prescription
+                            <input type="file" class="hidden" id="prescriptionUpload" accept="image/*,.pdf">
+                        </label>
+                        <button
+                            class="px-8 py-4 bg-blue-500 text-white font-bold rounded-2xl hover:bg-blue-400 transition"
+                            onclick="alert('Scanning simulated...')">Example Format</button>
+                    </div>
+                </div>
+                <div class="absolute right-0 top-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+            </div>
+
+            <div id="prescriptionsList" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Prescriptions will be loaded here -->
+                <p class="text-gray-500 italic">Loading your prescriptions...</p>
+            </div>
+
+            <div id="loginPrompt"
+                class="hidden text-center p-20 bg-white rounded-[3rem] shadow-sm border border-slate-100">
+                <div
+                    class="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 mx-auto mb-6">
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path d="m9 12 2 2 4-4" />
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Private Prescriptions</h2>
+                <p class="text-gray-500 mb-8 max-w-md mx-auto">Log in to view your digital prescriptions from doctors
+                    and order refills instantly.</p>
+                <a href="login.html"
+                    class="px-10 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 shadow-xl shadow-blue-500/20 transition inline-block">Log
+                    In Now</a>
+            </div>
+        </section>
+        <!-- Nearby Pharmacies -->
+        <section class="mt-16 pb-20">
+            <h2 class="text-3xl font-black text-gray-900 mb-8">Nearby Pharmacies</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="dashboard-card flex items-center gap-6">
+                    <div
+                        class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 font-black text-xl">
+                        C</div>
+                    <div>
+                        <h4 class="font-bold text-gray-900">CityCare Pharmacy</h4>
+                        <p class="text-sm text-gray-500">1.2 km away • ⭐ 4.5</p>
+                        <span
+                            class="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full uppercase tracking-widest">Open
+                            Now</span>
+                    </div>
+                </div>
+                <div class="dashboard-card flex items-center gap-6">
+                    <div
+                        class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600 font-black text-xl">
+                        A</div>
+                    <div>
+                        <h4 class="font-bold text-gray-900">Apollo Pharmacy</h4>
+                        <p class="text-sm text-gray-500">2.0 km away • ⭐ 4.7</p>
+                        <span
+                            class="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full uppercase tracking-widest">Open
+                            Now</span>
+                    </div>
+                </div>
+                <div class="dashboard-card flex items-center gap-6 opacity-60">
+                    <div
+                        class="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-400 font-black text-xl">
+                        M</div>
+                    <div>
+                        <h4 class="font-bold text-gray-900">MedPlus</h4>
+                        <p class="text-sm text-gray-500">3.5 km away • ⭐ 4.2</p>
+                        <span
+                            class="text-[10px] font-bold text-gray-400 bg-slate-50 px-2 py-0.5 rounded-full uppercase tracking-widest">Closed</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="src/js/auth.js"></script>
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/pharmacy.js"></script>
+</body>
+
+</html>

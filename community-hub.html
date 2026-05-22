@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Hub | Nexus Care</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fdf2f2;
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .forum-post {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .forum-post:hover {
+            transform: translateY(-2px);
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .tag-health {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .tag-support {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .tag-blood {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .tag-tips {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Injected by navigation.js -->
+    </aside>
+
+    <main class="ml-[260px] p-8 pt-24 transition-all duration-300">
+        <div class="max-w-6xl mx-auto">
+            <header class="mb-10 flex justify-between items-center">
+                <div>
+                    <h1 class="text-4xl font-bold text-rose-900 mb-2">Nexus Community Hub</h1>
+                    <p class="text-rose-600/70 text-lg">Support, stories, and shared strength. You are not alone.</p>
+                </div>
+                <button id="startDiscussionBtn"
+                    class="bg-rose-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-rose-700 transition shadow-lg shadow-rose-200">
+                    ✍️ Start Discussion
+                </button>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Main Feed -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Filters -->
+                    <div class="flex gap-4 mb-4 overflow-x-auto pb-2" id="filterBar">
+                        <button
+                            class="filter-btn active bg-rose-50 text-rose-600 px-4 py-2 rounded-lg font-medium border border-rose-100 whitespace-nowrap"
+                            data-filter="all">All Discussions</button>
+                        <button
+                            class="filter-btn bg-white px-4 py-2 rounded-lg font-medium text-slate-600 border border-slate-200 whitespace-nowrap"
+                            data-filter="health">Recovery Stories</button>
+                        <button
+                            class="filter-btn bg-white px-4 py-2 rounded-lg font-medium text-slate-600 border border-slate-200 whitespace-nowrap"
+                            data-filter="blood">Blood Donor Heroes</button>
+                        <button
+                            class="filter-btn bg-white px-4 py-2 rounded-lg font-medium text-slate-600 border border-slate-200 whitespace-nowrap"
+                            data-filter="tips">Tips & Tricks</button>
+                    </div>
+
+                    <!-- Posts Container -->
+                    <div id="postsContainer" class="space-y-6">
+                        <!-- Posts will be injected here -->
+                    </div>
+                </div>
+
+                <!-- Trending / Sidebar -->
+                <div class="lg:col-span-1 space-y-8">
+                    <div class="glass-card p-6 rounded-3xl">
+                        <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                            <span>🔥</span> Trending Topics
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex justify-between items-center text-sm border-b border-slate-100 pb-2">
+                                <span class="text-slate-700 font-medium">#MentalHealthMatters</span>
+                                <span class="text-xs text-slate-400">128 posts</span>
+                            </li>
+                            <li class="flex justify-between items-center text-sm border-b border-slate-100 pb-2">
+                                <span class="text-slate-700 font-medium">#BloodDonorChallenge</span>
+                                <span class="text-xs text-slate-400">85 posts</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-3xl border-l-4 border-amber-400">
+                        <h3 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                            <span>💡</span> Quick Tips & Tricks
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="p-3 bg-amber-50 rounded-xl">
+                                <h4 class="text-xs font-bold text-amber-900 mb-1">Morning Hydration</h4>
+                                <p class="text-xs text-amber-800/80">Drink 500ml of water right after waking up to
+                                    jumpstart your metabolism.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Discussion Modal -->
+    <div id="discussionModal"
+        class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 hidden flex items-center justify-center">
+        <div class="bg-white max-w-lg w-[90%] p-8 rounded-3xl relative shadow-2xl">
+            <button id="closeDiscussion"
+                class="absolute top-4 right-4 text-slate-400 hover:text-slate-900 text-2xl">&times;</button>
+            <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">✍️ Start a Discussion</h2>
+            <form id="discussionForm" class="space-y-4">
+                <input type="text" id="postTitle" required
+                    class="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 outline-none"
+                    placeholder="Title...">
+                <select id="postCategory"
+                    class="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 outline-none">
+                    <option value="health">Recovery Story</option>
+                    <option value="blood">Blood Donation</option>
+                    <option value="tips">Tips & Tricks</option>
+                    <option value="support">General Support</option>
+                </select>
+                <textarea id="postContent" required rows="4"
+                    class="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 outline-none"
+                    placeholder="Content..."></textarea>
+                <button type="submit"
+                    class="w-full bg-rose-600 text-white font-bold py-4 rounded-xl hover:bg-rose-700 transition">🚀 Post
+                    to Community</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/community-hub.js"></script>
+</body>
+
+</html>
