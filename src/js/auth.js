@@ -1,8 +1,16 @@
-/**
- * AuthStore: Centralized Authentication State Manager
- */
+window.API_BASE_URL = (() => {
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return window.location.port === '5005' ? '' : 'http://localhost:5005';
+    }
+    if (window.location.protocol === 'file:') {
+        return 'http://localhost:5005';
+    }
+    return ''; // Production relative paths
+})();
+
 class AuthStore {
     constructor() {
+        this.isLoading = true;
         this.user = JSON.parse(localStorage.getItem('nexus_user') || 'null');
         this.token = localStorage.getItem('nexus_token') || null;
         this.refreshToken = localStorage.getItem('nexus_refresh_token') || null;
@@ -16,12 +24,14 @@ class AuthStore {
         // Auto-hydrate and validate on load
         if (this.token) {
             this.initSession();
+        } else {
+            this.isLoading = false;
         }
     }
 
     async initSession() {
         try {
-            const res = await fetch('/api/auth/profile', {
+            const res = await fetch(`${window.API_BASE_URL}/api/auth/profile`, {
                 headers: { 'Authorization': `Bearer ${this.token}` }
             });
             if (res.ok) {
@@ -29,11 +39,15 @@ class AuthStore {
                 // Merge tokens and fresh data
                 this.setSession({ ...freshUser, token: this.token, refreshToken: this.refreshToken });
             } else {
-                // Token invalid or expired
+                // Token genuinely invalid or expired
                 this.logout();
             }
         } catch (err) {
-            console.warn('Network error during session validation', err);
+            // Network error. Do NOT logout user! Rely on existing cached session.
+            console.warn('Network error during session validation. Retaining cached session.', err);
+        } finally {
+            this.isLoading = false;
+            this.notify();
         }
     }
 
@@ -77,7 +91,7 @@ class AuthStore {
     async logout() {
         if (this.token) {
             try {
-                await fetch('/api/auth/logout', {
+                await fetch(`${window.API_BASE_URL}/api/auth/logout`, {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${this.token}` }
                 });
@@ -106,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
     const errorBox = document.getElementById('authError');
-    const API_URL = '/api/auth';
+    const API_URL = `${window.API_BASE_URL}/api/auth`;
 
     const showError = (msg) => {
         if(errorBox) {
@@ -153,6 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if(registerForm) {
+        // existing register logic
         registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -194,6 +209,61 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             } catch (err) {
                 showError('Network error. Is backend running?');
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+    }
+
+    const resetPasswordForm = document.getElementById('resetPasswordForm');
+    if (resetPasswordForm) {
+        resetPasswordForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('resetEmail').value.trim();
+            const newPassword = document.getElementById('resetNewPassword').value.trim();
+            
+            const errBox = document.getElementById('resetError');
+            const successBox = document.getElementById('resetSuccess');
+            const btn = resetPasswordForm.querySelector('button[type="submit"]');
+            
+            errBox.classList.add('hidden');
+            successBox.classList.add('hidden');
+            
+            if (newPassword.length < 8) {
+                errBox.textContent = "Password must be at least 8 characters.";
+                errBox.classList.remove('hidden');
+                return;
+            }
+
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Resetting...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(`${API_URL}/reset-password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, newPassword })
+                });
+                const data = await res.json();
+                
+                if (res.ok) {
+                    successBox.textContent = "Password reset successfully! You can now log in.";
+                    successBox.classList.remove('hidden');
+                    resetPasswordForm.reset();
+                    // Close modal after 3 seconds
+                    setTimeout(() => {
+                        document.getElementById('forgotPasswordModal').classList.add('hidden');
+                        successBox.classList.add('hidden');
+                    }, 3000);
+                } else {
+                    errBox.textContent = data.message || 'Failed to reset password';
+                    errBox.classList.remove('hidden');
+                }
+            } catch (err) {
+                errBox.textContent = 'Network error. Backend not reachable.';
+                errBox.classList.remove('hidden');
             } finally {
                 btn.innerHTML = originalText;
                 btn.disabled = false;

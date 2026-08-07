@@ -1,0 +1,6 @@
+- [x] Fix Community Hub file upload issue
+- [x] Fix Health Vault file upload bug
+  - [x] Investigate root cause of `Not authorized, user no longer exists` (Identified: In-Memory DB restart rendering token stale)
+  - [x] Investigate root cause of `Not authorized, no token` (Identified: Frontend `localStorage` context loss/token absence causing header omission)
+  - [x] Update `src/js/health-vault.js` to securely retrieve token, attach to Authorization header, and handle absent tokens with a clear UI flashcard.
+  - [x] Test upload API successfully with valid token on backend.

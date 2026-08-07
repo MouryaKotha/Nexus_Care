@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive Wellness Report - Nexus Care</title>
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        if (!localStorage.getItem('nexus_token')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 with-sidebar">
+    <nav class="navbar bg-white shadow-sm">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4" />
+                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z" />
+                </svg>
+                <a href="index.html">
+                    <span class="logo-text">Nexus Care</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="ai-mentor.html" class="nav-link">AI Mentor</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12 max-w-5xl" style="margin-left: 260px;">
+        <div class="flex items-center justify-between mb-10">
+            <div>
+                <h1 class="text-4xl font-black text-slate-900 mb-2">Cognitive Wellness Report</h1>
+                <p class="text-lg text-slate-500">Weekly analysis of your voice interactions and speech patterns.</p>
+            </div>
+            <a href="ai-mentor.html" class="px-6 py-3 bg-white border border-slate-200 rounded-full font-bold text-slate-600 hover:text-blue-600 hover:border-blue-500 transition shadow-sm">
+                &larr; Back to Mentor
+            </a>
+        </div>
+
+        <div id="loadingState" class="flex flex-col items-center justify-center py-20">
+            <div class="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4"></div>
+            <p class="text-slate-500 font-medium">Analyzing speech patterns...</p>
+        </div>
+
+        <div id="reportContent" class="hidden">
+            <!-- Wellness Score & Alerts -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+                <div class="lg:col-span-1 bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm flex flex-col items-center justify-center text-center">
+                    <h3 class="text-slate-500 font-bold uppercase tracking-wider text-sm mb-4">Overall Score</h3>
+                    <div id="wellnessScore" class="text-7xl font-black text-blue-600 mb-4">--</div>
+                    <p class="text-slate-600 font-medium">Based on speech stability over the last 14 days.</p>
+                </div>
+
+                <div class="lg:col-span-2 bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
+                    <h3 class="text-slate-500 font-bold uppercase tracking-wider text-sm mb-6">Cognitive Alerts</h3>
+                    <div id="alertsContainer" class="space-y-4">
+                        <!-- Alerts dynamically injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Speech Metrics Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+                    <div class="text-blue-500 mb-4"><i class="fas fa-comment-dots text-2xl"></i></div>
+                    <h4 class="text-slate-900 font-black text-xl mb-1">Vocabulary Usage</h4>
+                    <p class="text-slate-500 text-sm mb-4">Avg. words per response</p>
+                    <div class="flex items-end gap-3">
+                        <span id="avgWords" class="text-3xl font-bold text-slate-800">--</span>
+                        <span id="wordsTrend" class="text-sm font-bold pb-1">--</span>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+                    <div class="text-purple-500 mb-4"><i class="fas fa-align-left text-2xl"></i></div>
+                    <h4 class="text-slate-900 font-black text-xl mb-1">Sentence Complexity</h4>
+                    <p class="text-slate-500 text-sm mb-4">Avg. words per sentence</p>
+                    <div class="flex items-end gap-3">
+                        <span id="avgSentence" class="text-3xl font-bold text-slate-800">--</span>
+                        <span id="sentenceTrend" class="text-sm font-bold pb-1">--</span>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+                    <div class="text-orange-500 mb-4"><i class="fas fa-stopwatch text-2xl"></i></div>
+                    <h4 class="text-slate-900 font-black text-xl mb-1">Response Latency</h4>
+                    <p class="text-slate-500 text-sm mb-4">Avg. time to speak</p>
+                    <div class="flex items-end gap-3">
+                        <span id="avgLatency" class="text-3xl font-bold text-slate-800">--</span>
+                        <span id="latencyTrend" class="text-sm font-bold pb-1">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm mb-10">
+                <h3 class="text-slate-900 font-black text-2xl mb-8">Speech Trends (Last 14 Days)</h3>
+                <div class="relative h-80 w-full">
+                    <canvas id="trendsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="src/js/auth.js"></script>
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/cognitive-report.js"></script>
+</body>
+</html>

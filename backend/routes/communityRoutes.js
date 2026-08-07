@@ -1,6 +1,7 @@
 import express from 'express';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import Discussion from '../models/Discussion.js';
+import { protect } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
@@ -11,7 +12,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
  * @route POST /api/community/discussions
  * @desc Create a new discussion with AI Moderation
  */
-router.post('/discussions', async (req, res) => {
+router.post('/discussions', protect, async (req, res) => {
     const { title, content, category, type } = req.body;
 
     if (!title || !content || !category || !type) {
@@ -56,6 +57,7 @@ router.post('/discussions', async (req, res) => {
         const moderationResult = JSON.parse(jsonMatch[0].trim());
 
         const newPost = new Discussion({
+            userId: req.user._id,
             title,
             content,
             category,

@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const lang = langSelect.value;
 
         try {
-            const token = localStorage.getItem('nexus_token');
+            const token = window.authStore?.token;
             if (!token) {
                 resultDiv.innerHTML = `<div class="p-6 bg-red-50 border border-red-200 rounded-2xl text-center"><p class="text-red-600 font-bold mb-2">Authentication Required</p><p class="text-gray-600 text-sm">Please log in to use the Medical Translator.</p></div>`;
                 loading.classList.add('hidden');

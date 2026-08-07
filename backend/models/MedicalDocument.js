@@ -6,7 +6,7 @@ const medicalDocumentSchema = new mongoose.Schema({
     documentType: { type: String }, // e.g., 'Prescription', 'Lab Report'
     filePath: { type: String, required: true },
     uploadDate: { type: Date, default: Date.now },
-    uploadedBy: { type: String } // User ID
+    uploadedBy: { type: String, index: true } // User ID
 });
 
 const MedicalDocument = mongoose.models.MedicalDocument || mongoose.model('MedicalDocument', medicalDocumentSchema);

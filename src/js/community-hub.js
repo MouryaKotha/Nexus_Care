@@ -13,7 +13,8 @@ class CommunityHub {
 
     async fetchPosts() {
         try {
-            const res = await fetch(`${this.apiBase}/discussions`);
+            const apiBase = window.API_BASE_URL || 'http://localhost:5005';
+            const res = await fetch(`${apiBase}${this.apiBase}/discussions`);
             const data = await res.json();
             if (data.success && data.discussions.length > 0) {
                 this.posts = data.discussions;
@@ -76,6 +77,47 @@ class CommunityHub {
         });
     }
 
+    showFlashcard(title, message, type = 'success') {
+        const existing = document.getElementById('community-flashcard');
+        if (existing) existing.remove();
+
+        const flashcard = document.createElement('div');
+        flashcard.id = 'community-flashcard';
+        flashcard.className = `fixed top-24 right-6 p-4 rounded-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] flex items-start gap-4 z-[100] min-w-[300px] max-w-sm bg-white border ${type === 'success' ? 'border-green-200' : 'border-red-200'}`;
+        
+        const iconHtml = type === 'success' 
+            ? `<div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold shrink-0">✓</div>`
+            : `<div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold shrink-0">✕</div>`;
+
+        flashcard.innerHTML = `
+            ${iconHtml}
+            <div class="flex-1">
+                <h4 class="font-bold text-slate-900">${title}</h4>
+                <p class="text-sm text-slate-500 mt-1">${message}</p>
+            </div>
+            <button class="text-slate-400 hover:text-slate-600 font-bold px-2" onclick="this.parentElement.remove()">&times;</button>
+        `;
+
+        document.body.appendChild(flashcard);
+
+        flashcard.style.opacity = '0';
+        flashcard.style.transform = 'translateY(-10px) translateX(20px)';
+        
+        requestAnimationFrame(() => {
+            flashcard.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            flashcard.style.opacity = '1';
+            flashcard.style.transform = 'translateY(0) translateX(0)';
+        });
+
+        setTimeout(() => {
+            if (document.getElementById('community-flashcard') === flashcard) {
+                flashcard.style.opacity = '0';
+                flashcard.style.transform = 'translateY(-10px) translateX(20px)';
+                setTimeout(() => flashcard.remove(), 300);
+            }
+        }, 3500);
+    }
+
     setupForm() {
         const modal = document.getElementById('discussionModal');
         const openBtn = document.getElementById('startDiscussionBtn');
@@ -88,8 +130,58 @@ class CommunityHub {
         if (form) {
             form.onsubmit = async (e) => {
                 e.preventDefault();
-                alert("Post submitted for AI moderation!");
-                modal.classList.add('hidden');
+                
+                const title = document.getElementById('postTitle').value;
+                const select = document.getElementById('postCategory');
+                const type = select.value;
+                const category = select.options[select.selectedIndex].text;
+                const content = document.getElementById('postContent').value;
+                
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = 'Posting...';
+                submitBtn.disabled = true;
+
+                try {
+                    const token = window.authStore?.token || localStorage.getItem('nexus_token') || '';
+                    const headers = { 'Content-Type': 'application/json' };
+                    if (token) headers['Authorization'] = `Bearer ${token}`;
+                    const apiBase = window.API_BASE_URL || 'http://localhost:5005';
+
+                    const res = await fetch(`${apiBase}${this.apiBase}/discussions`, {
+                        method: 'POST',
+                        headers,
+                        body: JSON.stringify({ title, category, type, content })
+                    });
+                    
+                    const data = await res.json();
+                    
+                    if (res.ok && data.success) {
+                        this.posts.unshift({
+                            id: Date.now(),
+                            author: window.authStore ? window.authStore.getUser()?.name || "Current User" : "Current User",
+                            initials: "ME",
+                            type: type,
+                            category: category,
+                            title: title,
+                            content: content,
+                            likes: 0,
+                            comments: 0,
+                            time: "Just now"
+                        });
+                        this.renderPosts(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
+                        form.reset();
+                        modal.classList.add('hidden');
+                        this.showFlashcard("Post Published Successfully", "Your post is now visible in the Community Hub.", "success");
+                    } else {
+                        this.showFlashcard("Unable to Publish Post", data.message || "Please try again.", "error");
+                    }
+                } catch (err) {
+                    this.showFlashcard("Unable to Publish Post", "Please try again.", "error");
+                } finally {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
             };
         }
     }

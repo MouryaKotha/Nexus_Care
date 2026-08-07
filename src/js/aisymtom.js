@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 150);
 
     try {
-        const token = localStorage.getItem('nexus_token');
+        const token = window.authStore?.token;
         if (!token) {
             symptomText.innerHTML = "<div style='color:red;padding:1rem;'>Please log in to use the AI Symptom Checker.</div>";
             return;
@@ -186,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const lang = localStorage.getItem('nexus-care-lang') || 'en';
 
+        // Note: Use relative URL for Vercel
         const response = await fetch('/api/ai/symptom-check', {
             method: 'POST',
             headers: {

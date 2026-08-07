@@ -57,7 +57,7 @@ class AuthStore {
         // Optional: call backend to revoke refresh token
         if (this.token) {
             try {
-                await fetch('/api/auth/logout', {
+                await fetch(`${window.API_BASE_URL || ''}/api/auth/logout`, {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${this.token}` }
                 });

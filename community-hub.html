@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community Hub | Nexus Care</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        if (!localStorage.getItem('nexus_token')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+
     <link rel="stylesheet" href="src/styles/global.css">
     <link rel="stylesheet" href="src/styles/navigation.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -170,6 +176,7 @@
         </div>
     </div>
 
+    <script src="src/js/auth.js"></script>
     <script src="src/js/navigation.js"></script>
     <script src="src/js/community-hub.js"></script>
 </body>

@@ -11,7 +11,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // Export a robust model instance
 export const getGeminiModel = () => {
     return genAI.getGenerativeModel({ 
-        model: 'gemini-flash-latest',
+        model: 'gemini-2.5-flash',
         generationConfig: {
             temperature: 0.7,
             topP: 0.95,

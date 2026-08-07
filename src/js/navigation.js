@@ -16,9 +16,9 @@ class NexusNavigation {
             { id: 'reminder', label: 'Reminder', url: 'reminder.html', icon: 'M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z', group: 'main' },
             { id: 'family', label: 'Family Ecosystem', url: 'family-sync.html', icon: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2 M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M23 21v-2a4 4 0 0 0-3-3.87 M16 3.13a4 4 0 0 1 0 7.75', group: 'main' },
             { id: 'blog', label: 'Health Blog', url: 'blog.html', icon: 'M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10l4 4v10a2 2 0 0 1-2 2z M14 4v4h4', group: 'secondary' },
-            { id: 'wellness', label: 'Wellness Mentor', url: 'wellness-mentor.html', icon: 'M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z', group: 'secondary' },
             { id: 'vault', label: 'Health Vault', url: 'health-vault.html', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', group: 'secondary' },
-            { id: 'community', label: 'Community Hub', url: 'community-hub.html', icon: 'M12 15l-3-3h6l-3 3z M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2z', group: 'secondary' }
+            { id: 'community', label: 'Community Hub', url: 'community-hub.html', icon: 'M12 15l-3-3h6l-3 3z M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2z', group: 'secondary' },
+            { id: 'privacy', label: 'Privacy Center', url: 'privacy.html', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', group: 'secondary' }
         ];
 
         this.init();
@@ -158,12 +158,29 @@ class NexusNavigation {
         const navActions = document.querySelector('.nav-actions');
         if (!navActions) return;
 
-        const isAuthenticated = window.authStore && window.authStore.isAuthenticated();
-        const user = window.authStore ? window.authStore.getUser() : null;
+        let authContainer = document.getElementById('auth-container');
+        if (!authContainer) {
+            authContainer = document.createElement('div');
+            authContainer.id = 'auth-container';
+            authContainer.className = 'flex items-center gap-4';
+            // Insert auth container before the emergency button or other actions
+            navActions.insertBefore(authContainer, navActions.firstChild);
+        }
+
+        const auth = window.authStore;
+        if (!auth) return;
+
+        if (auth.isLoading) {
+            authContainer.innerHTML = `<div class="animate-pulse w-32 h-10 bg-slate-200 rounded-xl"></div>`;
+            return;
+        }
+
+        const isAuthenticated = auth.isAuthenticated();
+        const user = auth.getUser();
 
         if (isAuthenticated && user) {
             const avatarUrl = user.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=0D8ABC&color=fff`;
-            navActions.innerHTML = `
+            authContainer.innerHTML = `
                 <div class="flex items-center gap-4">
                     <!-- Notifications -->
                     <div class="relative group" id="notificationBellContainer">
@@ -181,8 +198,8 @@ class NexusNavigation {
                                 <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></div>
                             </div>
                             <div class="hidden md:flex flex-col text-left">
-                                <span class="text-sm font-bold text-gray-900 leading-tight">${user.name}</span>
-                                <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">${user.role}</span>
+                                <span class="text-sm font-bold text-gray-900 leading-tight">${user.name || user.email.split('@')[0]}</span>
+                                <span class="text-[10px] font-bold text-blue-600 uppercase tracking-widest">${user.role || 'User'}</span>
                             </div>
                             <svg class="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </button>
@@ -208,9 +225,11 @@ class NexusNavigation {
                 </div>
             `;
         } else {
-            navActions.innerHTML = `
-                <a href="login.html" class="text-gray-600 hover:text-blue-600 font-bold transition text-sm">Log in</a>
-                <a href="login.html?mode=signup" class="btn px-5 py-2.5 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-xl text-sm font-bold shadow-lg shadow-blue-500/30 hover:shadow-xl hover:scale-105 transition-all">Join Free</a>
+            authContainer.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <a href="login.html" class="text-gray-600 hover:text-blue-600 font-bold transition text-sm">Log in</a>
+                    <a href="login.html?mode=signup" class="btn px-5 py-2.5 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-xl text-sm font-bold shadow-lg shadow-blue-500/30 hover:shadow-xl hover:scale-105 transition-all">Join Free</a>
+                </div>
             `;
         }
     }

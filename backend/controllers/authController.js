@@ -1,4 +1,5 @@
 import User from '../models/User.js';
+import PrivacySetting from '../models/PrivacySetting.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
@@ -40,6 +41,8 @@ export const registerUser = async (req, res) => {
         });
 
         if (user) {
+            await PrivacySetting.create({ userId: user._id });
+
             res.status(201).json({
                 _id: user._id,
                 firstName: user.firstName,
@@ -120,7 +123,7 @@ export const getUserProfile = async (req, res) => {
 // Generate JWT
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET || 'nexus_super_secret_key', {
-        expiresIn: '15m', // Short-lived access token
+        expiresIn: '30d', // Increased for hackathon to avoid random token expirations
     });
 };
 
@@ -148,6 +151,7 @@ export const googleLogin = async (req, res) => {
                 avatar: picture,
                 authProvider: 'google',
             });
+            await PrivacySetting.create({ userId: user._id });
         }
 
         const refreshToken = generateRefreshToken(user._id);
@@ -205,5 +209,34 @@ export const logoutUser = async (req, res) => {
         res.json({ message: 'Logged out successfully' });
     } catch (error) {
         res.status(500).json({ message: 'Logout Error', error: error.message });
+    }
+};
+
+// @desc    Reset Password (Direct Hackathon Version)
+// @route   POST /api/auth/reset-password
+export const resetPassword = async (req, res) => {
+    try {
+        const { email, newPassword } = req.body;
+        if (!email || !newPassword) {
+            return res.status(400).json({ message: 'Email and new password are required' });
+        }
+
+        const user = await User.findOne({ email: email.toLowerCase().trim() });
+        if (!user) {
+            return res.status(404).json({ message: 'User with this email does not exist' });
+        }
+
+        if (user.authProvider === 'google') {
+            return res.status(400).json({ message: 'This account uses Google Login. Password reset is not available.' });
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(newPassword, salt);
+        await user.save();
+
+        res.json({ message: 'Password reset successfully' });
+    } catch (error) {
+        console.error('[Auth] Reset Password Error:', error);
+        res.status(500).json({ message: 'Server Error', error: error.message });
     }
 };

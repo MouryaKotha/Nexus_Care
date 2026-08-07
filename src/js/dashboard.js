@@ -11,8 +11,10 @@ async function initDashboard() {
     }
 
     // Initialize Dashboard UI
-    document.getElementById('welcomeMessage').textContent = `Welcome back, ${user.firstName || user.name.split(' ')[0]}`;
-    document.getElementById('userInitial').textContent = (user.firstName || user.name).charAt(0).toUpperCase();
+    const userNameStr = user.firstName || (user.name ? user.name.split(' ')[0] : (user.email ? user.email.split('@')[0] : 'User'));
+    document.getElementById('welcomeMessage').textContent = `Welcome back, ${userNameStr}`;
+    const initialChar = user.firstName ? user.firstName.charAt(0) : (user.name ? user.name.charAt(0) : (user.email ? user.email.charAt(0) : 'U'));
+    document.getElementById('userInitial').textContent = initialChar.toUpperCase();
 
     // Set Profile details
     document.getElementById('creationDate').textContent = new Date(user.createdAt || Date.now()).toLocaleDateString();

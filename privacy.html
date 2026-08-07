@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Center - Nexus Care</title>
+    <link rel="stylesheet" href="src/styles/global.css">
+    <link rel="stylesheet" href="src/styles/navigation.css">
+    <link rel="stylesheet" href="src/styles/privacy.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind = {
+            corePlugins: {
+                preflight: false,
+            }
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="with-sidebar privacy-page">
+
+    <!-- Global Navbar -->
+    <nav class="navbar bg-white shadow-sm sticky top-0 z-50">
+        <div class="nav-container flex justify-between items-center px-6 py-3">
+            <div class="nav-logo flex items-center gap-2">
+                <svg class="logo-icon w-8 h-8 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4" />
+                    <path d="M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.746 3.746 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z" />
+                </svg>
+                <a href="index.html">
+                    <span class="logo-text text-xl font-bold text-slate-800">Nexus Care</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions flex items-center gap-4">
+                <a href="emergency.html" class="btn btn-outline text-rose-600 border-rose-200 hover:bg-rose-50 px-4 py-2 rounded-lg font-medium transition-colors">Emergency</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar injected here -->
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <main class="privacy-main ml-64 p-8">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="privacy-header">
+                <div class="privacy-badge">
+                    <i class="fas fa-shield-alt"></i> Privacy-First
+                </div>
+                <h1>Your privacy matters</h1>
+                <p>Nexus Care is designed using data-minimization principles. We only collect what is strictly necessary to provide you with care.</p>
+            </div>
+
+            <div class="privacy-grid">
+                <!-- What we collect -->
+                <div class="privacy-card">
+                    <h2><i class="fas fa-database"></i> What Nexus Care collects</h2>
+                    <ul class="privacy-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Account Information</strong>
+                                <p class="text-sm mt-1">Name, email address, and secure authentication information.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>AI Mentor Data</strong>
+                                <p class="text-sm mt-1">Conversation text required for history, and numeric speech metrics (e.g. speaking duration) if voice is used.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Health Vault</strong>
+                                <p class="text-sm mt-1">Medical records and files you explicitly upload.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- What we do NOT collect -->
+                <div class="privacy-card">
+                    <h2><i class="fas fa-microphone-slash"></i> What we do NOT collect</h2>
+                    <p>Raw audio is <strong>never stored</strong> in our databases or servers.</p>
+                    <ul class="privacy-list mt-4">
+                        <li><i class="fas fa-times-circle"></i> Raw microphone recordings</li>
+                        <li><i class="fas fa-times-circle"></i> Audio files or blobs</li>
+                        <li><i class="fas fa-times-circle"></i> Temporary voice recordings</li>
+                    </ul>
+                    <p class="text-sm mt-4">When using voice features, speech is processed locally in your browser. Only the resulting text and numeric metrics are transmitted.</p>
+                </div>
+                
+                <!-- Privacy Settings -->
+                <div class="privacy-card" id="privacySettingsCard" style="display: block;">
+                    <h2><i class="fas fa-sliders-h"></i> Privacy Settings</h2>
+                    <ul class="privacy-list mt-4">
+                        <li class="flex justify-between items-center w-full">
+                            <div>
+                                <strong>Analytics & Usage</strong>
+                                <p class="text-sm mt-1 text-slate-500">Help us improve by sharing anonymous usage data.</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="analyticsToggle" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+                            </label>
+                        </li>
+                        <li class="flex justify-between items-center w-full mt-4">
+                            <div>
+                                <strong>Speech Metrics</strong>
+                                <p class="text-sm mt-1 text-slate-500">Allow analysis of vocal pause length and duration for better AI mentoring.</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="speechToggle" class="sr-only peer" checked>
+                                <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Data Retention -->
+            <div class="privacy-grid">
+                <div class="privacy-card">
+                    <h2><i class="fas fa-clock"></i> Data Retention</h2>
+                    <ul class="privacy-list">
+                        <li>
+                            <i class="fas fa-history"></i>
+                            <div>
+                                <strong>AI Mentor</strong>
+                                <p class="text-sm mt-1">Stored while required for your conversation history, unless you delete it.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-file-medical"></i>
+                            <div>
+                                <strong>Health Vault</strong>
+                                <p class="text-sm mt-1">Stored until you delete the record or account.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-user-circle"></i>
+                            <div>
+                                <strong>Account</strong>
+                                <p class="text-sm mt-1">Stored while your account remains active.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Danger Zone: Deletion Controls -->
+            <div class="danger-zone">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6">Manage Your Data</h2>
+                
+                <div class="privacy-grid">
+                    <div class="privacy-card">
+                        <h2><i class="fas fa-robot"></i> AI Mentor Data</h2>
+                        <p class="text-sm">Delete your stored conversation history and numeric speech metrics.</p>
+                        <button class="btn btn-outline w-full mt-4" onclick="privacyManager.confirmDeletion('ai-mentor')">Delete AI Mentor Data</button>
+                    </div>
+
+                    <div class="privacy-card">
+                        <h2><i class="fas fa-folder-open"></i> Health Vault Data</h2>
+                        <p class="text-sm">Delete all your uploaded medical records and associated metadata.</p>
+                        <button class="btn btn-outline w-full mt-4" onclick="privacyManager.confirmDeletion('health-vault')">Delete Health Vault Data</button>
+                    </div>
+                    
+                    <div class="privacy-card">
+                        <h2><i class="fas fa-users"></i> Community Data</h2>
+                        <p class="text-sm">Remove your activity from the community hub.</p>
+                        <button class="btn btn-outline w-full mt-4" onclick="privacyManager.confirmDeletion('community')">Delete Community Data</button>
+                    </div>
+
+                    <div class="privacy-card danger-card">
+                        <h2><i class="fas fa-exclamation-triangle"></i> All Personal Data</h2>
+                        <p class="text-sm text-rose-700">Permanently delete all application data associated with your account.</p>
+                        <button class="btn btn-danger" onclick="privacyManager.confirmDeletion('all')">Delete All Personal Data</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center text-sm text-slate-500">
+                <p>For privacy inquiries, please contact our Data Protection Officer at privacy@nexuscare.com</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="confirmationModal">
+        <div class="modal-content">
+            <h2 class="modal-title" id="modalTitle">Confirm Deletion</h2>
+            <p class="modal-body" id="modalBody">Are you sure?</p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" onclick="privacyManager.closeModal()">Cancel</button>
+                <button class="btn btn-danger" id="confirmDeleteBtn">Delete Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="src/js/auth.js"></script>
+    <script src="src/js/navigation.js"></script>
+    <script src="src/js/privacy.js"></script>
+</body>
+</html>

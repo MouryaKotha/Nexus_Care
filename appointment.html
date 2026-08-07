@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="src/styles/navigation.css">
     <link rel="stylesheet" href="src/styles/appointment.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind = {
+            corePlugins: {
+                preflight: false,
+            }
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="with-sidebar">
@@ -39,18 +47,11 @@
     </nav>
 
     <main class="appointment-main">
-        <section
-            class="appointment-hero bg-gradient-to-br from-blue-600 to-indigo-700 py-20 text-white rounded-b-[40px] mb-12 shadow-2xl">
-            <div class="container text-center">
-                <h1 class="text-5xl font-bold mb-4" data-i18n="apt_title">Book an Appointment</h1>
-                <p class="text-xl text-blue-50/90 max-w-2xl mx-auto" data-i18n="apt_subtitle">
-                    Schedule your visit with our healthcare professionals.
-                    Your journey to better health starts with a simple step.
-                </p>
-            </div>
-        </section>
-
         <div class="container">
+            <div class="appointment-header">
+                <h1 data-i18n="apt_title">Book an Appointment</h1>
+                <p data-i18n="apt_subtitle">Schedule your visit with our healthcare professionals</p>
+            </div>
 
             <div class="progress-indicator">
                 <div class="progress-step active" data-step="1">
@@ -277,6 +278,7 @@
 
     <script src="src/js/translations.js"></script>
     <script src="src/js/appointment.js"></script>
+    <script src="src/js/auth.js"></script>
     <script src="src/js/navigation.js"></script>
 </body>
 

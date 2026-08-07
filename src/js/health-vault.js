@@ -221,11 +221,72 @@ class HealthVault {
     }
 
     init() {
-        this.renderRecords();
+        this.fetchRecords();
         this.setupFilters();
         this.setupModal();
         this.setupQR();
         this.setupDragDrop();
+    }
+
+    async fetchRecords() {
+        try {
+            const token = window.authStore?.token || localStorage.getItem('nexus_token') || '';
+            const headers = { 'Content-Type': 'application/json' };
+            if (token) headers['Authorization'] = `Bearer ${token}`;
+            const apiBase = window.API_BASE_URL || 'http://localhost:5005';
+
+            const res = await fetch(`${apiBase}/api/healthvault`, { headers });
+            const data = await res.json();
+            
+            if (res.ok && data.success && data.records.length > 0) {
+                // Merge fetched records with mock records, preferring fetched ones
+                this.records = [...data.records, ...this.records];
+                this.filterData();
+            }
+        } catch (error) {
+            console.error("Failed to fetch Health Vault records:", error);
+        }
+    }
+
+    showFlashcard(title, message, type = 'success') {
+        const existing = document.getElementById('healthvault-flashcard');
+        if (existing) existing.remove();
+
+        const flashcard = document.createElement('div');
+        flashcard.id = 'healthvault-flashcard';
+        flashcard.className = `fixed top-24 right-6 p-4 rounded-xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] flex items-start gap-4 z-[100] min-w-[300px] max-w-sm bg-white border ${type === 'success' ? 'border-green-200' : 'border-red-200'}`;
+        
+        const iconHtml = type === 'success' 
+            ? `<div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600 font-bold shrink-0">✓</div>`
+            : `<div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 font-bold shrink-0">✕</div>`;
+
+        flashcard.innerHTML = `
+            ${iconHtml}
+            <div class="flex-1">
+                <h4 class="font-bold text-slate-900">${title}</h4>
+                <p class="text-sm text-slate-500 mt-1">${message}</p>
+            </div>
+            <button class="text-slate-400 hover:text-slate-600 font-bold px-2" onclick="this.parentElement.remove()">&times;</button>
+        `;
+
+        document.body.appendChild(flashcard);
+
+        flashcard.style.opacity = '0';
+        flashcard.style.transform = 'translateY(-10px) translateX(20px)';
+        
+        requestAnimationFrame(() => {
+            flashcard.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            flashcard.style.opacity = '1';
+            flashcard.style.transform = 'translateY(0) translateX(0)';
+        });
+
+        setTimeout(() => {
+            if (document.getElementById('healthvault-flashcard') === flashcard) {
+                flashcard.style.opacity = '0';
+                flashcard.style.transform = 'translateY(-10px) translateX(20px)';
+                setTimeout(() => flashcard.remove(), 300);
+            }
+        }, 3500);
     }
 
     setupFilters() {
@@ -268,30 +329,26 @@ class HealthVault {
             const formattedDate = new Date(record.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 
             const block = document.createElement('div');
-            block.className = `glass-card p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between border-l-4 border-${record.theme}-500 hover:bg-white/90 cursor-pointer transition`;
+            block.className = `glass-card p-4 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between border-l-4 border-${record.theme || 'indigo'}-500 hover:bg-white/90 cursor-pointer transition`;
 
             block.innerHTML = `
                 <div class="flex items-center gap-4 w-full mb-3 sm:mb-0">
-                    <div class="bg-${record.theme}-50 p-3 rounded-lg text-${record.theme}-600 text-xl flex-shrink-0">${record.icon}</div>
+                    <div class="bg-${record.theme || 'indigo'}-50 p-3 rounded-lg text-${record.theme || 'indigo'}-600 text-xl flex-shrink-0">${record.icon || '📄'}</div>
                     <div class="flex-1 min-w-0">
                         <h4 class="font-bold text-slate-900 truncate">${record.title}</h4>
                         <p class="text-xs font-semibold text-slate-500 mt-0.5 whitespace-nowrap overflow-hidden text-ellipsis">${formattedDate} • ${record.type} • ${record.size}</p>
                     </div>
                 </div>
-                <button class="text-${record.theme}-600 font-bold text-sm bg-${record.theme}-50 hover:bg-${record.theme}-100 px-4 py-2 rounded-xl transition whitespace-nowrap view-summary-btn w-full sm:w-auto">View Summary</button>
+                
+                <div class="flex gap-2 w-full sm:w-auto mt-3 sm:mt-0 opacity-100 sm:opacity-0 group-hover:opacity-100 transition">
+                    <button class="flex-1 sm:flex-none bg-slate-100 hover:bg-indigo-50 text-indigo-600 px-4 py-2 rounded-lg text-sm font-bold transition">View</button>
+                    <button class="flex-1 sm:flex-none bg-slate-100 hover:bg-slate-200 text-slate-600 px-4 py-2 rounded-lg text-sm font-bold transition">Download</button>
+                </div>
             `;
 
-            // Setup click events
-            block.addEventListener('click', (e) => {
-                // Prevent double firing if button clicked vs block clicked
-                if (e.target.tagName !== 'BUTTON') {
-                    this.openModal(record);
-                }
-            });
-            const btn = block.querySelector('.view-summary-btn');
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                this.openModal(record);
+            // On click, show AI analysis
+            block.addEventListener('click', () => {
+                this.triggerRightPanelAnalysis(record);
             });
 
             this.listEl.appendChild(block);
@@ -299,50 +356,11 @@ class HealthVault {
     }
 
     setupModal() {
-        this.closeModalBtn.addEventListener('click', () => this.closeModal());
+        if (!this.modal) return;
+        this.closeModalBtn.addEventListener('click', () => this.modal.classList.add('hidden'));
         this.modal.addEventListener('click', (e) => {
-            if (e.target === this.modal) this.closeModal();
+            if (e.target === this.modal) this.modal.classList.add('hidden');
         });
-    }
-
-    openModal(record) {
-        // Populate Data
-        document.getElementById('modalTitle').textContent = record.title;
-        document.getElementById('modalSubtitle').textContent = `${new Date(record.date).toLocaleDateString()} • ${record.type}`;
-        document.getElementById('modalDoc').textContent = record.doctor;
-        document.getElementById('modalHosp').textContent = record.hospital;
-        document.getElementById('modalDiag').textContent = record.diagnosis;
-        document.getElementById('modalNextVisit').textContent = record.nextVisit;
-
-        // Populate Observations
-        document.getElementById('modalObs').innerHTML = record.observations.map(o => `<li>${o}</li>`).join('');
-
-        // Populate Meds
-        document.getElementById('modalMeds').innerHTML = record.prescriptions.map(p => `<li>${p}</li>`).join('');
-
-        // Apply dynamic color to header based on record theme
-        const headerClasses = ['indigo', 'emerald', 'blue', 'red', 'sky', 'slate', 'green', 'purple', 'amber', 'teal']
-            .flatMap(c => [`bg-${c}-600`, `text-${c}-200`]); // Clear old themes just in case logic was expanding
-        const header = document.getElementById('modalTitle').parentElement.parentElement;
-        header.className = `p-6 text-white flex justify-between items-center bg-${record.theme}-600`;
-
-        // Run mock AI analysis on right panel as well for sync feature
-        this.triggerRightPanelAnalysis(record);
-
-        // Show Modal with Animation
-        this.modal.classList.remove('hidden');
-        // Force reflow
-        void this.modal.offsetWidth;
-        this.modalContent.classList.remove('scale-95', 'opacity-0');
-        this.modalContent.classList.add('scale-100', 'opacity-100');
-    }
-
-    closeModal() {
-        this.modalContent.classList.remove('scale-100', 'opacity-100');
-        this.modalContent.classList.add('scale-95', 'opacity-0');
-        setTimeout(() => {
-            this.modal.classList.add('hidden');
-        }, 300); // Wait for transition
     }
 
     triggerRightPanelAnalysis(record) {
@@ -357,11 +375,11 @@ class HealthVault {
             // Format AI body
             document.getElementById('summaryBody').innerHTML = `
                 <b>System Review for:</b> ${record.title}<br/><br/>
-                The document provided by ${record.doctor} indicates a primary finding of <i>${record.diagnosis}</i>. 
-                Our AI has matched these observations against your medical history and confirms no conflicting drug interactions in your newly prescribed <b>${record.prescriptions[0] || 'medicines'}</b>.
+                The document provided by ${record.doctor || 'Unknown'} indicates a primary finding of <i>${record.diagnosis || 'Pending Review'}</i>. 
+                Our AI has matched these observations against your medical history and confirms no conflicting drug interactions in your newly prescribed <b>${(record.prescriptions && record.prescriptions[0]) || 'medicines'}</b>.
             `;
 
-            document.getElementById('aiActionText').textContent = `Suggested ${record.type === 'Prescription' ? 'medication start' : 'follow-up'} as per ${record.hospital}. Automatically synced to your calendar.`;
+            document.getElementById('aiActionText').textContent = `Suggested ${record.type === 'Prescription' ? 'medication start' : 'follow-up'} as per ${record.hospital || 'clinic'}. Automatically synced to your calendar.`;
 
         }, 800);
     }
@@ -419,29 +437,70 @@ class HealthVault {
         const self = this;
         function handleFiles(files) {
             if (files.length > 0) {
-                // Mock adding to records
-                const newRec = {
-                    id: Date.now(),
-                    title: files[0].name.replace(/\.[^/.]+$/, ""), // remove extension
-                    date: new Date().toISOString().split('T')[0],
-                    type: "Lab Report",
-                    format: files[0].name.split('.').pop().toUpperCase(),
-                    size: (files[0].size / (1024 * 1024)).toFixed(1) + " MB",
-                    icon: "📄",
-                    theme: "indigo",
-                    doctor: "Unknown",
-                    hospital: "Uploaded File",
-                    diagnosis: "Pending Medical Review",
-                    observations: ["Self uploaded document"],
-                    prescriptions: ["Pending"],
-                    nextVisit: "- -"
+                const file = files[0];
+                
+                // Max file size 10MB
+                if (file.size > 10 * 1024 * 1024) {
+                    self.showFlashcard("File Too Large", "Please select a smaller file (Max 10MB).", "error");
+                    return;
+                }
+
+                // Show uploading state on the dropzone if needed, or just let it process
+                const originalContent = dropZone.innerHTML;
+                dropZone.innerHTML = `<div class="text-xl font-bold text-indigo-600 animate-pulse py-10">Uploading ${file.name}...</div>`;
+
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const base64Data = e.target.result;
+                    const title = file.name.replace(/\.[^/.]+$/, "");
+                    const format = file.name.split('.').pop().toUpperCase();
+                    const size = (file.size / (1024 * 1024)).toFixed(1) + " MB";
+                    
+                    const payload = { title, format, size, type: "Lab Report", fileData: base64Data };
+
+                    try {
+                        const token = window.authStore?.token || localStorage.getItem('nexus_token') || '';
+                        
+                        if (!token) {
+                            self.showFlashcard("Authentication Error", "You are not logged in. Please log in again to upload files.", "error");
+                            return;
+                        }
+
+                        const headers = { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        };
+                        const apiBase = window.API_BASE_URL || 'http://localhost:5005';
+
+                        const res = await fetch(`${apiBase}/api/healthvault/upload`, {
+                            method: 'POST',
+                            headers,
+                            body: JSON.stringify(payload)
+                        });
+                        
+                        const data = await res.json();
+                        
+                        if (res.ok && data.success) {
+                            self.records.unshift(data.record);
+                            self.filterData();
+                            self.triggerRightPanelAnalysis(data.record);
+                            self.showFlashcard("File Uploaded Successfully", "Your document has been securely added to Health Vault.", "success");
+                        } else {
+                            self.showFlashcard("Unable to Upload File", data.message || "Please try again.", "error");
+                        }
+                    } catch (error) {
+                        self.showFlashcard("Unable to Upload File", "Please try again.", "error");
+                    } finally {
+                        dropZone.innerHTML = originalContent;
+                    }
+                };
+                
+                reader.onerror = () => {
+                    self.showFlashcard("Unable to Upload File", "Error reading file.", "error");
+                    dropZone.innerHTML = originalContent;
                 };
 
-                self.records.unshift(newRec); // add to top
-                self.filterData(); // re-render
-
-                // Trigger AI analysis on upload
-                self.triggerRightPanelAnalysis(newRec);
+                reader.readAsDataURL(file);
             }
         }
     }

@@ -44,9 +44,11 @@ export const symptomCheck = async (req, res) => {
     }
 };
 
+import CognitiveLog from '../models/CognitiveLog.js';
+
 export const mentorAI = async (req, res) => {
     try {
-        const { message, lang } = req.body;
+        const { message, lang, cognitiveMetrics } = req.body;
         if (!message) return res.status(400).json({ error: 'Message is required' });
 
         const model = getGeminiModel();
@@ -61,6 +63,18 @@ export const mentorAI = async (req, res) => {
         conv.messages.push({ role: 'user', content: message });
         conv.messages.push({ role: 'model', content: reply });
         await conv.save();
+
+        // Save Cognitive Metrics if provided (only for voice interactions)
+        if (cognitiveMetrics && cognitiveMetrics.isVoice) {
+            const log = new CognitiveLog({
+                userId: req.user._id,
+                transcript: message,
+                responseTimeMs: cognitiveMetrics.responseTimeMs || 0,
+                totalWords: cognitiveMetrics.totalWords || 0,
+                avgSentenceLength: cognitiveMetrics.avgSentenceLength || 0
+            });
+            await log.save();
+        }
 
         res.status(200).json({ reply });
     } catch (error) {
